@@ -1,0 +1,13 @@
+<mvc:View
+	controllerName="teamfact.app.controller.Welcome"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+
+    <Page title="{i18n>teamfactplanner}">
+        <FlexBox alignItems="Center" justifyContent="Center" direction="Column" height="100%" >           
+            <Image src="https://www.teamfact.com/typo3conf/ext/teamfact/Resources/Public/images/logo-50.png" />            
+            <Title level="H3" text="{i18n>welcomeText}" />
+        </FlexBox>        
+    </Page>    
+
+</mvc:View>

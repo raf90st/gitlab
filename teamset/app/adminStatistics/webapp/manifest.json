@@ -1,0 +1,110 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "adminStatistics",
+        "type": "application",
+        "title": "Administration",
+        "description": "Sample Application",
+        "i18n": "i18n/i18n.properties",
+        "dataSources": {
+            "dflService": {
+                "uri": "/dfl/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+			"viewName": "adminStatistics.view.Admin",
+			"type": "XML",
+			"async": true,
+			"id": "adminStatsView"
+        },
+        "config": {
+            "fullWidth": true
+        },
+        "resources": {
+            "css": [
+                {"uri": "css/style.css"}
+            ]
+        },
+        "dependencies": {
+            "libs": {
+                "sap.m": {},
+				"sap.ui.comp": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "dflService",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
+                }
+            }
+        },
+        "routing": {
+            "config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "adminStatistics.view",
+				"controlId": "adminStatsView",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": ["notFound"]
+                },
+				"async": true
+			},
+
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "adminStatistics",
+                    "target": "app-stats"
+                },
+                {
+                    "pattern": "TeamStatistics/{matchId}",
+                    "name": "teamStatistics",
+                    "target": "team-stats"
+                },
+                {
+                    "pattern": "PlayerStatistics/{matchId}/{teamId}",
+                    "name": "playerStatistics",
+                    "target": "player-stats"
+                }
+            ],
+            "targets": {
+                "app-stats": {
+                    "viewName": "Admin",
+					"viewId": "admin",
+					"viewLevel": 1,
+					"title": "Administration"
+                },
+                "team-stats": {
+                    "viewName": "TeamStats",
+					"viewId": "teamstats",
+					"title": "Team Statistics"
+                },
+                "player-stats": {
+                    "viewName": "PlayerStats",
+					"viewId": "playerstats",
+					"title": "Player Statistics"
+                }
+            }
+        }
+    }
+}

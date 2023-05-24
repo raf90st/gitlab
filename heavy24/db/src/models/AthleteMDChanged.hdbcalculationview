@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="AthleteMDChanged" applyPrivilegeType="NONE" dataCategory="DEFAULT" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="AthleteMDChanged"/>
+<localVariables>
+  <variable id="P_EVENT_ID" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="INTEGER" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MasterData2Contest">
+    <resourceUri>MasterData2Contest</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_CONTEST">
+    <resourceUri>TF_HEAVY24_CONTEST</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_TEAM">
+    <resourceUri>TF_HEAVY24_TEAM</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_ATHLETE">
+    <resourceUri>TF_HEAVY24_ATHLETE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CV_MasterData">
+    <viewAttributes>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="ContestCategory"/>
+      <viewAttribute id="ContestGenderCategory"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="GENDER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MasterData2Contest"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="MD_Join" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CONTEST_ID" aggregationType="sum"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$ContestCategory$CATEGORY"/>
+      <viewAttribute hidden="true" id="JOIN$ContestGenderCategory$GENDERCATEGORY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CV_MasterData">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestCategory$CATEGORY" source="ContestCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestGenderCategory$GENDERCATEGORY" source="ContestGenderCategory"/>
+    </input>
+  
+    <input node="Contest">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTEST_ID" source="ID"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestCategory$CATEGORY" source="CATEGORY"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestGenderCategory$GENDERCATEGORY" source="GENDERCATEGORY"/>
+  
+    </input>
+    <joinAttribute name="JOIN$ContestCategory$CATEGORY"/>
+    <joinAttribute name="JOIN$ContestGenderCategory$GENDERCATEGORY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Contest" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="EVENT_ID"/>
+    
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="GENDERCATEGORY"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_CONTEST"/>
+    <filter>&quot;EVENT_ID&quot; = '$$P_EVENT_ID$$'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Team">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NUMBER"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID"/>
+    
+      <viewAttribute id="EVENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_TEAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Team_Join" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="TEAM_ID" aggregationType="sum"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$TeamNumber$NUMBER"/>
+      <viewAttribute hidden="true" id="JOIN$CONTEST_ID$CONTEST_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MD_Join">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$TeamNumber$NUMBER" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CONTEST_ID$CONTEST_ID" source="CONTEST_ID"/>
+    </input>
+    <input node="Team">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$TeamNumber$NUMBER" source="NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CONTEST_ID$CONTEST_ID" source="CONTEST_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+    </input>
+    <joinAttribute name="JOIN$TeamNumber$NUMBER"/>
+    <joinAttribute name="JOIN$CONTEST_ID$CONTEST_ID"/>
+    <joinAttribute name="EVENT_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Athlete">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER"/>
+      <viewAttribute id="DEFLAPTIME"/>
+      <viewAttribute id="TEAM_ID"/>
+    
+      <viewAttribute id="EVENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_ATHLETE"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Athlete_Join" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER" aggregationType="sum"/>
+      <viewAttribute id="DEFLAPTIME" aggregationType="sum"/>
+      <viewAttribute id="NEW_FIRSTNAME"/>
+      <viewAttribute id="NEW_LASTNAME"/>
+      <viewAttribute id="NEW_GENDER"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute id="TEAM_ID" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Team_Join">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NEW_FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NEW_LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NEW_GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="TEAM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+    </input>
+    <input node="Athlete">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULLNAME" source="FULLNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SORTORDER" source="SORTORDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEFLAPTIME" source="DEFLAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="TEAM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+    </input>
+    <joinAttribute name="STARTNUMBER"/>
+    <joinAttribute name="TEAM_ID"/>
+    <joinAttribute name="EVENT_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ChangedAndNewRecords" filterExpressionLanguage="COLUMN_ENGINE">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER"/>
+      <viewAttribute id="DEFLAPTIME"/>
+      <viewAttribute id="NEW_FIRSTNAME"/>
+      <viewAttribute id="NEW_LASTNAME"/>
+      <viewAttribute id="NEW_GENDER"/>
+      <viewAttribute id="EVENT_ID"/>
+      <viewAttribute id="TEAM_ID"/>
+    
+      <viewAttribute id="STARTNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="GenderChanged" datatype="BOOLEAN" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (not isnull(&quot;NEW_GENDER&quot;), 
+    if (isnull(&quot;GENDER&quot;), 1,
+        if (&quot;GENDER&quot; != &quot;NEW_GENDER&quot;, 1, 0)),
+0)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="FirstnameChanged" datatype="BOOLEAN" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (not isnull(&quot;NEW_FIRSTNAME&quot;), if(&quot;FIRSTNAME&quot; != &quot;NEW_FIRSTNAME&quot;, 1, 0), 0)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="LastnameChanged" datatype="BOOLEAN" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (not isnull(&quot;NEW_LASTNAME&quot;), if(&quot;LASTNAME&quot; != &quot;NEW_LASTNAME&quot;, 1, 0), 0)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="NEW_FIRSTNAME_NOTNULL" datatype="NVARCHAR" length="20" expressionLanguage="COLUMN_ENGINE">
+    
+        <formula>if (isnull(&quot;NEW_FIRSTNAME&quot;), '', &quot;NEW_FIRSTNAME&quot;)</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="NEW_LASTNAME_NOTNULL" datatype="NVARCHAR" length="20" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (isnull(&quot;NEW_LASTNAME&quot;), '', &quot;NEW_LASTNAME&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Athlete_Join"/>
+    <filter>&quot;GenderChanged&quot; or &quot;FirstnameChanged&quot; or &quot;LastnameChanged&quot; or isnull(&quot;ID&quot;)</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="ChangedAndNewRecords">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="ID"/>
+    </attribute>
+    <attribute id="NEW_GENDER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NEW_GENDER"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NEW_GENDER"/>
+    </attribute>
+    <attribute id="SORTORDER" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SORTORDER"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="SORTORDER"/>
+    </attribute>
+    <attribute id="DEFLAPTIME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEFLAPTIME"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="DEFLAPTIME"/>
+    </attribute>
+    <attribute id="TEAM_ID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAM_ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="TEAM_ID"/>
+    </attribute>
+    <attribute id="EVENT_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EVENT_ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="EVENT_ID"/>
+    </attribute>
+  
+    <attribute id="STARTNUMBER" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STARTNUMBER"/>
+  
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="STARTNUMBER"/>
+  
+    </attribute>
+  
+    <attribute id="NEW_FIRSTNAME" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NEW_FIRSTNAME_NOTNULL"/>
+  
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NEW_FIRSTNAME_NOTNULL"/>
+  
+    </attribute>
+    <attribute id="NEW_LASTNAME" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NEW_LASTNAME_NOTNULL"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NEW_LASTNAME_NOTNULL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="NEW_FULLNAME" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="42">
+        <formula>if (not isnull(&quot;NEW_LASTNAME&quot;), &quot;NEW_LASTNAME&quot; + ', ' + &quot;NEW_FIRSTNAME&quot;, '')</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="425" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="CV_MasterData" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="182" y="1087"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MD_Join" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="187" y="904"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="CV_MasterData" modelObjectNameSpace="MD_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="152"/>
+    </shape>
+  
+    <shape modelObjectName="Contest" modelObjectNameSpace="MD_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Contest" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="489" y="1087"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Team" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="486" y="904"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Team_Join" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="187" y="731"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="MD_Join" modelObjectNameSpace="Team_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Team" modelObjectNameSpace="Team_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Athlete" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="479" y="731"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Athlete_Join" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="337" y="548"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Team_Join" modelObjectNameSpace="Athlete_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Athlete" modelObjectNameSpace="Athlete_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ChangedAndNewRecords" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="510" y="409"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

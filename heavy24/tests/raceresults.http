@@ -1,0 +1,149 @@
+### show all finished and planned rounds for team 855
+GET http://localhost:4004/race/RaceResultsCombined?
+&$filter=TeamID%20eq%20855&
+
+### show Athlete view data for team 855
+GET http://localhost:4004/race/RaceResultsCombinedAthlete?
+&$filter=TeamID%20eq%20855&
+
+### get Team Overview for team 855
+Get http://localhost:4004/race/TeamOverview?
+&$filter=TeamID%20eq%20855
+
+
+### get master data for Team 855
+Get http://localhost:4004/race/Athletes?
+&$filter=Team_ID%20eq%20855&$orderby=SortOrder
+
+### run read master data
+POST http://localhost:4004/race/readMasterData
+Content-Type: application/json
+
+{}
+
+### run read race results
+POST http://localhost:4004/race/readResults
+Content-Type: application/json
+
+{}
+
+### set a lap plan for a athlete via action setLapPlan
+POST http://localhost:4004/race/setLapPlan
+Content-Type: application/json
+
+{ "teamId": 855, "lapNr": 66, "athleteId": 8552 }
+
+### change sort order for an athlete
+POST http://localhost:4004/race/changeSortOrder
+Content-Type: application/json
+
+{ "athleteId": 8554, "refAthleteId": 8556, "bAfter": true}
+
+### INSERT a new lap plan for a athlete without action
+Post http://localhost:4004/race/LapPlan
+Content-Type: application/json
+
+{ "TeamID": 855, "LapNr": 68, "Athlete_ID": 8554}
+
+
+#### TEST for map with new splits and new results ####
+
+### INSERT lap 64 split time 1
+Post http://localhost:4004/race/SplitResults
+Content-Type: application/json
+
+{
+    "TeamID": 855,
+    "LapNr": 64,
+    "SplitNr": 1,
+    "SplitTime": 326,
+    "SplitStartSecsFromContestBegin": 84497,
+    "StartTime": "2019-06-30T09:22:51Z",
+    "EndTime": "2019-06-30T09:44:34Z",
+    "Athlete_ID": 8553
+}
+
+### INSERT lap 64 split time 2
+Post http://localhost:4004/race/SplitResults
+Content-Type: application/json
+
+{
+    "TeamID": 855,
+    "LapNr": 64,
+    "SplitNr": 2,
+    "SplitTime": 652,
+    "SplitStartSecsFromContestBegin": 84823,
+    "StartTime": "2019-06-30T09:22:51Z",
+    "EndTime": "2019-06-30T09:44:34Z",
+    "Athlete_ID": 8553
+}
+
+### INSERT lap 64 split time 3
+Post http://localhost:4004/race/SplitResults
+Content-Type: application/json
+
+{
+    "TeamID": 855,
+    "LapNr": 64,
+    "SplitNr": 3,
+    "SplitTime": 977,
+    "SplitStartSecsFromContestBegin": 85148,
+    "StartTime": "2019-06-30T09:22:51Z",
+    "EndTime": "2019-06-30T09:44:34Z",
+    "Athlete_ID": 8553
+}
+
+### INSERT lap 64 result
+Post http://localhost:4004/race/LapResults
+Content-Type: application/json
+
+{
+    "TeamID": 855,
+    "LapNr": 64,
+    "LapTime": 1303,
+    "LapStartSecsFromContestBegin": 84171,
+    "StartTime": "2019-06-30T09:22:51Z",
+    "EndTime": "2019-06-30T09:44:34Z",
+    "ContestRank": 3,
+    "Athlete_ID": 8553
+}
+
+### UPDATE Split Time to simulate Athlete Crash
+Put http://localhost:4004/race/SplitResults(TeamID=855,LapNr=64,SplitNr=1)
+Content-Type: application/json
+
+{ "SplitTime": 626 }
+
+### UPDATE Race Result Combined to finalize Lap
+Put http://localhost:4004/race/RaceResultsCombined(TeamID=855,LapNr=65)
+Content-Type: application/json
+
+{ "FinishedFlag": 1}
+
+### CREATE or UPDATE with Put or Patch
+Put http://localhost:4004/race/LapPlan(TeamID=855,LapNr=68)
+Content-Type: application/json
+
+{ "Athlete_ID": 8551}
+
+### show planned round for team 855
+Get http://localhost:4004/race/LapPlan?
+&$filter=TeamID%20eq%20855
+
+
+### Create Picture
+POST http://localhost:4004/race/AthletePictures
+Accept: application/json
+Content-Type: application/json
+
+{ "ID": 8553 }
+
+### Upload Binary
+PUT http://localhost:4004/race/AthletePictures(8553)/image
+Content-Type: image/png
+
+< ./8557.jpg
+
+### Read Binary
+GET http://localhost:4004/race/AthletePictures(8553)/image
+

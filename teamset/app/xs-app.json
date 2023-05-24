@@ -1,0 +1,17 @@
+{
+  "welcomeFile": "/dfl.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "/dfl/(.*)$",
+      "target": "/dfl/$1",
+      "destination": "srv-api",
+      "csrfProtection": true
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "localDir": "./"
+    }
+  ]
+}

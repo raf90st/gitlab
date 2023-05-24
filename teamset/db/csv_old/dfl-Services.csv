@@ -1,0 +1,8 @@
+ServiceID;DropdownText;TableName;SeasonRequired;CompetitionRequired;ClubRequired;TableKey;EntityName;EntityNamePlural
+DFL-01.01-Stammdaten-Wettbewerb;Wettbewerbe;WS0101_MD_Competition;false;false;false;CompetitionId;Competition;Competitions
+DFL-01.02-Stammdaten-Spieltage;Spieltage;WS0102_MD_MatchDay;false;false;false;MatchDayId;MatchDay;Matchdays
+DFL-01.03-Stammdaten-Stadien;Stadien;WS0103_MD_Stadium;false;false;false;StadiumId;Stadium;Stadiums
+DFL-01.07-Stammdaten-Saison;Spielzeiten (Saison);WS0107_MD_Season;false;false;false;SeasonId;Season;Seasons
+DFL-01.04-Stammdaten-Vereine;Mannschaften;WS0104_MD_Club;true;true;false;ClubId;Club;Clubs
+DFL-01.05-Stammdaten-Personen;Personen;WS0105_MD_Person;true;false;true;PersonId;Object;Objects
+DFL-01.06-Stammdaten-Spielplan;Spielplan;WS0106_MD_Fixture;true;false;false;MatchId;Fixture;Fixtures

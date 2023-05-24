@@ -1,0 +1,5 @@
+FeedTyp;MatchId;DlProviderId;CompetitionName;CompetitionId;CompetitionType;MatchDay;MatchDayId;MatchType;Season;SeasonId;PlannedKickoffTime;StadiumName;StadiumId;HomeTeamName;HomeTeamId;GuestTeamName;GuestTeamId;ValidTo;MatchDateFixed;DateQuality;OfficialInformation;StartDate;EndDate
+;DFL-MAT-003C64;;RB Berlin vs Leipzig;DFL-COM-J0002E;;2;;;2021/2022;DFL-SEA-0001K5;;;;Berlin;;Leipzig;;;false;;;;
+;DFL-MAT-003C63;;Hannover vs Stuttgart;DFL-COM-J0002F;;3;;;2021/2022;DFL-SEA-0001K5;;;;Hannover;;Stuttgart;;;false;;;;
+;DFL-MAT-003C62;;Düsseldorf vs St. Pauli;DFL-COM-J0002G;;4;;;2021/2022;DFL-SEA-0001K5;;;;Düsseldorf;;St.Pauli;;;false;;;;
+;DFL-MAT-003C61;;Freiburg vs München;DFL-COM-J0002H;;5;;;2020/2021;DFL-SEA-0001K5;;;;Freiburg;;München;;;false;;;;

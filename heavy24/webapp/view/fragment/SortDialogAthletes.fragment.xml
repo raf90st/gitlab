@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="onSortDialogConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Runde" key="LapNr" selected="true" />
+			<ViewSettingsItem text="Fahrer" key="FullName" />			
+			<!--ViewSettingsItem text="{i18n>split1}" key="SplitTime1" />
+            <ViewSettingsItem text="{i18n>split2}" key="SplitTime2Delta" />
+            <ViewSettingsItem text="{i18n>split3}" key="SplitTime3Delta" /-->
+            <ViewSettingsItem text="Rundenzeit" key="LapTime" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

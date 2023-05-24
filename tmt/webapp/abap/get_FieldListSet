@@ -1,0 +1,60 @@
+  METHOD get_fieldlist.
+    CONCATENATE '/BIC/A' i_tableid '2' INTO DATA(tech_table).
+
+    DATA: lst_fields TYPE SORTED TABLE OF /bic/atmttd0012 WITH UNIQUE KEY /bic/tmtfield,
+          lv_fieldid TYPE /bic/oitmtfield.
+
+    SELECT fieldname, keyflag, leng, datatype, o~txtlg
+    INTO TABLE @DATA(lt_fields)
+    FROM dd03l
+      LEFT OUTER JOIN rsdiobjv AS o ON fieldname = o~fieldnm
+    WHERE tabname = @tech_table AND o~objvers = 'A' AND o~langu = 'E' AND fieldname NE 'RECORDMODE'.
+
+    SELECT * FROM /bic/atmttd0012 WHERE
+      /bic/tmttable = @i_tableid INTO
+      TABLE @lst_fields.
+
+    LOOP AT lt_fields INTO DATA(ls_field).
+      lv_fieldid = ls_field-fieldname.
+      lv_fieldid = clean_fieldname( lv_fieldid ).
+
+      READ TABLE lst_fields WITH TABLE KEY /bic/tmtfield = lv_fieldid
+      INTO DATA(ls_config_field).
+
+      IF ls_config_field-/bic/tmtflign NE abap_true.
+        APPEND INITIAL LINE TO return ASSIGNING FIELD-SYMBOL(<fs_field>).
+
+        <fs_field>-tableid = i_tableid.
+        <fs_field>-fieldid =  ls_field-fieldname.
+        <fs_field>-cleanedfieldid = lv_fieldid.
+
+
+        CASE ls_field-datatype.
+          WHEN 'CHAR' OR 'NUMC' or 'CUKY'.
+            <fs_field>-fieldtype = 1.
+          WHEN 'DEC' OR 'INT' OR 'QUAN' or 'CURR'.
+            <fs_field>-fieldtype = 2.
+          WHEN 'DATS'.
+            <fs_field>-fieldtype = 3.
+        ENDCASE.
+
+        <fs_field>-fielddesc = ls_field-txtlg.
+        <fs_field>-iskeyfield = ls_field-keyflag.
+
+
+
+        IF ls_config_field IS NOT INITIAL.
+          IF ls_config_field-/bic/tmtfldtyp IS NOT INITIAL.
+            <fs_field>-fieldtype = ls_config_field-/bic/tmtfldtyp.
+          ENDIF.
+          IF ls_config_field-/bic/tmtflddsc IS NOT INITIAL.
+            <fs_field>-fielddesc = ls_config_field-/bic/tmtflddsc.
+          ENDIF.
+          IF ls_config_field-/bic/tmtsrchen IS NOT INITIAL.
+            <fs_field>-searchhelpentity = ls_config_field-/bic/tmtsrchen.
+          ENDIF.
+        ENDIF.
+      ENDIF.
+      CLEAR ls_config_field.
+    ENDLOOP.
+  ENDMETHOD.

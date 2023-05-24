@@ -1,0 +1,23 @@
+  METHOD create_record.
+    DATA: table_row      LIKE LINE OF it_values,
+          adso_table     TYPE string,
+          ls_data_dso    TYPE REF TO data,
+          update_counter TYPE i,
+          update_ack     TYPE i.
+    FIELD-SYMBOLS: <fs_fieldvalue> TYPE any.
+
+    READ TABLE it_values INTO table_row INDEX 1.
+    CONCATENATE '/BIC/A' table_row-tableid '2' INTO adso_table.
+
+    CREATE DATA ls_data_dso TYPE (adso_table).
+    ASSIGN ls_data_dso->* TO FIELD-SYMBOL(<lit_target>).
+
+    LOOP AT it_values INTO DATA(ls_record).
+
+      ASSIGN COMPONENT ls_record-fieldid OF STRUCTURE <lit_target> TO <fs_fieldvalue>.
+      <fs_fieldvalue> = ls_record-fieldvalue.
+
+    ENDLOOP.
+    MODIFY (adso_table) FROM <lit_target>.
+    CALL FUNCTION 'DB_COMMIT'.
+  ENDMETHOD.

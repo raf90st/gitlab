@@ -1,0 +1,114 @@
+PROCEDURE "CalculateSplits"( 
+    IN eventId INTEGER
+    )
+    
+	LANGUAGE SQLSCRIPT SQL SECURITY INVOKER AS
+BEGIN
+
+    DECLARE SplitRows INTEGER;
+    
+    -- get all splits
+    lt_Splits = 
+        SELECT
+            splits."STARTNUMBER",
+            athlete."ID" as "ATHLETE_ID",
+            substring(splits."STARTNUMBER",1,3) as "TEAM_NUMBER",
+            "SPLITNR",
+            "SPLITSTARTSECSFROMCONTESTBEGIN"
+        from "TF_HEAVY24_SPLITS" splits
+        inner join "TF_HEAVY24_ATHLETE" athlete
+            on splits."STARTNUMBER" = athlete."STARTNUMBER" 
+        where athlete."EVENT_ID" = :eventId;
+        
+    -- get finished laps    
+    lt_LapResults = 
+        SELECT
+            "TEAMID" as "TEAMID",
+            "NUMBER" as "TEAM_NUMBER",
+            "LAPNR",
+            "LAPTIME",
+            "LAPSTARTSECSFROMCONTESTBEGIN",
+            "LAPSTARTSECSFROMCONTESTBEGIN" + "LAPTIME" as "LAPENDSECSFROMCONTESTBEGIN",
+            "STARTTIME",
+            "ENDTIME",
+            "ATHLETE_ID"
+        from "TF_HEAVY24_LAPRESULT" lap 
+        INNER JOIN "TF_HEAVY24_TEAM" team
+            on lap."TEAMID" = team."ID" 
+        WHERE team."EVENT_ID" = :eventId;
+
+    -- get existing splits
+    lt_SplitResults = 
+    SELECT
+        "TEAMID",
+        "LAPNR",
+        "SPLITNR"
+    from "TF_HEAVY24_SPLITRESULT" split 
+    INNER JOIN "TF_HEAVY24_TEAM" team
+        on split."TEAMID" = team."ID" 
+    WHERE team."EVENT_ID" = :eventId;
+        
+    -- determine the splits for all finished rounds which are not in the split result table
+    lt_SplitResultsOld = 
+        SELECT
+            l."TEAMID",
+            l."LAPNR",
+            s."SPLITNR",
+            s."SPLITSTARTSECSFROMCONTESTBEGIN" - l."LAPSTARTSECSFROMCONTESTBEGIN" as "SPLITTIME",
+            s."SPLITSTARTSECSFROMCONTESTBEGIN",
+            l."STARTTIME",
+            l."ENDTIME",
+            s."ATHLETE_ID"
+        from :lt_Splits s 
+        INNER JOIN :lt_LapResults l 
+            ON  s."TEAM_NUMBER" = l."TEAM_NUMBER" AND
+                s."ATHLETE_ID" = l."ATHLETE_ID" AND
+                s."SPLITSTARTSECSFROMCONTESTBEGIN" >= l."LAPSTARTSECSFROMCONTESTBEGIN" AND
+                s."SPLITSTARTSECSFROMCONTESTBEGIN" <= l."LAPENDSECSFROMCONTESTBEGIN";
+
+    lt_SplitResultsCurrent = 
+        SELECT
+            L."TEAMID",
+            m."LAPNR" as "LASTLAP",
+            m."LAPNR" + 1 as "LAPNR",
+            "SPLITNR",
+            "SPLITSTARTSECSFROMCONTESTBEGIN" - "LAPENDSECSFROMCONTESTBEGIN" as "SPLITTIME",
+            "SPLITSTARTSECSFROMCONTESTBEGIN",
+            "ENDTIME" as "STARTTIME",
+            add_seconds("ENDTIME","SPLITSTARTSECSFROMCONTESTBEGIN" - "LAPENDSECSFROMCONTESTBEGIN") as "ENDTIME",
+            S."ATHLETE_ID"
+        from :lt_Splits s 
+        INNER JOIN :lt_LapResults l 
+            on s."TEAM_NUMBER" = l."TEAM_NUMBER"
+            inner join (select "TEAMID", max("LAPNR") as "LAPNR" from :lt_LapResults group by "TEAMID" ) m 
+                on l."TEAMID" = m."TEAMID" and l."LAPNR" = m."LAPNR"
+            where "SPLITSTARTSECSFROMCONTESTBEGIN" > "LAPENDSECSFROMCONTESTBEGIN";
+
+    -- save the split for all finished rounds
+    UPSERT "TF_HEAVY24_SPLITRESULT" ("TEAMID","LAPNR","SPLITNR","SPLITTIME","SPLITSTARTSECSFROMCONTESTBEGIN","STARTTIME","ENDTIME","ATHLETE_ID") 
+        SELECT 
+            "TEAMID",
+            "LAPNR",
+            "SPLITNR",
+            max("SPLITTIME"),
+            max("SPLITSTARTSECSFROMCONTESTBEGIN"),
+            max("STARTTIME"),
+            max("ENDTIME"),
+            "ATHLETE_ID"
+        FROM :lt_SplitResultsOld
+        GROUP BY "TEAMID", "LAPNR", "SPLITNR","ATHLETE_ID";
+
+    -- save the split for the current round -> should be nearest split time (min)
+    UPSERT "TF_HEAVY24_SPLITRESULT" ("TEAMID","LAPNR","SPLITNR","SPLITTIME","SPLITSTARTSECSFROMCONTESTBEGIN","STARTTIME","ENDTIME","ATHLETE_ID") 
+        SELECT 
+            "TEAMID",
+            "LAPNR",
+            "SPLITNR",
+            min("SPLITTIME"),
+            min("SPLITSTARTSECSFROMCONTESTBEGIN"),
+            min("STARTTIME"),
+            min("ENDTIME"),
+            "ATHLETE_ID"
+        FROM :lt_SplitResultsCurrent
+        GROUP BY "TEAMID", "LAPNR", "SPLITNR","ATHLETE_ID";
+END

@@ -1,0 +1,279 @@
+<mvc:View
+	controllerName="teamfact.app.controller.ManagerAdmin"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"	
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:t="sap.ui.table"
+    xmlns:l="sap.ui.layout">
+        
+    <f:DynamicPage id="dynamicPageId"
+        stickySubheaderProvider="iconTabBar"
+        class="sapUiNoContentPadding"
+        toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>administration}"/>
+                </f:heading>
+                <f:expandedContent>             
+                    <VBox>           
+                        <!--Label text="Automatisches laden der Renndaten"/>                    
+                        <Button
+                                text="Aktiv"
+                                type="Emphasized"
+                                press="toggleAutomaticLoad"
+                                enabled="false" /-->	
+                                                      					
+                    </VBox>
+                </f:expandedContent>			                                 
+                    <f:actions>
+                        <ComboBox                            
+                            showSecondaryValues= "true"
+                            change="onEventComboBoxChanged"
+                            items="{
+                                path: '/Events',
+                                sorter: { path: 'Year' }
+                            }">
+                            <core:Item key="{ID}" text="{EventName} {Year}" />
+                        </ComboBox>						
+					</f:actions>                  
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <IconTabBar>
+                <items>				
+                    <IconTabFilter text="Managers">
+                        <Table id="idManagersTable"
+                            inset="false"
+                            growing="true"
+                            items="{/Managers}">        
+                            <headerToolbar>
+                                <OverflowToolbar id="otbSubheader">
+                                    <Title text="Managers" level="H2" />
+                                    <ToolbarSpacer />
+                                    <Button id="newButton" text="New" type="Transparent"
+                                        press="onNew" />                 
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="UUID" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>firstName}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>lastName}" />
+                                </Column>
+                                <Column>
+                                    <Text text="eMail" />
+                                </Column>
+                                <Column>
+                                    <Text text="Link" />
+                                </Column>   
+                                <Column>
+                                    <Text text="Sende eMail" />
+                                </Column>                                               			
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <ObjectIdentifier text="{ID}"/>                        
+                                        <Input value="{FirstName}"/>						
+                                        <Input value="{LastName}" />
+                                        <Input value="{Email}" />
+                                        <Link text="{i18n>Planner}" href="#Manager/{ID}" target="_blank"/>                       			
+                                        <Link text="eMail" href="mailto:{Email}?subject=Zugang zum TEAMFACT Teamplaner&amp;body=Hallo%20{FirstName},%0Dschön, dass Du Dich für den TEAMFACT Teamplaner entschieden hast.%0D%0DHier der Link zum Planer:%0Dhttps://teamfact-cf-heavy24-heavy24-app.cfapps.eu10.hana.ondemand.com/home/index.html?sap-language=de#Manager/{ID} %0D%0DEine Erklärung zum Teamplaner kannst Du Dir hier anschauen: https://vimeo.com/679462455 %0D%0DAm Samstag bin ich im Org Büro von 10:00 Uhr – 12:00 Uhr für Fragen verfügbar.%0DIch wünsche Euch ein erfolgreiches Rennen.%0D%0DViele Grüße%0DPierre%0D%0Dhttps://www.teamfact.com/ %0D0173/1598192"/>                                        
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>                    
+                    <IconTabFilter text="Teamzuordnung">
+                        <t:Table id="idTeamsTable" rows="{/Teams}">                            
+                            <t:toolbar>
+                                <Toolbar>
+                                    <Title text="Teamzuordnung" />
+                                    <ToolbarSpacer/>
+                                    <ToolbarSeparator/>			
+                                    <SearchField id="idSearchField" placeholder="Filter" search="onFilter" width="200px" />
+                                </Toolbar>
+                            </t:toolbar>
+                            <t:columns>
+                                <t:Column>
+                                    <Label text="ID" />
+                                    <t:template>
+                                        <Text text="{path: 'ID', type: 'sap.ui.model.type.Integer'}"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column>
+                                    <Label text="Token" />
+                                    <t:template>
+                                        <Text text="{Token}"/>
+                                    </t:template>
+                                </t:Column>                                                              
+                                <t:Column>
+                                    <Label text="Number" />
+                                    <t:template>
+                                        <Text text="{Number}"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column>
+                                    <Label text="Teamname"/>
+                                    <t:template>
+                                        <Text text="{TeamName}" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column>
+                                    <Label text="Manager ID" />
+                                    <t:template>
+                                        <Input value="{Manager_ID}" />
+                                    </t:template>
+                                </t:Column>        
+                                <t:Column>
+                                    <Label text="Athletes" />
+                                    <t:template>
+                                        <Link text="Athletes" href="#{Token}/Team/{ path: 'ID', type: 'sap.ui.model.type.Integer'}" target="_blank" />   
+                                    </t:template>
+                                </t:Column>        		
+
+                            </t:columns>
+                        </t:Table>                        
+                    </IconTabFilter>                    
+                    <!--IconTabFilter text="Teamzuordnung Responsive Table">
+                        <Table id="idTeamsTable2"
+                            inset="false"
+                            growing="true"
+                            items="{/Teams}">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Teamzuordnung" level="H2" />
+                                    <ToolbarSpacer />               
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="ID" />
+                                </Column>                            
+                                <Column>
+                                    <Text text="Number" />
+                                </Column>
+                                <Column>
+                                    <Text text="Teamname" />
+                                </Column>
+                                <Column>
+                                    <Text text="Manager" />
+                                </Column>
+                                <Column>
+                                    <Text text="Link" />
+                                </Column>                			
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <ObjectIdentifier text="{ID}"/>                        
+                                        <Text text="{Number}"/>                        
+                                        <Text text="{TeamName}"/>						
+                                        <Input value="{Manager_ID}" />                        
+                                        <Link text="Athletes" href="#Team/{ID}" />                        			
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>                  
+                    </IconTabFilter-->
+                    <IconTabFilter text="APIs">
+                        <t:Table id="idAPITable" rows="{/ApiReads}">                            
+                            <t:toolbar>
+                                <Toolbar>
+                                    <Title text="APIs" />		                                    
+                                    <Text text="Nach Änderung muss der Service in Cloud Foundry neu gestartet werden." />		                                    
+                                </Toolbar>
+                            </t:toolbar>
+                            <t:columns>
+                                <t:Column width="5em">
+                                    <Label text="Event" />
+                                    <t:template>
+                                        <Text text="{Event_ID}" />
+                                    </t:template>
+                                </t:Column>                             
+                                <t:Column width="10em">
+                                    <Label text="Type" />
+                                    <t:template>
+                                        <Text text="{Type}"/>
+                                    </t:template>
+                                </t:Column>                            
+                                <t:Column>
+                                    <Label text="URL" />
+                                    <t:template>
+                                        <Input value="{url}"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="10em">
+                                    <Label text="Frequency (in Sec)"/>
+                                    <t:template>
+                                        <Input value="{frequencyInSeconds}" />
+                                    </t:template>
+                                </t:Column>       
+                                <t:Column width="5em">
+                                    <Label text="Active" />
+                                    <t:template>
+                                        <ToggleButton icon="sap-icon://begin" enabled="true" pressed="{Active}" />                                        
+                                    </t:template>
+                                </t:Column>       		
+
+                            </t:columns>
+                        </t:Table>                        
+                    </IconTabFilter>                    
+                    <IconTabFilter text="Contests">
+                        <t:Table id="idContestsTable" rows="{/Contests}">                            
+                            <t:toolbar>
+                                <Toolbar>
+                                    <Title text="Contests" />		                                                                        
+                                </Toolbar>
+                            </t:toolbar>
+                            <t:columns>
+                                <t:Column width="5em">
+                                    <Label text="Event" />
+                                    <t:template>
+                                        <Text text="{Event_ID}" />
+                                    </t:template>
+                                </t:Column>                             
+                                <t:Column width="10em">
+                                    <Label text="ContestName" />
+                                    <t:template>
+                                        <Text text="{ContestName}"/>
+                                    </t:template>
+                                </t:Column> 
+                                <t:Column width="10em">
+                                    <Label text="Category"/>
+                                    <t:template>
+                                        <Input value="{Category}" />
+                                    </t:template>
+                                </t:Column>     
+                                <t:Column width="10em">
+                                    <Label text="GenderCategory"/>
+                                    <t:template>
+                                        <Input value="{GenderCategory}" />
+                                    </t:template>
+                                </t:Column>                                                                                        
+                                <t:Column>
+                                    <Label text="StartTime" />
+                                    <t:template>
+                                        <Input value="{StartTime}"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column>
+                                    <Label text="EndTime" />
+                                    <t:template>
+                                        <Input value="{EndTime}"/>
+                                    </t:template>
+                                </t:Column>       
+                            </t:columns>
+                        </t:Table>   
+                    </IconTabFilter>                    
+                </items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,74 @@
+[
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123456",
+		"fieldId" : "1",
+		"fieldValue" : 2956420910
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123456",
+		"fieldId" : "2",
+		"fieldValue" : "Stahl S235JR+AR"
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123456",
+		"fieldId" : "3",
+		"fieldValue" : 21987346
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123456",
+		"fieldId" : "4",
+		"fieldValue" : "22.06.2022"
+	},
+		{
+		"tableId" : "1",
+		"recordKeyHash" : "123456",
+		"fieldId" : "5",
+		"fieldValue" : "1"
+	},
+		{
+		"tableId" : "1",
+		"recordKeyHash" : "123454",
+		"fieldId" : "1",
+		"fieldValue" : 3428864532
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123454",
+		"fieldId" : "2",
+		"fieldValue" : "Kupfer CuZn40"
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123454",
+		"fieldId" : "3",
+		"fieldValue" : 336428612
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123454",
+		"fieldId" : "4",
+		"fieldValue" : "01.01.2023"
+	},
+	{
+		"tableId" : "1",
+		"recordKeyHash" : "123454",
+		"fieldId" : "5",
+		"fieldValue" : "2"
+	},
+	{
+		"tableId" : "2",
+		"recordKeyHash" : "123455",
+		"fieldId" : "1",
+		"fieldValue" : 3674
+	},
+	{
+		"tableId" : "2",
+		"recordKeyHash" : "123455",
+		"fieldId" : "2",
+		"fieldValue" : "Stahlwerke Nord GmbH"
+	}
+]

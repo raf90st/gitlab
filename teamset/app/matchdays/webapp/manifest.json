@@ -1,0 +1,91 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "teamset",
+        "type": "application",
+        "title": "Browse Match Days",
+        "description": "Sample Application",
+        "i18n": "i18n/i18n.properties",
+        "dataSources": {
+            "dflService": {
+                "uri": "/dfl/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "dflService",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "MatchdaysList",
+                    "target": "MatchdaysList"
+                },
+                {
+                    "pattern": "Matchdays({key}):?query:",
+                    "name": "MatchdaysDetails",
+                    "target": "MatchdaysDetails"
+                }
+            ],
+            "targets": {
+                "MatchdaysList": {
+                    "type": "Component",
+                    "id": "MatchdaysList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Matchdays",
+                            "navigation": {
+                                "Matchdays": {
+                                    "detail": {
+                                        "route": "MatchdaysDetails"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "MatchdaysDetails": {
+                    "type": "Component",
+                    "id": "MatchdaysDetails",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Matchdays"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

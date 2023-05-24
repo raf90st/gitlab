@@ -1,0 +1,76 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = teamset
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: teamset
+version: 1.1.0
+description: "TEAMset v2"
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  # --------------------- SERVER MODULE ------------------------
+  - name: teamset-srv
+    # ------------------------------------------------------------
+    type: nodejs
+    path: gen/srv
+    requires:
+      # Resources extracted from CAP configuration
+      - name: teamset-db
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      disk-quota: 1024M
+      memory: 256M
+
+  # -------------------- SIDECAR MODULE ------------------------
+  - name: teamset-db-deployer
+    # ------------------------------------------------------------
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      # 'hana' and 'xsuaa' resources extracted from CAP configuration
+      - name: teamset-db
+
+  # --------------------- APPROUTER MODULE ---------------------
+  - name: teamset-app
+    # ------------------------------------------------------------
+    type: approuter.nodejs
+    path: app
+    requires:
+      #    - name: mycap-destination-service
+      - name: srv-api
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          name: srv-api
+          strictSSL: false
+          url: ~{srv-url}
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+
+resources:
+  # services extracted from CAP configuration
+  # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+  # ------------------------------------------------------------
+  - name: teamset-db
+    # ------------------------------------------------------------
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana # or 'hanatrial' on trial landscapes
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}

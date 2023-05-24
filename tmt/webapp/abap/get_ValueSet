@@ -1,0 +1,15 @@
+  METHOD valuesset_get_entityset.
+    DATA lv_tableid TYPE /bic/oitmttable.
+    READ TABLE it_filter_select_options INTO DATA(lv_filter) INDEX 1.
+    CHECK sy-subrc EQ 0.
+    READ TABLE lv_filter-select_options INTO DATA(lv_tablefilter) INDEX 1.
+    CHECK sy-subrc EQ 0.
+    lv_tableid = lv_tablefilter-low.
+    zcl_gmis_tmt_util=>get_values(
+    EXPORTING
+      i_tableid = lv_tableid
+    IMPORTING
+      return = et_entityset
+    ).
+
+  ENDMETHOD.

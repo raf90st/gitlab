@@ -1,0 +1,28 @@
+<mvc:View controllerName="adminFileUploader.controller.Admin"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.unified"
+    xmlns:uxap="sap.uxap" displayBlock="false" height="100%">
+    <App id="adminView">
+        <uxap:ObjectPageLayout id="ObjectPageLayout">
+            <uxap:sections>
+                <uxap:ObjectPageSection titleUppercase="false" title="Dateiupload">
+                	<uxap:subSections>
+					    <uxap:ObjectPageSubSection title="Dateiauswahl" showTitle="false">
+					    	<uxap:blocks>
+					    		<ui:FileUploader id="fileUploader"/>
+					    	</uxap:blocks>
+					    </uxap:ObjectPageSubSection>
+                        <uxap:ObjectPageSubSection title="Upload" showTitle="false">
+					    	<uxap:blocks>
+					    		<Button text="Upload" type="Accept" press="handleUploadPress"/>
+					    	</uxap:blocks>
+					    </uxap:ObjectPageSubSection>
+				    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </App>
+</mvc:View>

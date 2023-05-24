@@ -1,0 +1,91 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "teamset",
+        "type": "application",
+        "title": "Browse Fixtures",
+        "description": "Sample Application",
+        "i18n": "i18n/i18n.properties",
+        "dataSources": {
+            "dflService": {
+                "uri": "/dfl/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "dflService",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "FixturesList",
+                    "target": "FixturesList"
+                },
+                {
+                    "pattern": "Fixtures({key}):?query:",
+                    "name": "FixturesDetails",
+                    "target": "FixturesDetails"
+                }
+            ],
+            "targets": {
+                "FixturesList": {
+                    "type": "Component",
+                    "id": "FixturesList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Fixtures",
+                            "navigation": {
+                                "Fixtures": {
+                                    "detail": {
+                                        "route": "FixturesDetails"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "FixturesDetails": {
+                    "type": "Component",
+                    "id": "FixturesDetails",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Fixtures"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,134 @@
+<mvc:View
+	controllerName="teamfact.app.controller.Team"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core" 
+    xmlns:tnt="sap.tnt">
+    <layout:Splitter
+		id="idMainSplitter"
+		width="100%"
+        height="100%"        
+        orientation="Horizontal">
+        
+        <f:DynamicPage id="idDynamicPage"
+            stickySubheaderProvider="iconTabBar" 
+            class="sapUiNoContentPadding teamPlannerStyles"
+            headerExpanded="false" toggleHeaderOnTitleClick="true">
+            <!-- DynamicPage Title -->
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                    <FlexBox alignItems="End" justifyContent="End">                        
+                            <Title text="{TeamName} ({Number})" class="sapUiSmallMarginEnd"/> 
+                            <Label text="{i18n>Category}: {GenderCategory}"/>                                
+                        </FlexBox>
+                    </f:heading>					
+                    <f:expandedContent>
+                        <FlexBox alignItems="Start" justifyContent="SpaceBetween" visible="{= %{BehindDeltaMinutes} !== null &amp;&amp; %{AheadDeltaMinutes} !== null}">
+                            <GenericTag text="Vorsprung auf {TeamBehind}" status="Success" design="StatusIconHidden">
+                                <ObjectNumber number="Runden: {BehindDeltaRounds}     + { path: 'BehindDeltaMinutes', type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'ssss', UTC: true}, pattern: 'mm:ss', UTC: true} }" 
+                                unit="min" emphasized="false" state="Success"/>
+                            </GenericTag>                                   
+                            <FlexBox direction="Column" alignItems="Center">                     
+                                <Label text="Auf der Strecke:"/>
+                                <FlexBox alignItems="Center">
+                                    <Avatar id="idAvatarHeader"
+                                        src="{PictureUrl}"      
+                                        visible="{= %{PictureUrl} !== null }"                      
+                                        displaySize="XS" class="sapUiSmallMarginEnd"                                       
+                                        backgroundColor="Random"/>                                 
+                                    <Text text="{CurrentFullName}"/>
+                                </FlexBox>
+                                <Text text="{LastFinishedStartTime}" visible="false"></Text>
+                                <Text text="{CurrentLapAthleteSplit1}" visible="false"></Text>
+                                <Text text="{CurrentLapAthleteSplit2}" visible="false"></Text>
+                                <Text text="{CurrentLapAthleteSplit3}" visible="false"></Text>
+                                <Text text="{PreviousLapAthleteSplit1}" visible="false"></Text>
+                                <Text text="{PreviousLapAthleteSplit2}" visible="false"></Text>
+                                <Text text="{PreviousLapAthleteSplit3}" visible="false"></Text>
+                                <Text text="{PreviousLapTime}" visible="false"></Text>
+                                <Text text="{CurrentFinishedFlag}" visible="false"></Text>
+                                <Text text="{CurrentLapNr}" visible="false"></Text> 
+                                <Text text="{FirstName}" visible="false"></Text>
+                                <Text text="{CurrentStartTime}" visible="false"></Text>                                             
+                            </FlexBox>                                                         
+                            <GenericTag text="Rückstand auf {TeamAhead}" status="Error" design="StatusIconHidden">
+                                <ObjectNumber number="Runden: {AheadDeltaRounds}     - { path: 'AheadDeltaMinutes' , type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'ssss', UTC: true}, pattern: 'mm:ss', UTC: true} }" unit="min" emphasized="true" state="Error"/>
+                            </GenericTag>                   
+                        </FlexBox>                                                                               
+                    </f:expandedContent>
+                    <f:snappedContent>
+                        <Title level="H2" text="{i18n>NextAthelete} {i18n>is} {NextFullName} {i18n>at} { path: 'NextStartTime', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} {i18n>Clock}"/>
+                                                     
+                    </f:snappedContent>
+                    <f:snappedTitleOnMobile>
+                        <Title level="H2" text="{i18n>NextAthelete}:  {NextFullName} { path: 'NextStartTime', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} {i18n>Clock}"/>
+                    </f:snappedTitleOnMobile>
+	                <f:content>
+						
+					</f:content>
+                    <f:actions>
+                        <!--Button icon="sap-icon://action" press="onNavToAthletes" /-->
+                        <Text class="TeamPaddingRight" text="Zur Mobile Team Ansicht:"></Text>
+                        <Image id="qrCodeForTeamMobile"
+                            src="https://api.qrserver.com/v1/create-qr-code/?data={global>/hostname}/webapp/index.html?sap-language=de#{Token}/Team/{path: 'TeamID', formatter: '.formatter.integerToString'}&amp;size=120x120"
+					        width="80px"
+					        decorative="false"
+					        press="onQRCodePress" />
+                        <Button icon="sap-icon://lightbulb" type="Transparent" press="onSwitchMode" tooltip="Darkmode an/aus" />
+                        <Button icon="sap-icon://map-2" type="Transparent" press="onToggleMap" tooltip="Karte anzeigen/ausblenden" />
+                        <Button id="idLoadingButton" class="" type="Transparent" icon="sap-icon://synchronize" press="onSwitchLoading" />	                        
+                    </f:actions>    
+
+                </f:DynamicPageTitle>
+            </f:title>
+
+            <!-- DynamicPage Header -->
+            <f:header>
+                <f:DynamicPageHeader pinnable="true">
+                    <layout:HorizontalLayout allowWrapping="true">
+                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                            <ObjectAttribute title="{i18n>NextAthelete}"/>                            
+                            <ObjectStatus text="{NextFullName} {i18n>at} { path: 'NextStartTime', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} {i18n>Clock}" />                            
+                        </layout:VerticalLayout>                    
+                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                            <ObjectAttribute title="{i18n>CurrentPosition}"/>                            
+                            <ObjectStatus text="{CurrentRank}" />
+                            <!--tnt:InfoLabel text="{CurrentRank}" /-->
+                        </layout:VerticalLayout>
+                        <!--layout:VerticalLayout class="sapUiMediumMarginEnd">
+                            <ObjectAttribute title="{i18n>Category}"/>
+                            <ObjectStatus text="{GenderCategory}" />
+                        </layout:VerticalLayout-->                    
+                        <layout:VerticalLayout>
+                            <ObjectAttribute title="{i18n>FastestLap}"/>
+                            <ObjectStatus text="{ path: 'FastestLap', type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'ssss', UTC: true}, pattern: 'mm:ss', UTC: true}} ({FastestFullName} in {i18n>Round} {FastestLapNr})" state="Success" />                        
+                        </layout:VerticalLayout>                 
+                    </layout:HorizontalLayout>
+                </f:DynamicPageHeader>
+            </f:header>
+
+            <!-- DynamicPage Content -->
+ 
+            <f:content>
+            	<IconTabBar id="iconTabBar" headerMode="Inline" class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter text="{i18n>Planner}" icon="sap-icon://legend">
+                            <core:Fragment fragmentName="teamfact.app.view.fragment.PlannerTable" type="XML" />
+						</IconTabFilter>
+						<IconTabFilter text="{i18n>Rounds}" icon="sap-icon://fob-watch">
+                            <core:Fragment fragmentName="teamfact.app.view.fragment.RoundsTable" type="XML" />
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+
+            </f:content>
+            
+        </f:DynamicPage>
+        <core:Fragment fragmentName="teamfact.app.view.fragment.GeoMap" type="XML" />
+</layout:Splitter>
+
+        
+</mvc:View>

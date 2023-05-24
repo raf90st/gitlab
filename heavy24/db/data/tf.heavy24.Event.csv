@@ -1,0 +1,5 @@
+ID;EventName;Year;Date;Type;Timezone;Active
+1;Heavy24;2019;2019-06-29;24-hour Mountain Biking;CEST;false
+2;Heavy24;2021;2021-08-21;24-hour Mountain Biking;CEST;true
+3;Heavy24;2022;2022-06-25;24-hour Mountain Biking;CEST;false
+4;Heavy24 Test;2022;2022-03-16;Test Race;CEST;false

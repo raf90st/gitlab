@@ -1,0 +1,77 @@
+PROCEDURE "UpdateResultsImport"( 
+		IN	im_EventId INTEGER,
+			im_SimLaps INTEGER default 1
+	)
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER
+    AS
+BEGIN
+
+	lt_Results =
+		SELECT 
+			"TEAMID",
+			"LAPNR",
+			"LAPTIME",
+			"LAPSTARTSECSFROMCONTESTBEGIN",
+			"STARTTIME",
+			"ENDTIME",
+			"CONTESTRANK",
+            "ATHLETE_ID",
+            "Flag_record_changed"
+		FROM "ResultsGetDeltaWithSimulation" (placeholder."$$P_EVENT_ID$$"=>:im_EventId, placeholder."$$CountSimulationLaps$$"=>:im_SimLaps)
+        GROUP BY "TEAMID", "LAPNR", "LAPTIME", "LAPSTARTSECSFROMCONTESTBEGIN", "STARTTIME", "ENDTIME", "CONTESTRANK", "ATHLETE_ID", "Flag_record_changed";
+
+	lt_ResultsChanged =
+		SELECT 
+			"TEAMID",
+			"LAPNR",
+			"LAPTIME",
+			"LAPSTARTSECSFROMCONTESTBEGIN",
+			"STARTTIME",
+			"ENDTIME",
+			--"CONTESTRANK", -- ignore CONTESTRANK, because with every import we only get the most actual rank and not the historical rank
+			"ATHLETE_ID"
+		FROM :lt_Results
+		WHERE "Flag_record_changed" IS NOT NULL; -- changed records with Flag changed
+
+	lt_ResultsNew =
+		SELECT 
+			"TEAMID",
+			"LAPNR",
+			"LAPTIME",
+			"LAPSTARTSECSFROMCONTESTBEGIN",
+			"STARTTIME",
+			"ENDTIME",
+			"CONTESTRANK",
+			"ATHLETE_ID"
+		FROM :lt_Results
+		WHERE "Flag_record_changed" IS NULL; -- new records w/o Flag changed
+
+	-- insert all new records
+	UPSERT "TF_HEAVY24_LAPRESULT" ("TEAMID","LAPNR","LAPTIME","LAPSTARTSECSFROMCONTESTBEGIN","STARTTIME","ENDTIME","CONTESTRANK", "ATHLETE_ID") 
+        SELECT 
+            "TEAMID",
+            "LAPNR",
+            "LAPTIME",
+            "LAPSTARTSECSFROMCONTESTBEGIN",
+            "STARTTIME",
+            "ENDTIME",
+            "CONTESTRANK",
+            "ATHLETE_ID"
+        FROM :lt_ResultsNew;
+	-- update all changed record but w/o the field CONTESTRANK
+	UPSERT "TF_HEAVY24_LAPRESULT"("TEAMID","LAPNR","LAPTIME","LAPSTARTSECSFROMCONTESTBEGIN","STARTTIME","ENDTIME","ATHLETE_ID") 
+        SELECT 
+            "TEAMID",
+            "LAPNR",
+            "LAPTIME",
+            "LAPSTARTSECSFROMCONTESTBEGIN",
+            "STARTTIME",
+            "ENDTIME", 
+            "ATHLETE_ID"
+        FROM :lt_ResultsChanged;
+    
+    -- calculate the predicted start times for the planned laps based on the new results
+    CALL "CalculatePredictedStartTime"(EVENTID => :im_EventId);
+
+END

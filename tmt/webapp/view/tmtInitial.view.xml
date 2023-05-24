@@ -1,0 +1,28 @@
+<mvc:View controllerName="juliusbaer.tmt.controller.tmtInitial" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:fb="sap.ui.comp.filterbar">
+	<Shell id="shell">
+		<App id="app" autoFocus="false">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<core:Fragment fragmentName="juliusbaer.tmt.fragment.SelectAuthTables" type="XML"/>
+						<Panel id="tableViewPanel" headerText="Table to Edit" class="viewTable">
+							<t:Table id="table" rows="{values>/tableData}" selectionMode="MultiToggle">
+								<t:extension>
+								<OverflowToolbar>
+									<SearchField
+									placeholder="Search"
+									value="{filters>/filterValues}"
+									search="filterGlobally"
+									width="15rem" />
+									</OverflowToolbar>
+									</t:extension>
+							</t:Table>
+						</Panel>
+						<Panel id="buttonsPanel" class="buttonsGrouping"></Panel>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

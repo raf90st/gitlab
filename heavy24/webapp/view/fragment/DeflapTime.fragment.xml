@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:i="sap.suite.ui.commons.imageeditor" xmlns:unified="sap.ui.unified" xmlns:core="sap.ui.core">
+	<Popover id="athletePopover" showHeader="false" placement="Bottom" contentWidth="20rem" contentHeight="20rem">
+		<NavContainer
+			id="popoverNavContainer">
+			<Page
+				id="popoverMaster"
+				class="sapUiResponsivePadding--header"
+				title="{i18n>popoverTitle}">
+                <VBox fitContainer="true">              
+                    <VBox alignItems="Center" justifyContent="Center" height="10rem">
+						<Avatar
+                            id="idAvatarPopup"
+                            src="{PictureUrl}"
+                            press="onNavToImage"
+                            displaySize="XL"
+                            backgroundColor="Random"/>                        
+					</VBox>
+
+                    <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="12"
+                        adjustLabelSpan="false" emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+                        singleContainerFullSize="false">
+                        <f:content>
+                            <Label text="{i18n>defaultLapTime}"/>
+                            <Input type="Number" submit="onDefLapTimeSavePress" value="{DefLapTime}" description="{i18n>minutes}" />
+                        </f:content>
+                    </f:SimpleForm>                                                   
+                </VBox>
+                <footer>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button text="{i18n>save}" press="onDefLapTimeSavePress" />
+                    </Toolbar>
+                </footer>
+			</Page>
+			<Page
+				id="popoverDetail"
+				class="sapUiResponsivePadding--header"                
+				showNavButton="true"
+				navButtonPress="onNavBack"
+				title="{i18n>changeImage}">
+                <VBox alignItems="Center" justifyContent="Center">
+				    <unified:FileUploader change="onImageFileChange"/>                    			        
+                    <i:ImageEditor id="image" loaded="onImageLoaded" />
+                </VBox>
+                <footer>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button text="{i18n>save}" press="onImageSavePress"/>
+                    </Toolbar>
+                </footer>
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>

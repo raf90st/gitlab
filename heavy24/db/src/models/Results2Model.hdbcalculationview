@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Results2Model" applyPrivilegeType="NONE" dataCategory="DEFAULT" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="Results2Model"/>
+<localVariables>
+  <variable id="P_EVENT_ID" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="INTEGER" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TF_HEAVY24_TEAM">
+    <resourceUri>TF_HEAVY24_TEAM</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_CONTEST">
+    <resourceUri>TF_HEAVY24_CONTEST</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_HEAVY24RESULTS">
+    <resourceUri>TF_HEAVY24_HEAVY24RESULTS</resourceUri>
+  </DataSource>
+  <DataSource id="MasterData2Contest">
+    <resourceUri>MasterData2Contest</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_ATHLETE">
+    <resourceUri>TF_HEAVY24_ATHLETE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Team" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NUMBER"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID"/>
+      <viewAttribute id="EVENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_TEAM"/>
+    <filter>&quot;EVENT_ID&quot; = '$$P_EVENT_ID$$'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_Contest" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="TEAMCATEGORY"/>
+      <viewAttribute id="LAPNUMBER" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER" aggregationType="sum"/>
+      <viewAttribute id="ATHLETENAME"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPENDFROMCONTESTBEGIN"/>
+      <viewAttribute id="CONTESTSTANDING" aggregationType="sum"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="LapTimeSec" aggregationType="sum"/>
+      <viewAttribute id="StartNumberStr"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="LapStartFromContestBeginSec" aggregationType="sum"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$CATEGORY$ContestCategory"/>
+      <viewAttribute hidden="true" id="JOIN$GENDERCATEGORY$MD_ContestGenderCategory"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="Starttime" datatype="SECONDDATE" expressionLanguage="SQL">
+        <formula>ADD_SECONDS(&quot;STARTTIME&quot;,&quot;LapStartFromContestBeginSec&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="Endtime" datatype="SECONDDATE" expressionLanguage="SQL">
+        <formula>ADD_SECONDS(&quot;STARTTIME&quot;,&quot;LapStartFromContestBeginSec&quot; + &quot;LapTimeSec&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Contest">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CATEGORY$ContestCategory" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GENDERCATEGORY$MD_ContestGenderCategory" source="GENDERCATEGORY"/>
+    </input>
+    <input node="Join_GenderCategory">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMCATEGORY" source="TEAMCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNUMBER" source="LAPNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETENAME" source="ATHLETENAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPENDFROMCONTESTBEGIN" source="LAPENDFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTSTANDING" source="CONTESTSTANDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapTimeSec" source="LapTimeSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StartNumberStr" source="StartNumberStr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapStartFromContestBeginSec" source="LapStartFromContestBeginSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CATEGORY$ContestCategory" source="ContestCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GENDERCATEGORY$MD_ContestGenderCategory" source="MD_ContestGenderCategory"/>
+    </input>
+    <joinAttribute name="JOIN$CATEGORY$ContestCategory"/>
+    <joinAttribute name="JOIN$GENDERCATEGORY$MD_ContestGenderCategory"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Contest" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="EVENT_ID"/>
+      <viewAttribute id="STARTTIME"/>
+    
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="GENDERCATEGORY"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="ENDTIME"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_CONTEST"/>
+    <filter>&quot;EVENT_ID&quot; = '$$P_EVENT_ID$$'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_GenderCategory" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="TEAMCATEGORY"/>
+      <viewAttribute id="LAPNUMBER" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="ATHLETENAME"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPENDFROMCONTESTBEGIN"/>
+      <viewAttribute id="CONTESTSTANDING"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="LapTimeSec" aggregationType="sum"/>
+      <viewAttribute id="StartNumberStr"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="LapStartFromContestBeginSec" aggregationType="sum"/>
+      <viewAttribute id="ContestCategory"/>
+      <viewAttribute id="MD_ContestGenderCategory"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ImportResults">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMCATEGORY" source="TEAMCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNUMBER" source="LAPNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETENAME" source="ATHLETENAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPENDFROMCONTESTBEGIN" source="LAPENDFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTSTANDING" source="CONTESTSTANDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapTimeSec" source="LapTimeSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StartNumberStr" source="StartNumberStr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapStartFromContestBeginSec" source="LapStartFromContestBeginSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ContestCategory" source="ContestCategory"/>
+    </input>
+    <input node="MasterDataGenderCategory">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MD_ContestGenderCategory" source="ContestGenderCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+    </input>
+    <joinAttribute name="STARTNUMBER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ImportResults">
+    <viewAttributes>
+      <viewAttribute id="TEAMCATEGORY"/>
+      <viewAttribute id="LAPNUMBER"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="ATHLETENAME"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPENDFROMCONTESTBEGIN"/>
+      <viewAttribute id="CONTESTSTANDING"/>
+      <viewAttribute id="TEAMNAME"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="LapTimeSec" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>EXTRACT_SECOND(TO_TIME(&quot;LAPTIME&quot;)) +
+(EXTRACT_MINUTE(TO_TIME(&quot;LAPTIME&quot;))*60)+
+(EXTRACT_HOUR(TO_TIME(&quot;LAPTIME&quot;))*3600)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="StartNumberStr" datatype="NVARCHAR" length="6" expressionLanguage="SQL">
+        <formula>&quot;STARTNUMBER&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="TeamNumber" datatype="NVARCHAR" length="6" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;STARTNUMBER&quot;,1,3)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="LapStartFromContestBeginSec" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>((substr(&quot;LAPENDFROMCONTESTBEGIN&quot;,1,2)*3600)+
+(substr(&quot;LAPENDFROMCONTESTBEGIN&quot;,4,2)*60)+
+substr(&quot;LAPENDFROMCONTESTBEGIN&quot;,7,2))-&quot;LapTimeSec&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="ContestCategory" datatype="NVARCHAR" length="20" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (leftstr(&quot;TEAMCATEGORY&quot;, 3) = 'Ein', '1er', leftstr(&quot;TEAMCATEGORY&quot;, 3))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input emptyUnionBehavior="undefined" node="TF_HEAVY24_HEAVY24RESULTS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="MasterDataGenderCategory">
+    <viewAttributes>
+      <viewAttribute id="ContestGenderCategory"/>
+    
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="ContestCategory"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MasterData2Contest"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Athlete" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER"/>
+      <viewAttribute id="DEFLAPTIME"/>
+      <viewAttribute id="TEAM_ID"/>
+      <viewAttribute id="EVENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_ATHLETE"/>
+    <filter>&quot;EVENT_ID&quot; = '$$P_EVENT_ID$$'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_Athlete" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="TEAMCATEGORY"/>
+      <viewAttribute id="LAPNUMBER" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER" aggregationType="sum"/>
+      <viewAttribute id="ATHLETENAME"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPENDFROMCONTESTBEGIN"/>
+      <viewAttribute id="CONTESTSTANDING" aggregationType="sum"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="LapTimeSec" aggregationType="sum"/>
+      <viewAttribute id="StartNumberStr"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="LapStartFromContestBeginSec" aggregationType="sum"/>
+      <viewAttribute id="Starttime"/>
+      <viewAttribute id="Endtime"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute id="TEAMID" aggregationType="sum"/>
+      <viewAttribute id="ATHLETE_ID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_Team">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMCATEGORY" source="TEAMCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNUMBER" source="LAPNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETENAME" source="ATHLETENAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPENDFROMCONTESTBEGIN" source="LAPENDFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTSTANDING" source="CONTESTSTANDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapTimeSec" source="LapTimeSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StartNumberStr" source="StartNumberStr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapStartFromContestBeginSec" source="LapStartFromContestBeginSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Starttime" source="Starttime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Endtime" source="Endtime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+    </input>
+    <input node="Athlete">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETE_ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StartNumberStr" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAM_ID"/>
+    </input>
+    <joinAttribute name="StartNumberStr"/>
+    <joinAttribute name="EVENT_ID"/>
+    <joinAttribute name="TEAMID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_Team" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="TEAMCATEGORY"/>
+      <viewAttribute id="LAPNUMBER" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER" aggregationType="sum"/>
+      <viewAttribute id="ATHLETENAME"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPENDFROMCONTESTBEGIN"/>
+      <viewAttribute id="CONTESTSTANDING" aggregationType="sum"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="LapTimeSec" aggregationType="sum"/>
+      <viewAttribute id="StartNumberStr"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="LapStartFromContestBeginSec" aggregationType="sum"/>
+      <viewAttribute id="Starttime"/>
+      <viewAttribute id="Endtime"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute id="TEAMID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_Contest">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMCATEGORY" source="TEAMCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNUMBER" source="LAPNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETENAME" source="ATHLETENAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPENDFROMCONTESTBEGIN" source="LAPENDFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTSTANDING" source="CONTESTSTANDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapTimeSec" source="LapTimeSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StartNumberStr" source="StartNumberStr"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LapStartFromContestBeginSec" source="LapStartFromContestBeginSec"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Starttime" source="Starttime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Endtime" source="Endtime"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+    </input>
+    <input node="Team">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="NUMBER"/>
+    </input>
+    <joinAttribute name="EVENT_ID"/>
+    <joinAttribute name="TeamNumber"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_Athlete">
+  <attributes>
+    <attribute id="TEAMID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAMID"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="TEAMID"/>
+    </attribute>
+    <attribute id="LAPNR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAPNUMBER"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="LAPNUMBER"/>
+    </attribute>
+    <attribute id="LAPTIME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LapTimeSec"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="LapTimeSec"/>
+    </attribute>
+    <attribute id="LAPSTARTSECSFROMCONTESTBEGIN" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LapStartFromContestBeginSec"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="LapStartFromContestBeginSec"/>
+    </attribute>
+    <attribute id="STARTTIME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Starttime"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="Starttime"/>
+    </attribute>
+    <attribute id="ENDTIME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Endtime"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="Endtime"/>
+    </attribute>
+    <attribute id="CONTESTRANK" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONTESTSTANDING"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="CONTESTSTANDING"/>
+    </attribute>
+    <attribute id="ATHLETE_ID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_Athlete" columnName="ATHLETE_ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="510" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Team" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="459" y="536"/>
+      <rectangleSize height="30" width="190"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_Contest" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="130" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Contest" modelObjectNameSpace="Join_Contest" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="489" y="317"/>
+      <rectangleSize width="193"/>
+    </shape>
+    <shape modelObjectName="Join_GenderCategory" modelObjectNameSpace="Join_Contest" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="13" y="333"/>
+      <rectangleSize width="249"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Contest" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="403" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_GenderCategory" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="57" y="696"/>
+      <rectangleSize height="30" width="243"/>
+    </shape>
+    <shape modelObjectName="ImportResults" modelObjectNameSpace="Join_GenderCategory" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MasterDataGenderCategory" modelObjectNameSpace="Join_GenderCategory" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ImportResults" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-3" y="860"/>
+      <rectangleSize width="266"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="MasterDataGenderCategory" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="329" y="860"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Athlete" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="574" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_Athlete" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="510" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_Team" modelObjectNameSpace="Join_Athlete" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="9"/>
+      <rectangleSize width="249"/>
+    </shape>
+    <shape modelObjectName="Athlete" modelObjectNameSpace="Join_Athlete" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="32" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_Team" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="195" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_Contest" modelObjectNameSpace="Join_Team" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-51" y="30"/>
+      <rectangleSize width="249"/>
+    </shape>
+    <shape modelObjectName="Team" modelObjectNameSpace="Join_Team" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

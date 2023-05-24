@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Popover showHeader="false" placement="Bottom" contentWidth="10rem">
+		<VBox>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+				<f:content>                
+					<Label text="Platzierung"/>
+					<Text text="{ContestRank}"/>
+					<Label text="Rundenzeit"/>
+                    <Text text="{path: 'LapTime', type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'sssss', UTC: true}, pattern : 'H:mm:ss', UTC: true }}"/>
+					<Label text="Gestartet um"/>
+					<Text text="{path: 'StartTime', type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern : 'HH:mm:ss' }}"/>
+					<Label text="Beendet um"/>
+					<Text text="{path: 'EndTime', type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern : 'HH:mm:ss' }}"/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

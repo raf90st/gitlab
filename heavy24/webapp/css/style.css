@@ -1,0 +1,153 @@
+/* Enter your custom styles here */
+
+.assignBiker .sapMBtnTransparent >.sapMBtnIcon, 
+.assignBiker .sapMBtnGhost >.sapMBtnIcon {
+	color: #cdcdcd !important;
+}
+
+
+.spinning .sapMBtnIcon  {    
+	-webkit-animation: rotation 2s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+	from {
+			-webkit-transform: rotate(0deg);
+	}
+	to {
+			-webkit-transform: rotate(359deg);
+	}
+}
+
+.tableGrey td:nth-child(n+6) {
+    background-color: #d8d8d8;
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
+  
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+}
+
+.geoMapStyle .vbi-detail {
+    padding: 0;
+    background-color: #29313a;
+}
+
+.geoMapStyle .vbi-detail-title {
+    display: none!important;
+}
+
+.geoMapStyle .vbi-detail-closebutton {
+    background-color: none!important;
+    z-index: 10;
+}
+
+.geoMapStyle .sapMPopover {
+    position: relative!important;
+    background: #29313a;
+    box-shadow: none;
+}
+
+.geoMapStyle .vbi-detail>.vbi-detail-arrow.vbi-detail-left {
+    border-right-color: #29313a;
+}
+
+.geoMapStyle .sapFCardNumericIndicators {
+    margin-top: 1.25rem!important;
+}
+
+#container-app---team--animationWarning[data-animationwarningvisible="visible"] {
+    display: block;
+}
+
+#container-app---team--animationWarning[data-animationwarningvisible="hidden"] {
+    display: none;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageSectionHeader {
+    display: none;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageSubSectionHeaderTitle {
+    text-decoration: underline;
+}
+
+.mobileTeamInfoStyle .mobileTeamWidth {
+    width: 250px;
+}
+
+.mobileTeamInfoStyle .mobileTeamLittleBottomMargin {
+    margin-bottom: 10px;
+}
+
+.mobileTeamInfoStyle .mobileTeamBottomMargin {
+    margin-bottom: 25px;
+}
+
+.mobileTeamInfoStyle .mobileTeamBottomMarginSmall {
+    margin-bottom: 10px;
+}
+
+.mobileTeamInfoStyle .mobileTeamBottomMarginTiny {
+    margin-bottom: 5px;
+}
+
+.mobileTeamInfoStyle .mobileTeamMarginRight {
+    margin-right: 15px;
+}
+
+.mobileTeamInfoStyle .sapFDynamicPageContent,
+.mobileTeamInfoStyle .sapFDynamicPageContentFitContainer {
+    padding: 0rem 1rem 0 1rem!important;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageSubSection {
+    padding-top: 0;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageContainerNoBar>.sapUxAPObjectPageSection:first-child:not(.sapUxAPObjectPageSectionNoTitle) {
+    margin-top: 1rem;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageSubSectionHeaderTitle {
+    line-height: 3rem!important;
+}
+
+.mobileTeamInfoStyle .mobileTeamSmallTxt {
+    font-size: 12px;
+    text-align: center!important;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageSubSectionHeaderTitle {
+    padding-bottom: 0;
+}
+
+.mobileTeamSubSections .sapUiRespGridSpanS12 {
+    width: 100%!important;
+}
+
+.mobileTeamInfoStyle .sapUxAPObjectPageSubSectionHeaderTitle {
+    overflow: hidden;
+}
+
+.mobilePopupStyle .sapMPopoverCont {
+    padding: 10px;
+}
+
+.teamPlannerStyles .sapFDynamicPageTitleActionsBar {
+    height: 80px!important;
+    margin-bottom: 15px;
+}
+
+.teamPlannerStyles .TeamPaddingRight {
+    padding-right: 10px;
+}

@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+        id="matchSelectDialog"		
+		title="Matchauswahl"
+		class="sapUiPopupWithPadding"
+        items="{
+			path: 'ui>/seasonalMatches'
+		}"
+		confirm="onMatchSelectedWithValueHelp"
+		cancel="onGenericFragmentclose($event, '_matchValueHelpDialog')"
+		liveChange="handleMatchValueLiveChange">
+        <StandardListItem
+			title="{ui>HomeTeamName} vs {ui>GuestTeamName} ({ui>MatchDay})">
+            <customData>
+                <core:CustomData key="{ui>MatchId}" value=""/>
+            </customData>
+        </StandardListItem>
+	</SelectDialog>
+</core:FragmentDefinition>

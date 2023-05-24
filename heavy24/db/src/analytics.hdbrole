@@ -1,0 +1,12 @@
+{
+    "role": {
+        "name": "heavy24.db::analytics",
+        "schema_privileges": [
+            {
+                "privileges": [
+                    "SELECT"
+                ]
+            }
+        ]
+    }
+}

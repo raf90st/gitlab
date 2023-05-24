@@ -1,0 +1,53 @@
+<core:FragmentDefinition 
+xmlns="sap.m"     
+xmlns:vbm="sap.ui.vbm" 
+xmlns:core="sap.ui.core">
+
+    <vbm:GeoMap navcontrolVisible="true" enableOverlappingTest="false" id="idGeoMap" class="geoMapStyle" visible="true" width="100%" xmlns:l="sap.ui.layout" 
+    height="100%" initialPosition="12.802202;50.833942;0.0" initialZoom="14" openWindow="onOpenDetail">
+        <vbm:Routes>                 
+            <vbm:Route id="route1" tooltip="Abschnitt 1" end="0" start="0"
+            color="#6699CC" colorBorder="rgb(255,255,255)" hotDeltaColor="RHLSA(0,1,1,0.6)" position="" /> 
+
+            <vbm:Route id="route2" tooltip="Abschnitt 2" end="0" start="0"
+                color="#6699CC" colorBorder="rgb(255,255,255)" hotDeltaColor="RHLSA(0,1,1,0.6)" position="" /> 
+
+            <vbm:Route id="route3" tooltip="Abschnitt 3" end="0" start="0"
+                color="#6699CC" colorBorder="rgb(255,255,255)" hotDeltaColor="RHLSA(0,1,1,0.6)" position="" /> 
+
+            <vbm:Route id="route4" tooltip="Abschnitt 4" end="0" start="0"
+                color="#6699CC" colorBorder="rgb(255,255,255)" hotDeltaColor="RHLSA(0,1,1,0.6)" position="" />
+            
+        </vbm:Routes>
+        <vbm:Spots posChangeable="true" scaleChangeable="false">
+            <vbm:Spot id="Driver" position="" contentSize="18px" contentColor="grey" contentOffset="0;-20" 
+            text="{= %{mapView>/currentFirstName} !== null ? %{mapView>/currentFirstName} : ''}"/>
+            <vbm:Spot id="Spot1" type="Inactive" position="12.794523239135742;50.83254572865727;0" 
+            click="onClickTrackMarker($event, 'teamfact.app.view.fragment.TrackPartInfo%_cardFragment', 'first')" text="1" tooltip="Zwischenzeit 1" /> 
+            <vbm:Spot id="Spot2" type="Inactive" position="12.789244651794434;50.82193296977654;0" 
+            click="onClickTrackMarker($event, 'teamfact.app.view.fragment.TrackPartInfo%_cardFragment', 'second')" text="2" tooltip="Zwischenzeit 2" />                
+            <vbm:Spot id="Spot3" type="Inactive" position="12.810294628143309;50.83269480514776;0" 
+            click="onClickTrackMarker($event, 'teamfact.app.view.fragment.TrackPartInfo%_cardFragment', 'third')" text="3" tooltip="Zwischenzeit 3" />                
+            <vbm:Spot id="Spot4" type="Inactive" position="12.816351056098938;50.837414185161;0" 
+            click="" text="4" />
+        </vbm:Spots>
+        <!--<vbm:Containers>
+            <vbm:Container position="12.802909;50.814406;0">
+		    	<vbm:item>
+		    		<MessageStrip
+                        id="animationWarning"
+		    		    text="Fahreranimation nicht darstellbar, um diese zu sehen planen Sie bitte die Rundenzeiten"
+		    		    type="Warning"
+		    		    showIcon="true"
+		    		    showCloseButton="true"
+		    		    class="sapUiMediumMarginBottom">
+                        <customData>
+                            <core:CustomData key="animationWarningVisible" value="visible" writeToDom="true" />
+                        </customData>
+		    	    </MessageStrip>
+		    	</vbm:item>
+		    </vbm:Container>
+        </vbm:Containers>-->
+    </vbm:GeoMap> 
+    
+</core:FragmentDefinition>

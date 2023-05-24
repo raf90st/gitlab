@@ -1,0 +1,43 @@
+  METHOD get_authorized_tables.
+
+    DATA: aut_tables      TYPE ztmt_tables,
+          has_all         TYPE abap_bool,
+          lst_auth_tables TYPE SORTED TABLE OF /bic/atmttd0022 WITH UNIQUE KEY /bic/tmttable.
+
+    SELECT tab~/bic/tmttable, text~txtlg FROM /bic/mtmttable AS tab
+      LEFT JOIN /bic/ttmttable AS text
+      ON tab~/bic/tmttable EQ text~/bic/tmttable
+       INTO TABLE @DATA(lt_tables).
+    aut_tables = '*'.
+    AUTHORITY-CHECK OBJECT 'ZGMIS_TMT' ID 'TMTTABLES' FIELD aut_tables.
+
+    IF sy-subrc EQ 0.
+      has_all = abap_true.
+    ELSE.
+      SELECT * FROM /bic/atmttd0022 INTO TABLE lst_auth_tables.
+    ENDIF.
+
+    LOOP AT lt_tables INTO DATA(ls_table).
+      IF ls_table-/bic/tmttable IS INITIAL.
+        CONTINUE.
+      ENDIF.
+      IF has_all EQ abap_false.
+        READ TABLE lst_auth_tables WITH TABLE KEY /bic/tmttable = ls_table-/bic/tmttable
+        INTO DATA(ls_aut_table).
+        IF sy-subrc NE 0.
+          CONTINUE.
+        ENDIF.
+        aut_tables = ls_aut_table-/bic/tmtautobj.
+        AUTHORITY-CHECK OBJECT 'ZGMIS_TMT' ID 'TMTTABLES' FIELD aut_tables.
+        IF sy-subrc NE 0.
+          CONTINUE.
+        ENDIF.
+      ENDIF.
+
+
+
+      APPEND INITIAL LINE TO return ASSIGNING FIELD-SYMBOL(<fs_table>).
+      <fs_table>-tabledescription = ls_table-txtlg.
+      <fs_table>-tableid = ls_table-/bic/tmttable.
+    ENDLOOP.
+  ENDMETHOD.

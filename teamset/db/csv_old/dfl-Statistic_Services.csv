@@ -1,0 +1,2 @@
+ServiceID;DropdownText;TableName;MatchRequired;TeamRequired;PlayerRequired;TableKey;EntityName;EntityNamePlural
+DFL-03.03-Ereignisdaten-Spiel-Statistik;Matchstatistik;WS0303_MD_MatchStatistic;true;true;false;MatchId;MatchStatistic;TeamStatistic

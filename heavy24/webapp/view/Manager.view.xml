@@ -1,0 +1,35 @@
+<mvc:View
+	controllerName="teamfact.app.controller.Manager"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"	
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout">
+    
+    <Page title="Teams" enableScrolling="true" showNavButton="false" showFooter="false" backgroundDesign="Solid">
+   
+        <layout:Grid containerQuery="true" defaultSpan="XL12 L12 M12 S12" width="100%">
+        <layout:VerticalLayout width="100%" class="gridWrapper">
+          <FlexBox alignItems="Start" alignContent="Center" direction="Row" 
+            renderType="Bare" wrap="Wrap" width="100%" displayInline="true" fitContainer="true" items="{Teams}">
+            <items>
+                <VBox>
+                    <GenericTile header="{TeamName}" subheader="{Number}" scope="Display" class="sapUiSmallMargin" press="onPressTile">
+                        <TileContent footer="{Contest/Category} {Contest/GenderCategory}">                            
+                        <HBox>                                  
+                            <ImageContent src="sap-icon://manager" />                     
+                        </HBox>             
+                        </TileContent>
+                    </GenericTile>
+                    <!--HBox> 
+                        <Text text="Fahrer"/>
+                        <Button icon="sap-icon://action" press="onNavToAthletes" />
+                        <Text text="{Token}" visible="false" />
+                        <Text text="{Token}" visible="false" />	
+                    </HBox--> 
+                </VBox>
+            </items>
+          </FlexBox>
+        </layout:VerticalLayout>
+      </layout:Grid>
+    </Page>
+</mvc:View>

@@ -1,0 +1,107 @@
+PROCEDURE "UpdateMasterDataImport"( 
+		IN eventId INTEGER
+	)
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER
+    AS
+BEGIN
+
+	DECLARE MDrows INTEGER;
+
+	lt_TeamMDChanged = 
+		SELECT 
+			"ID",
+            "NUMBER",
+			"ICON",
+			"NEW_CONTEST_ID" AS "CONTEST_ID",
+			"EVENT_ID",
+			"NEW_NAME" AS "TEAMNAME"
+		FROM "TeamMDChanged" (placeholder."$$P_EVENT_ID$$"=>:eventId);
+
+
+	SELECT COUNT(*) INTO MDrows FROM :lt_TeamMDChanged WHERE "ID" IS NOT NULL;
+
+	IF MDrows > 0 THEN
+	  UPSERT "TF_HEAVY24_TEAM" 
+			("ID", "NUMBER", "ICON", "CONTEST_ID", "EVENT_ID", "TEAMNAME")
+	  SELECT 
+			"ID",
+			"NUMBER",
+			"ICON",
+			"CONTEST_ID",
+			"EVENT_ID",
+			"TEAMNAME"
+		FROM :lt_TeamMDChanged WHERE "ID" IS NOT NULL;
+	END IF;
+	
+	--Hinzufügen von neuen Datensätzen mit generischer ID in die TEAM-Tabelle
+	SELECT COUNT (*) INTO MDrows FROM :lt_TeamMDChanged WHERE "ID" IS NULL;
+	
+	IF MDrows > 0 THEN
+		INSERT INTO "TF_HEAVY24_TEAM" 
+			("ID", "TOKEN", "NUMBER", "ICON", "CONTEST_ID", "EVENT_ID", "TEAMNAME")
+			SELECT
+				"teamId".NEXTVAL AS "ID",
+                hash_md5(to_varbinary("NUMBER")),
+                "NUMBER",
+				"ICON",
+				"CONTEST_ID",
+				"EVENT_ID",
+				"TEAMNAME"
+			FROM :lt_TeamMDChanged WHERE "ID" IS NULL;
+	END IF;
+	
+	lt_AthleteMDChanged =
+		SELECT 
+			"ID",
+			"STARTNUMBER",
+			"NEW_GENDER" AS "GENDER",
+			"NEW_FIRSTNAME" AS "FIRSTNAME",
+			"NEW_LASTNAME" AS "LASTNAME",
+			"NEW_FULLNAME" AS "FULLNAME",
+			"SORTORDER",
+			"DEFLAPTIME",
+			"TEAM_ID",
+			"EVENT_ID"
+		FROM "AthleteMDChanged" (placeholder."$$P_EVENT_ID$$"=>:eventId);
+	
+	SELECT COUNT(*) INTO MDrows FROM :lt_AthleteMDChanged WHERE "ID" IS NOT NULL;
+
+	IF MDrows > 0 THEN
+	  UPSERT "TF_HEAVY24_ATHLETE"
+			("ID", "STARTNUMBER", "GENDER", "FIRSTNAME", "LASTNAME", "FULLNAME", "SORTORDER", "DEFLAPTIME", "TEAM_ID", "EVENT_ID")
+	  SELECT 
+			"ID",
+			"STARTNUMBER",
+			"GENDER",
+			"FIRSTNAME",
+			"LASTNAME",
+			"FULLNAME",
+			"SORTORDER",
+			"DEFLAPTIME",
+			"TEAM_ID",
+			"EVENT_ID"
+	  FROM :lt_AthleteMDChanged WHERE "ID" IS NOT NULL;
+	END IF;
+	
+	--Hinzufügen von neuen Datensätzen mit generischer ID in die ATHLETE-Tabelle
+	SELECT COUNT(*) INTO MDrows FROM :lt_AthleteMDChanged WHERE "ID" IS NULL;
+	
+	IF MDrows > 0 THEN
+		INSERT INTO "TF_HEAVY24_ATHLETE" 
+			("ID", "STARTNUMBER", "GENDER", "FIRSTNAME", "LASTNAME", "FULLNAME", "SORTORDER", "DEFLAPTIME", "TEAM_ID", "EVENT_ID")
+			SELECT 
+					"athleteId".NEXTVAL AS "ID",
+					"STARTNUMBER",
+					"GENDER",
+					"FIRSTNAME",
+					"LASTNAME",
+					"FULLNAME",
+					"SORTORDER",
+					30 as "DEFLAPTIME", -- set default value to 30 min
+					"TEAM_ID",
+					"EVENT_ID"
+			FROM :lt_AthleteMDChanged WHERE "ID" IS NULL; 
+    END IF;
+
+END

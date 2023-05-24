@@ -1,0 +1,100 @@
+PROCEDURE "CalculatePredictedStartTime"( 
+    IN eventId INTEGER
+)
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER
+    AS
+BEGIN
+
+    DECLARE ARRAY_TEAMS integer ARRAY; 
+    DECLARE ARRAY_LAPS INTEGER ARRAY; 
+    DECLARE i,j integer = 1;
+    DECLARE lv_startTimestamp TIMESTAMP;
+    DECLARE lv_MaxResultEndTime DATETIME;
+    DECLARE lv_defLapTime integer;
+    DECLARE lv_lapTime integer;
+    
+
+    -- get all plan laps for the current event
+    lt_lapPlan = 
+    SELECT
+        "TEAMID",
+        "LAPNR",
+        "PREDICTEDSTARTTIME",
+        "LAPTIME",
+        "ATHLETE_ID"
+    FROM "TF_HEAVY24_LAPPLAN" as plan
+        INNER JOIN "TF_HEAVY24_TEAM" team
+        on team."ID" = plan."TEAMID"               
+    WHERE team."EVENT_ID" = :eventId;  
+
+    -- get for all teams with planned rounds the last finished lap and EndTime to calculate the new predicted start times
+    lt_teams_max = 
+        SELECT
+            result."TEAMID",
+            max(result."LAPNR") as "MAXRESULTLAPNR",
+            max(result."ENDTIME") as "MAXRESULTENDTIME"
+        FROM "TF_HEAVY24_LAPRESULT" as result
+        INNER JOIN "TF_HEAVY24_TEAM" team
+            on team."ID" = result."TEAMID"    
+            INNER JOIN :lt_lapPlan as plan
+                ON plan."TEAMID" = result."TEAMID"        
+        WHERE team."EVENT_ID" = :eventId
+        GROUP BY result."TEAMID";
+
+	-- get all lap plan records, where lap nr > current result lap nr
+    lt_lapPlanToUpdate = 
+        SELECT
+            plan."TEAMID" as "TEAMID",
+            plan."LAPNR",
+            plan."PREDICTEDSTARTTIME",
+            plan."LAPTIME",
+            plan."ATHLETE_ID",
+            teams."MAXRESULTLAPNR",
+            teams."MAXRESULTENDTIME"
+        FROM :lt_lapPlan as plan
+        INNER JOIN :lt_teams_max as teams
+            on teams."TEAMID" = plan."TEAMID"
+        WHERE plan."LAPNR" > teams."MAXRESULTLAPNR"
+        ORDER BY plan."TEAMID", plan."LAPNR";   
+    
+    -- loop over all laps for each team and calculate the new predicted start time
+    -- 1: create relevant teams array
+    ARRAY_TEAMS = ARRAY_AGG(:lt_teams_max."TEAMID");
+    FOR i IN 1..CARDINALITY(:ARRAY_TEAMS) DO
+        lt_lapPlanToUpdateTeam = 
+            SELECT
+                "TEAMID" as "TEAMID",
+                "LAPNR",
+                "PREDICTEDSTARTTIME",
+                "LAPTIME",
+                "ATHLETE_ID",
+                "MAXRESULTENDTIME"
+            FROM :lt_lapPlanToUpdate
+            WHERE "TEAMID" = :ARRAY_TEAMS[:i]
+            ORDER BY "LAPNR";
+
+        -- 2: create laps array for a team and loop over all rounds to update the predicted start time
+        ARRAY_LAPS = ARRAY_AGG(:lt_lapPlanToUpdateTeam."LAPNR");
+        FOR j IN 1..CARDINALITY(:ARRAY_LAPS) DO
+            -- LAPTIME = default lap time for the round            
+            SELECT "LAPTIME", "MAXRESULTENDTIME" INTO lv_defLapTime, lv_MaxResultEndTime
+                FROM :lt_lapPlanToUpdateTeam WHERE "TEAMID" = :ARRAY_TEAMS[:i] AND "LAPNR" = :ARRAY_LAPS[:j];
+
+            IF j = 1 THEN -- first record: set the EndTime from last finished lap to the StartTime for the first planned lap                               
+                lv_startTimestamp = :lv_MaxResultEndTime;    
+                lv_lapTime = :lv_defLapTime; -- save default lap time for next iteration
+		    ELSE -- next laps: add default lap time to StartTime
+                lv_startTimestamp = ADD_SECONDS(:lv_startTimestamp, :lv_lapTime);     
+                lv_lapTime = :lv_defLapTime;           
+            END IF;                
+            
+            -- update new predicted start time
+            UPDATE "TF_HEAVY24_LAPPLAN" 
+                SET "PREDICTEDSTARTTIME" = lv_startTimestamp 
+                WHERE "TEAMID" = :ARRAY_TEAMS[:i] AND "LAPNR" = :ARRAY_LAPS[:j];
+
+        END FOR;
+    END FOR;    
+
+END

@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "**/.gitignore": true,
+    "**/.git": true,
+    "**/.vscode": true
+},
+"editor.autoSave": "off",
+"[xml].editor.defaultFormatter": "dotjoshjohnson.xml",
+"git.ignoreLimitWarning": true
+}

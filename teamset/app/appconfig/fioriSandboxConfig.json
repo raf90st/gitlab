@@ -1,0 +1,268 @@
+{
+    "services": {
+        "LaunchPage": {
+            "adapter": {
+                "config": {
+                    "catalogs": [],
+                    "groups": [
+                        {
+                            "id": "1",
+                            "title": "DFL/Sportec",
+                            "isPreset": false,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "browse-clubs",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Clubs",
+                                        "targetURL": "#Clubs-display"
+                                    }
+                                },
+                                {
+                                    "id": "browse-competitions",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Competitions",
+                                        "targetURL": "#Competitions-display"
+                                    }
+                                },
+                                {
+                                    "id": "browse-matchdays",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Matchdays",
+                                        "targetURL": "#Matchdays-display"
+                                    }
+                                },
+                                {
+                                    "id": "browse-person",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Person",
+                                        "targetURL": "#Person-display"
+                                    }
+                                },
+                                {
+                                    "id": "browse-seasons",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Seasons",
+                                        "targetURL": "#Seasons-display"
+                                    }
+                                },
+                                {
+                                    "id": "browse-stadiums",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Stadiums",
+                                        "targetURL": "#Stadiums-display"
+                                    }
+                                },
+                                {
+                                    "id": "browse-fixtures",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Browse Fixtures",
+                                        "targetURL": "#Fixtures-display"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "2",
+                            "title": "Heim:Spiel",
+                            "isPreset": false,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "tile2",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Tile1",
+                                        "targetURL": "#"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "3",
+                            "title": "SciSports",
+                            "isPreset": false,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "tile3",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Tile1",
+                                        "targetURL": "#"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "4",
+                            "title": "SmarterScout",
+                            "isPreset": false,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "tile4",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "title": "Tile1",
+                                        "targetURL": "#"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "NavTargetResolution": {
+            "config": {
+                "enableClientSideTargetResolution": true
+            }
+        },
+        "ClientSideTargetResolution": {
+            "adapter": {
+                "config": {
+                    "inbounds": {
+                        "BrowseCompetitions": {
+                            "semanticObject": "Competitions",
+                            "action": "display",
+                            "title": "Browse Competitions",
+                            "signature": {
+                                "parameters": {
+                                    "Competitions.CompetitionId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=competitions",
+                                "url": "/competitions/webapp"
+                            }
+                        },
+                        "BrowseClubs": {
+                            "semanticObject": "Clubs",
+                            "action": "display",
+                            "title": "Browse Clubs",
+                            "signature": {
+                                "parameters": {
+                                    "Clubs.ClubId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=clubs",
+                                "url": "/clubs/webapp"
+                            }
+                        },
+                        "BrowseMatchdays": {
+                            "semanticObject": "Matchdays",
+                            "action": "display",
+                            "title": "Browse Match Days",
+                            "signature": {
+                                "parameters": {
+                                    "Matchdays.MatchDayId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=matchdays",
+                                "url": "/matchdays/webapp"
+                            }
+                        },
+                        "BrowsePerson": {
+                            "semanticObject": "Person",
+                            "action": "display",
+                            "title": "Browse Person",
+                            "signature": {
+                                "parameters": {
+                                    "Person.PersonId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=person",
+                                "url": "/person/webapp"
+                            }
+                        },
+                        "BrowseSeasons": {
+                            "semanticObject": "Seasons",
+                            "action": "display",
+                            "title": "Browse Seasons",
+                            "signature": {
+                                "parameters": {
+                                    "Season.SeasonId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=seasons",
+                                "url": "/seasons/webapp"
+                            }
+                        },
+                        "BrowseStadiums": {
+                            "semanticObject": "Stadiums",
+                            "action": "display",
+                            "title": "Browse Stadiums",
+                            "signature": {
+                                "parameters": {
+                                    "Stadiums.StadiumId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=stadiums",
+                                "url": "/stadiums/webapp"
+                            }
+                        },
+                        "BrowseFixtures": {
+                            "semanticObject": "Fixtures",
+                            "action": "display",
+                            "title": "Browse Fixtures",
+                            "signature": {
+                                "parameters": {
+                                    "Fixtures.MatchId": {
+                                        "renameTo": "ID"
+                                    }
+                                },
+                                "additionalParameters": "ignored"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "URL",
+                                "additionalInformation": "SAPUI5.Component=fixtures",
+                                "url": "/fixtures/webapp"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

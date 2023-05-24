@@ -1,0 +1,22 @@
+{
+    "services": {
+        "LaunchPage": {
+            "adapter": {
+                "config": {
+                    "catalogs": [],
+                    "groups": []
+                }
+            }
+        },
+        "NavTargetResolution": {
+            "config": {}
+        },
+        "ClientSideTargetResolution": {
+            "adapter": {
+                "config": {
+                    "inbounds": {}
+                }
+            }
+        }
+    }
+}

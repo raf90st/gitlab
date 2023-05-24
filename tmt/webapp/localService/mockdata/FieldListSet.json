@@ -1,0 +1,52 @@
+[
+	{
+		"tableId" : "1",
+		"fieldId" : "1",
+		"fieldDescription" : "Materialnummer",
+		"fieldType" : 2,
+		"isKeyField" : true
+	},
+	{
+		"tableId" : "1",
+		"fieldId" : "2",
+		"fieldDescription" : "Materialbezeichnung",
+		"fieldType" : 1,
+		"isKeyField" : false
+	},
+	{
+		"tableId" : "1",
+		"fieldId" : "3",
+		"fieldDescription" : "Artikel Nr",
+		"fieldType" : 2,
+		"isKeyField" : false
+	},
+	{
+		"tableId" : "1",
+		"fieldId" : "4",
+		"fieldDescription" : "Liefertermin",
+		"fieldType" : 3,
+		"isKeyField" : false
+	},
+	{
+		"tableId" : "1",
+		"fieldId" : "5",
+		"fieldDescription" : "Materialfarbe",
+		"fieldType" : 4,
+		"isKeyField" : false,
+		"searchHelpEntity" : "TestSearchhelpentitySet"
+	},
+	{
+		"tableId" : "2",
+		"fieldId" : "1",
+		"fieldDescription" : "Lieferantenkennung",
+		"fieldType" : 2,
+		"isKeyField" : false
+	},
+	{
+		"tableId" : "2",
+		"fieldId" : "2",
+		"fieldDescription" : "Lieferant",
+		"fieldType" : 1,
+		"isKeyField" : false
+	}
+]

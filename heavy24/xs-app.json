@@ -1,0 +1,17 @@
+{
+  "welcomeFile": "home/index.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/home/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    },
+    {
+      "source": "/race/(.*)$",
+      "target": "/race/$1",
+      "destination": "srv-api",
+      "csrfProtection": false
+    }
+  ]
+}

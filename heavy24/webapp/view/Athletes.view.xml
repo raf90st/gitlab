@@ -1,0 +1,135 @@
+<mvc:View
+	controllerName="teamfact.app.controller.Athletes"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"	
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:u="sap.uxap"
+    xmlns:chart="sap.suite.ui.microchart">
+    
+    <f:DynamicPage id="idDynamicPage" headerExpanded="true" toggleHeaderOnTitleClick="false" class="mobileTeamInfoStyle">
+        <!-- DynamicPage Title -->
+         <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{TeamName} ({Number})"/>                              
+                </f:heading>					
+
+                <f:actions>
+                    <Button icon="sap-icon://lightbulb" press="onSwitchMode" />
+                    <Button id="idLoadingButton" class="" type="Transparent" icon="sap-icon://synchronize" press="onSwitchLoading" />	
+                </f:actions>                    
+                
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content >
+
+        <u:ObjectPageLayout id="ObjectPageLayout" preserveHeaderStateOnScroll="true" showHeaderContent="false" upperCaseAnchorBar="false">
+		<u:sections>
+			<u:ObjectPageSection>
+				<u:subSections>
+					<u:ObjectPageSubSection title="" titleUppercase="false">
+						<u:blocks>
+                            <HBox>
+                                <VBox class="mobileTeamWidth">
+                                    <Avatar
+						        	initials="Athlet"
+						        	displaySize="L"
+						        	backgroundColor="TileIcon"
+                                    src="{PictureUrl}"/>
+                                </VBox>
+                                <HBox class="mobileTeamWidth">
+                                    <VBox>
+                                        <Text text="Aktueller Fahrer:" />
+                                        <Text class="mobileTeamBottomMarginSmall" text="{CurrentFullName}" />
+                                        <Text text="Platzierung:" />
+                                        <Text text="{CurrentRank}"/>
+                                    </VBox>
+                                </HBox>
+                            </HBox>
+						</u:blocks>
+					</u:ObjectPageSubSection>
+
+                    <u:ObjectPageSubSection class="mobileTeamSubSections" title="Abschnittszeiten" titleUppercase="false">
+						<u:blocks>
+                            <HBox class="mobileTeamBottomMargin">
+                                <VBox class="mobileTeamWidth">
+                                    <Text text="Abschnitt 1:" />
+                                </VBox>
+                                <VBox class="mobileTeamWidth">
+                                    <Text text="{ path: 'CurrentLapAthleteSplit1' , type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'ssss', UTC: true}, pattern: 'HH:mm:ss', UTC: true} }" />
+                                    <Text text="um: { path: 'CurrentEndTimeSplit1', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} Uhr" />
+                                </VBox>
+                            </HBox>
+                            <HBox class="mobileTeamBottomMargin">
+                                <VBox class="mobileTeamWidth">
+                                    <Text text="Abschnitt 2:" />
+                                </VBox>
+                                <VBox class="mobileTeamWidth">
+                                    <Text text="{ path: 'CurrentLapAthleteSplit2' , type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'ssss', UTC: true}, pattern: 'HH:mm:ss', UTC: true} }" />
+                                    <Text text="um: { path: 'CurrentEndTimeSplit2', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} Uhr" />
+                                </VBox>
+                            </HBox>
+                            <HBox class="mobileTeamBottomMarginSmall">
+                                <VBox class="mobileTeamWidth mobileTeamMaxWidth">
+                                    <Text text="Abschnitt 3:" />
+                                </VBox>
+                                <VBox class="mobileTeamWidth">
+                                    <Text text="{ path: 'CurrentLapAthleteSplit3' , type: 'sap.ui.model.type.Time', formatOptions: {source: {pattern: 'ssss', UTC: true}, pattern: 'HH:mm:ss', UTC: true} }" />
+                                    <Text text="um: { path: 'CurrentEndTimeSplit3', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} Uhr" />
+                                </VBox>
+                            </HBox>
+						</u:blocks>
+					</u:ObjectPageSubSection>
+
+                    <u:ObjectPageSubSection class="mobileTeamSubSections" title="Nächster Fahrer" titleUppercase="false">
+						<u:blocks>
+                            <HBox>
+                                <VBox>
+                                    <Text text="{NextFullName}" />
+                                    <Text class="mobileTeamBottomMarginSmall" 
+                                    text="Startet um: { path: 'NextStartTime', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} {i18n>Clock}" />
+                                </VBox> 
+                            </HBox>
+						</u:blocks>
+					</u:ObjectPageSubSection>
+
+                    <u:ObjectPageSubSection class="mobileTeamSubSections" title="Zeiten der letzten 5 Runden" titleUppercase="false">
+						<u:blocks>
+                                <HBox class="mobileTeamBottomMarginTiny">
+                                    <VBox class="mobileTeamMarginRight">
+                                        <Text class="mobileTeamSmallTxt" text="Rundenzeit (in Min)" />
+                                    </VBox>
+                                    <VBox>
+                                        <core:Icon
+			                            src="sap-icon://information" 
+                                        press="onLastFiveRoundInfoPress">
+			                            <core:layoutData>
+			                            	<FlexItemData growFactor="1" />
+			                            </core:layoutData>
+		                            </core:Icon>
+                                    </VBox>
+                                </HBox>
+                                <HBox class="mobileTeamBottomMarginTiny">
+                                    <VBox>
+                	                    <chart:ColumnMicroChart size="L" id="fiveRoundsChart" allowColumnLabels="true">
+		                                    <chart:columns>
+		                                    </chart:columns>
+	                                    </chart:ColumnMicroChart>
+                                    </VBox>
+                                </HBox>
+                                <HBox>                        
+                                <VBox>
+                                    <Text class="mobileTeamSmallTxt" text="Rundennummer" />
+                                </VBox>
+                                </HBox> 
+						</u:blocks>
+					</u:ObjectPageSubSection>
+				</u:subSections>
+			</u:ObjectPageSection>
+		</u:sections>
+	</u:ObjectPageLayout>
+        </f:content>			
+    </f:DynamicPage>    
+</mvc:View>

@@ -1,0 +1,57 @@
+<core:FragmentDefinition 
+xmlns="sap.m"     
+xmlns:core="sap.ui.core">
+
+   <Table id="idRoundsTable"
+        sticky="HeaderToolbar,ColumnHeaders"
+        inset="false"	
+        class="sapFDynamicPageAlignContent"                             
+        fixedLayout="false">
+        
+        <headerToolbar>
+            <OverflowToolbar> 
+                <ToolbarSpacer/>
+                <Label text="{i18n>CumulativeSplit}"/>
+                <Switch state="true" change="onSwitchSplitTimes">
+                    <layoutData>
+                        <FlexItemData growFactor="1" />
+                    </layoutData>
+                </Switch>
+                <Button
+                    tooltip="Sort"
+                    icon="sap-icon://sort"
+                    press="onSortButtonPressed"/>
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column>
+                <Text text="{i18n>Round}" />
+            </Column>
+            <Column visible="false">
+                <Text text="Athelte ID" />
+            </Column>                        
+            <Column>
+                <Text text="{i18n>Athlete}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>StartTime}" />
+            </Column>	                        
+            <Column minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline">
+                <Text text="{i18n>split1}" />
+            </Column>	                        
+            <Column minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline">
+                <Text text="{i18n>split2}" />
+            </Column>
+            <Column minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline">
+                <Text text="{i18n>split3}" />
+            </Column>                                                
+            <Column>
+                <Text text="{i18n>LapTime}" />
+            </Column>	
+            <Column minScreenWidth="Medium" demandPopin="true" popinDisplay="Inline">
+                <Text text="{i18n>ContestRank}" />
+            </Column>					
+        </columns>	              				
+    </Table> 
+    
+</core:FragmentDefinition>

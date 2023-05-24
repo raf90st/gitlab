@@ -1,0 +1,46 @@
+
+
+GET https://vu47u96tii.execute-api.eu-central-1.amazonaws.com/prod/DeliveryPlatform/REST/ListOfServices/BxHpC5mMRv3JGFUks5oo466xNWpOv3bs1knMMKpQ HTTP/1.1
+###
+
+GET https://vu47u96tii.execute-api.eu-central-1.amazonaws.com/prod/DeliveryPlatform/REST/PullOnce/BxHpC5mMRv3JGFUks5oo466xNWpOv3bs1knMMKpQ/DFL-01.07-Stammdaten-Saison/DFL-SEA-0001K1 HTTP/1.1
+###
+
+GET https://vu47u96tii.execute-api.eu-central-1.amazonaws.com/prod/DeliveryPlatform/REST/PullOnce/BxHpC5mMRv3JGFUks5oo466xNWpOv3bs1knMMKpQ/DFL-01.01-Stammdaten-Wettbewerb/DFL-SEA-0001K1 HTTP/1.1
+###
+
+POST http://localhost:4004/skill/Employees HTTP/1.1
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "ID":8,
+    "lastname": "Nachname",
+    "firstname": "Vorname",
+    "location_ID": 2 
+}    
+###
+
+POST http://localhost:4004/skill/Employees HTTP/1.1
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "ID":7,
+    "lastname": "Bar2",
+    "firstname": "Foo",
+    "location_ID": 1 
+}    
+
+
+###
+
+PATCH http://localhost:4004/skill/Employees(ID=6) HTTP/1.1
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "lastname": "Bar",
+    "firstname": "Felix",
+    "location_ID": 2 
+}   
+###
+
+OPTIONS http://localhost:4004/skill

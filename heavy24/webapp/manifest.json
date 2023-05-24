@@ -1,0 +1,184 @@
+{
+	"_version": "1.12.0",
+
+	"sap.app": {
+		"id": "teamfact.app",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"ach": "set-ach",
+
+		"resources": "resources.json",
+		"dataSources": {
+			"mainService": {
+				"uri": "/race/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0",
+					"localUri": "localService/metadata.xml"
+				}
+            },
+            "adminService": {
+				"uri": "/admin/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+
+	"sap.fiori": {
+		"registrationIds": [
+		],
+		"archeType": "transactional"
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "teamfact.app.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+
+		"dependencies": {
+			"minUI5Version": "1.66.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {}
+			}
+		},
+
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "teamfact.app.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"groupId": "$auto",
+					"synchronizationMode": "None",
+					"autoExpandSelect":true
+				}
+            },
+            "mapData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "localData/20220122_Heavy24_map_4_Abschnitte.geojson"                
+            }          
+		},
+
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "teamfact.app.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": ["welcome"]
+				},
+				"async": true
+			},
+
+			"routes": [
+                {
+					"pattern": "",
+					"name": "welcome",
+					"target": ["welcome"]
+				},
+				{
+					"pattern": "Manager/{managerId}",
+					"name": "manager",
+					"target": ["manager"]
+                },
+				{
+					"pattern": "ManagerAdmin",
+					"name": "managerAdmin",
+					"target": ["managerAdmin"]
+				},                
+				{
+					"pattern": "Manager/{managerId}/Team/{teamId}",
+					"name": "team",
+					"target": ["team"]
+                },
+				{
+					"pattern": "{token}/Team/{teamId}",
+					"name": "athletes",
+					"target": ["athletes"]
+                },
+            	{
+					"pattern": "{token}/Athlete/{athleteId}",
+					"name": "athlete",
+					"target": ["athlete"]
+				}              
+			],
+
+			"targets": {
+				"team": {
+					"viewName": "Team",
+					"viewId": "team",
+					"viewLevel": 2,
+					"title": "{i18n>teamViewTitle}"
+                },
+				"manager": {
+					"viewName": "Manager",
+					"viewId": "manager"
+                },
+				"managerAdmin": {
+					"viewName": "ManagerAdmin",
+					"viewId": "managerAdmin"
+                },                
+				"athletes": {
+					"viewName": "Athletes",
+					"viewId": "athletes"
+                }, 
+				"athlete": {
+					"viewName": "Athlete",
+					"viewId": "athlete"
+                },  
+				"welcome": {
+					"viewName": "Welcome",
+					"viewId": "welcome"
+				},                                              
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
+				}
+			}
+		}
+	}
+}

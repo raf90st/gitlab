@@ -1,0 +1,13 @@
+/* Enter your custom styles here */
+
+.tableStyle .sapUiTableHeaderRow span {
+	font-weight: bold;
+}
+
+.sapMDialogSection {
+	padding: 10px;
+}
+
+.sapMDialogSection .sapMLabel bdi{
+	font-weight: bold;
+}

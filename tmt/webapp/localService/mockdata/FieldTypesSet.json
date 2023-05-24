@@ -1,0 +1,33 @@
+[
+	{
+		"fieldType" : 1,
+		"dataType" : "string",
+		"decimalPlaces" : "2",
+		"format" : "short",
+		"searchHelpEntity" : "",
+		"selectionType" : ""
+	},
+	{
+		"fieldType" : 2,
+		"dataType" : "integer",
+		"decimalPlaces" : "4",
+		"format" : "long",
+		"searchHelpEntity" : "",
+		"selectionType" : ""
+	},
+	{
+		"fieldType" : 3,
+		"dataType" : "date",
+		"decimalPlaces" : "4",
+		"format" : "long",
+		"searchHelpEntity" : "",
+		"selectionType" : ""
+	},
+	{
+		"fieldType" : 4,
+		"dataType" : "dropdown",
+		"decimalPlaces" : "4",
+		"format" : "long",
+		"selectionType" : "simple"
+	}
+]

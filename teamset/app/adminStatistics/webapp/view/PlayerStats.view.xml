@@ -1,0 +1,1015 @@
+<mvc:View controllerName="adminStatistics.controller.PlayerStats"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.unified"
+    xmlns:uxap="sap.uxap" height="100%"
+    xmlns:t="sap.ui.table">
+    <App id="adminStatsView">
+        <uxap:ObjectPageLayout id="ObjectPageLayout">
+            <uxap:sections>
+                <uxap:ObjectPageSection titleUppercase="false" title="Stammdaten">
+                    <uxap:ObjectPageSubSection title="Playerstatistic">
+                        <uxap:blocks>
+                            <t:Table id="playerStatsTable" rows="{PlayerStatistic}" enableSelectAll="false">
+                                <t:extension>
+                                    <OverflowToolbar>
+                                    </OverflowToolbar>
+                                </t:extension>
+                                <t:columns>
+                                    <t:Column width="12em"  visible="{= %{KickOffs} !== null }">
+                                        <Label text="Startzeit"></Label>
+                                        <t:template>
+
+                                            <Text text="{KickOffs}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="9em">
+                                        <Label text="Vorname"></Label>
+                                        <t:template>
+
+                                            <Text text="{PlayerFirstName}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="9em">
+                                        <Label text="Nachname"></Label>
+                                        <t:template>
+
+                                            <Text text="{PlayerLastName}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Spieler Kürzel"></Label>
+                                        <t:template>
+
+                                            <Text text="{PlayerAlias}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ist Torwart?"></Label>
+                                        <t:template>
+                                            <Text text="{= %{GoalKeeper} ? 'Ja' : 'Nein'}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                     <t:Column width="12em">
+                                        <Label text="Spielzeit"></Label>
+                                        <t:template>
+
+                                            <Text text="{PlayingTime}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Anzahl Einwechsel"></Label>
+                                        <t:template>
+
+                                            <Text text="{SubstitutionsIn}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Anzahl Auswechsel"></Label>
+                                        <t:template>
+
+                                            <Text text="{SubstitutionsOut}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gelbe Karten"></Label>
+                                        <t:template>
+
+                                            <Text text="{CardsYellow}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gelbrote Karten"></Label>
+                                        <t:template>
+
+                                            <Text text="{CardsYellowRed}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Rote Karten"></Label>
+                                        <t:template>
+
+                                            <Text text="{CardsRed}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Spielverweise"></Label>
+                                        <t:template>
+
+                                            <Text text="{SendingsOff}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Abseitspositionen"></Label>
+                                        <t:template>
+
+                                            <Text text="{Offsides}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Fouls gegen Gegner"></Label>
+                                        <t:template>
+
+                                            <Text text="{FoulsAgainstOpponent}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Andere Fouls"></Label>
+                                        <t:template>
+
+                                            <Text text="{FoulsOther}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Fouls Handspiel"></Label>
+                                        <t:template>
+
+                                            <Text text="{FoulsHandBall}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Fouls"></Label>
+                                        <t:template>
+
+                                            <Text text="{FoulsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Andere Spieleraktionen"></Label>
+                                        <t:template>
+
+                                            <Text text="{OtherPlayerActions}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalSuccessfull}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gehaltene Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalHeld}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse auf Weite"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalWide}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse auf Latte"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalCrossbar}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse auf Pfosten"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalPost}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Geblockte Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalBlocked}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Schüsse auf anderes Tor"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalOther}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verfehlte Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalFailed}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse rechter Fuß"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalRightLeg}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse linker Fuß"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalLeftLeg}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Kopfbälle auf Tor"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalHead}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Körperschüsse auf Tor"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalBody}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalNoHead}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse innerhalb Strafraum"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalInsideBox}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torschüsse ausserhalb Strafraum"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsAtGoalOutsideBox}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Vorlagen"></Label>
+                                        <t:template>
+
+                                            <Text text="{Assists}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Pässe"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesFromPlaySuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht Erfolgreiche Pässe"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesFromPlayNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Pässe"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesFromPlaySum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Pässe aus Standardsituationen"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesFromStandardsSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Pässe aus nicht Standardsituationen"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesFromStandardsNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Pässe aus Standardsituationen"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesFromStandardsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Erfolgreiche Pässe"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesSuccessfulSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Erfolgreiche Pässe"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesNotSuccessfulSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Pässe"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesFromPlaySuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht Erfolgreiche Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesFromPlayNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesFromPlaySum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Flanken aus Standards"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesFromStandardsSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht erfolgreiche Flanken aus Standards"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesFromStandardsNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Flanken aus Standards"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesFromStandardsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe erfolgreiche Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesSuccessfulSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe nicht erfolgreiche Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesNotSuccessfulSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{CrossesSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Pässe und Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesFromPlaySuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht Erfolgreiche Pässe und Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesFromPlayNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Pässe und Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesFromPlaySum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Pässe und Flanken aus Standards"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesFromStandardsSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht erfolgreiche Pässe und Flanken aus Standards"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesFromStandardsNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Pässe und Flanken aus Standardsituationen"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesFromStandardsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe erfolgreiche Pässe und Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesSuccessfulSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe nicht erfolgreiche Pässe und Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesNotSuccessfulSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Pässe und Flanken"></Label>
+                                        <t:template>
+
+                                            <Text text="{PassesAndCrossesSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Eigentore"></Label>
+                                        <t:template>
+
+                                            <Text text="{OwnGoals}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verhinderte Eigentore"></Label>
+                                        <t:template>
+
+                                            <Text text="{OwnGoalsPrevented}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Geklärte Abwehrspiele"></Label>
+                                        <t:template>
+
+                                            <Text text="{DefensiveClearances}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ballabwesenheit"></Label>
+                                        <t:template>
+
+                                            <Text text="{AbandonmentsOfBall}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Andere Ballaktionen"></Label>
+                                        <t:template>
+
+                                            <Text text="{OtherBallActions}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Einwürfe"></Label>
+                                        <t:template>
+
+                                            <Text text="{ThrowIns}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Elfmeterschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{PenaltiesSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht erfolgreiche Elfmeterschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{PenaltiesNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Elfmeterschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{PenaltiesSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erzeugte Elfmeterschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{PenaltiesCaused}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gehaltene Elfmeterschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{PenaltiesSaved}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Schüsse linke Ecke"></Label>
+                                        <t:template>
+
+                                            <Text text="{CornerKicksLeft}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Schüsse rechte Ecke"></Label>
+                                        <t:template>
+
+                                            <Text text="{CornerKicksRight}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Eckschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{CornerKicksSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Direkte Freistöße"></Label>
+                                        <t:template>
+
+                                            <Text text="{FreeKicksDirect}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Indirekte Freistöße"></Label>
+                                        <t:template>
+
+                                            <Text text="{FreeKicksIndirect}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Freistöße"></Label>
+                                        <t:template>
+
+                                            <Text text="{FreeKicksSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Anspiele nach Tor"></Label>
+                                        <t:template>
+
+                                            <Text text="{KickoffsAfterGoal}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ballkontrollphasen"></Label>
+                                        <t:template>
+
+                                            <Text text="{BallControlPhases}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gewonne Tacklings ohne Bodenkontakt"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesAirWon}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verlorene Tacklings ohne Bodenkontakt"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesAirLost}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Tacklings ohne Bodenkontakt"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesAirSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gewonne Tacklings Bodenkontakt"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesGroundWon}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verlorene Tacklings Bodenkontakt"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesGroundLost}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Tacklings Bodenkontakt"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesGroundSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gewonne Tacklings"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWon}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verlorene Tacklings"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesLost}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Tacklings"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Tacklings mit Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithBallControl}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gewonnene Tacklings mit Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithBallControlWon}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verlorene Tacklings mit Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithBallControlLost}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Durschnitt Gewonnene Tacklings mit Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithBallControlWonRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Tacklings ohne Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithoutBallControl}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gewonnene Tacklings ohne Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithoutBallControlWon}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Verlorene Tacklings ohne Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithoutBallControlLost}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Durschnitt Gewonnene Tacklings ohne Ballkontrolle"></Label>
+                                        <t:template>
+
+                                            <Text text="{TacklingGamesWithoutBallControlWonRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Spieleröffnungen Einwurf"></Label>
+                                        <t:template>
+
+                                            <Text text="{GameopeningsThrowout}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Spieleröffnungen Hand"></Label>
+                                        <t:template>
+
+                                            <Text text="{GameopeningsHand}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Spieleröffnungen"></Label>
+                                        <t:template>
+
+                                            <Text text="{GameopeningsSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht erfolgreiche Spieleröffnungen"></Label>
+                                        <t:template>
+
+                                            <Text text="{GameopeningsNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Spieleröffnungen"></Label>
+                                        <t:template>
+
+                                            <Text text="{GameopeningsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gehaltene Torschüsse"></Label>
+                                        <t:template>
+
+                                            <Text text="{GoalkeeperSaves}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ballgewinne Links"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsLeft}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ballgewinne Rechts"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsRight}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gehaltene Ballgewinne"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsHeld}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Faustabgewehrte Ballgewinne"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsFisted}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Zurückgestoßene Ballgewinne"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsRebounded}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Überkreuzte Ballgewinne"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsCross}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ballgewinne Ecke"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsCorner}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Ballgewinne"></Label>
+                                        <t:template>
+
+                                            <Text text="{InterceptionsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Summe Dribblings"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribblingsSum}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Dribblings"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribblingsSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Nicht erfolgreiche Dribblings"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribblingsNotSuccessful}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Dribblings links"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribbleSuccessfulLeft}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erfolgreiche Dribblings rechts"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribbleSuccessfulRight}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Vorbeigelaufene Dribblings links"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribbleBypassedLeft}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Vorbeigelaufene Dribblings rechts"></Label>
+                                        <t:template>
+
+                                            <Text text="{DribbleBypassedRight}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Ballspiele"></Label>
+                                        <t:template>
+
+                                            <Text text="{BallActions}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Gelaufene Strecke"></Label>
+                                        <t:template>
+
+                                            <Text text="{DistanceCovered}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Maximale Sprintgeschwindigkeit"></Label>
+                                        <t:template>
+
+                                            <Text text="{MaximumSpeed}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Tormöglichkeiten"></Label>
+                                        <t:template>
+
+                                            <Text text="{GoalOpportunities}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Torchancen"></Label>
+                                        <t:template>
+
+                                            <Text text="{Chances}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Sichere Torchancen"></Label>
+                                        <t:template>
+
+                                            <Text text="{Sitters}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    
+                                    <t:Column width="12em">
+                                        <Label text="Nutmegs"></Label>
+                                        <t:template>
+
+                                            <Text text="{Nutmegs}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Schüsse auf Ziel"></Label>
+                                        <t:template>
+
+                                            <Text text="{ShotsOnTarget}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Spektakuläre Spiele"></Label>
+                                        <t:template>
+
+                                            <Text text="{SpectacularPlays}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="Erlittene Fouls"></Label>
+                                        <t:template>
+                                            <Text text="{FoulsSuffered}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayShort"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayShort}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayShortSuccessfulRatio"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayShortSuccessfulRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayMedium"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayMedium}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayMediumSuccessfulRatio"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayMediumSuccessfulRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayLong"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayLong}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayLongSuccessfulRatio"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayLongSuccessfulRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayOffensiveThird"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayOffensiveThird}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayOffensiveThirdSuccessfulRatio"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayOffensiveThirdSuccessfulRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayMiddleThird"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayMiddleThird}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayMiddleThirdSuccessfulRatio"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayMiddleThirdSuccessfulRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayDefensiveThird"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayDefensiveThird}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="PassesFromOpenPlayDefensiveThirdSuccessfulRatio"></Label>
+                                        <t:template>
+                                            <Text text="{PassesFromOpenPlayDefensiveThirdSuccessfulRatio}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="xG"></Label>
+                                        <t:template>
+                                            <Text text="{xG}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="12em">
+                                        <Label text="xGEfficiency"></Label>
+                                        <t:template>
+                                            <Text text="{xGEfficiency}"></Text>
+                                        </t:template>
+                                    </t:Column>
+                                </t:columns>
+                            </t:Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </App>
+</mvc:View>

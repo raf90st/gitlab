@@ -1,0 +1,207 @@
+<mvc:View controllerName="admin.controller.Admin"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.unified"
+    xmlns:uxap="sap.uxap" displayBlock="false" height="100%">
+    <App id="adminView">
+        <uxap:ObjectPageLayout id="ObjectPageLayout">
+            <uxap:sections>
+                <uxap:ObjectPageSection titleUppercase="false" title="Stammdaten">
+                    <uxap:ObjectPageSubSection title="Stammdaten">
+                        <uxap:blocks>
+
+                            <form:SimpleForm columnsL="1" columnsM="1" id="getDataForApi" binding="{/updateFromApi(...)}">
+                                <Label text="Datenauswahl" labelFor="chosenData" />
+                                <Select width="320px" id="chosenData" selectedKey="{$Parameter/ModeId}" items="{
+				                path: '/Modes',
+				                sorter: { path: 'ModeId' }
+                            }" change="onModeChange">
+                                    <core:Item key="{ModeId}" text="{ModeText}" />
+                                </Select>
+
+                                <Label text="Client ID" labelFor="clientId" visible="{ui>/clientIdRequired}"/>
+                                <Input id="clientId" value="{$Parameter/clientId}" width="320px" visible="{ui>/clientIdRequired}"/>
+
+                                <Label text="Service ID (Auswahl)" />
+                                <ComboBox width="320px" id="serviceIdDd" items="{
+                                path: '/Services',
+                                sorter: { path: 'DropdownText' }
+                            }" selectedKey="{$Parameter/serviceId}" change="onServiceSelected">
+                                    <core:Item key="{ServiceID}" text="{DropdownText}">
+                                        <core:customData>
+                                            <core:CustomData key="seasonRequired" value="{SeasonRequired}"/>
+                                            <core:CustomData key="competitionRequired" value="{CompetitionRequired}"/>
+                                            <core:CustomData key="clubRequired" value="{ClubRequired}"/>
+                                        </core:customData>
+                                    </core:Item>
+                                </ComboBox>
+
+                                <Label text="Competition ID (Auswahl)" />
+                                <ComboBox width="320px" id="compIdDd" items="{
+                                path: '/Competitions'
+                            }" selectedKey="{$Parameter/competitionId}" visible="{ui>/competitionRequired}">
+                                    <core:Item key="{CompetitionId}" text="{CompetitionName}"/>
+                                </ComboBox>
+
+                                <Label text="Season ID (Auswahl)" />
+                                <ComboBox width="320px" id="seasonIdDd" items="{
+                                path: '/Seasons',
+                                parameters: {
+                                    operationMode: 'Client'
+                                },
+                                sorter: { 
+                                    path: 'Season',
+                                    descending: true
+                                }
+                            }" selectedKey="{$Parameter/seasonId}" visible="{ui>/seasonRequired}">
+                                    <core:Item key="{SeasonId}" text="{Season}"/>
+                                </ComboBox>
+
+                                <Label text="Club ID (Auswahl)" />
+                                <ComboBox width="320px" id="clubIdDd" items="{
+                                path: '/Clubs'
+                            }" selectedKey="{$Parameter/clubId}" visible="{ui>/clubRequired}">
+                                    <core:Item key="{ClubId}" text="{ClubName}"/>
+                                </ComboBox>
+
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+
+                    <uxap:ObjectPageSubSection title="Daten abfragen" showTitle="false">
+                        <uxap:blocks>
+                            <Button class="buttonCentered" text="Daten abfragen" press=".getData"/>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+
+                    <uxap:ObjectPageSubSection title="Logtabelle" showTitle="false">
+                        <uxap:blocks>
+                            <Table id="logsTable" inset="false" items="{path: '/Log',  
+                                sorter: {path: 'TimeStamp', descending: true}}">
+                                <columns>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Datum" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Tabellenname" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Art der Aktualisierung" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Anzahl der Einträge" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{formattedDate}" />
+                                            <Text text="{TableName}" />
+                                            <Text text="{ChangeType}" />
+                                            <Text text="{NumberOfRecords}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:ObjectPageSection>
+
+                <uxap:ObjectPageSection titleUppercase="false" title="Bewegungsdaten">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="Bewegungsdaten" showTitle="false">
+                            <uxap:blocks>
+                                <form:SimpleForm columnsL="1" columnsM="1" id="getStatisticsForApi" binding="{/updateStatisticsFromApi(...)}">
+                                    <Label text="Datenauswahl" labelFor="chosenStatData"/>
+                                    <Select width="320px" id="chosenStatData" selectedKey="{$Parameter/ModeId}" items="{
+				                path: '/Modes',
+				                sorter: { path: 'ModeId' }
+                            }" change="onStatisticModeChange">
+                                        <core:Item key="{ModeId}" text="{ModeText}" />
+                                    </Select>
+
+                                    <Label text="Client ID" labelFor="clientStatId" visible="{ui>/statsClientIdRequired}"/>
+                                    <Input id="clientStatId" value="{$Parameter/clientId}" width="320px" visible="{ui>/statsClientIdRequired}"/>
+
+                                    <Label text="Service ID (Auswahl)" />
+                                    <ComboBox width="320px" id="serviceStatIdDd" items="{
+                                path: '/Statistic_Services',
+                                sorter: { path: 'DropdownText' }
+                            }" selectedKey="{$Parameter/serviceId}" change=".onStatisticsServiceSelected">
+                                        <core:Item key="{ServiceID}" text="{DropdownText}">
+                                            <core:customData>
+                                                <core:CustomData key="matchRequired" value="{MatchRequired}"/>
+                                            </core:customData>
+                                        </core:Item>
+                                    </ComboBox>
+
+                                    <Label text="Saison (Auswahl)" />
+                                    <Input id="seasonSelect" type="Text" value="{ui>/selectedSeason}" width="320px" visible="false"
+                                    showValueHelp="true" showSuggestion="true" suggestionItems="{/Seasons}" valueHelpRequest="onGenericFragmentLoad($event, 
+                                    'admin.view.dialog.ValueHelpSeasons%_seasonValueHelpDialog')" change="onSeasonSelected">
+                                    <suggestionItems>
+				                        <core:Item text="{Season}" />
+			                        </suggestionItems>
+                                    </Input>
+
+                                    <Label text="Alle selektierten Daten aktualisieren (Feature kommt bald...)" />
+                                    <RadioButtonGroup id="radioGroupIdDd" visible="{= %{$Parameter/serviceId} !== null }">
+                                        <RadioButton text="Ja" selected="{$Parameter/updateAll}" />
+                                        <RadioButton text="Nein" selected="true" />
+                                    </RadioButtonGroup>
+
+                                    <Label text="Match ID (Auswahl)" />
+                                    <Input id="matchSelect" type="Text" value="{ui>/selectedMatch}" width="320px" 
+                                    visible="{= %{ui>/selectedSeason} !== '' &amp;&amp; %{$Parameter/updateAll} !== true }"
+                                    showValueHelp="true" showSuggestion="true" valueHelpRequest="onMatchValueHelpRequested" change="onMatchSelected">
+                                    </Input>
+
+                                </form:SimpleForm>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+
+                        <uxap:ObjectPageSubSection title="Daten abfragen" showTitle="false">
+                            <uxap:blocks>
+                                <Button class="buttonCentered" text="Daten abfragen" press=".getStatisticsData"/>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+
+                        <uxap:ObjectPageSubSection title="Bewegungsdaten Logtabelle" showTitle="false">
+                            <uxap:blocks>
+                                <Table id="statisticsLogsTable" inset="false" items="{path: '/Statistics_Log',  
+                                sorter: {path: 'TimeStamp', descending: true}}">
+                                    <columns>
+                                        <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                            <Text text="Datum" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                            <Text text="Tabellenname" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                            <Text text="Art der Aktualisierung" />
+                                        </Column>
+                                        <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                            <Text text="Anzahl der Einträge" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{formattedDate}" />
+                                                <Text text="{TableName}" />
+                                                <Text text="{ChangeType}" />
+                                                <Text text="{NumberOfRecords}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </uxap:blocks>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </App>
+</mvc:View>

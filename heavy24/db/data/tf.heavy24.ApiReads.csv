@@ -1,0 +1,14 @@
+Event_ID;Type;url;frequencyInSeconds;Active
+1;masterData;https://api.raceresult.com/117252/CLW8YI0QH6AA9AS86FZTEW6DT15JCEOV;60;false
+1;results;https://api.raceresult.com/117252/K7X41GPB4GLF1FZESBC2NNO9U97836UW;10;false
+1;split1;https://api.raceresult.com/117252/QXJZ7NH5F9NJIAR2KR1GZG1C7MY50BPC;10;false
+2;masterData;https://api.raceresult.com/150118/CLW8YI0QH6AA9AS86FZTEW6DT15JCEOV;10;false
+2;results;https://api.raceresult.com/150118/K7X41GPB4GLF1FZESBC2NNO9U97836UW;10;false
+2;split1;https://api.raceresult.com/150118/VAD2DBCWF4DAL94Q6GXR951ZA7KRRHV9;10;false
+2;split2;https://api.raceresult.com/150118/I8RYBKJTAXULAQEPU2JRBGL7SYOYLKWV;10;false
+2;split3;https://api.raceresult.com/150118/8D97Q4NOHKLKLJRQOZC7KR5IGW45SJEB;10;false
+3;masterData;https://api.raceresult.com/198733/CLW8YI0QH6AA9AS86FZTEW6DT15JCEOV;100;false
+3;results;https://api.raceresult.com/198733/K7X41GPB4GLF1FZESBC2NNO9U97836UW;10;false
+3;split1;https://api.raceresult.com/198733/VAD2DBCWF4DAL94Q6GXR951ZA7KRRHV9;10;false
+3;split2;https://api.raceresult.com/198733/I8RYBKJTAXULAQEPU2JRBGL7SYOYLKWV;10;false
+3;split3;https://api.raceresult.com/198733/8D97Q4NOHKLKLJRQOZC7KR5IGW45SJEB;10;false

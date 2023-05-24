@@ -1,0 +1,63 @@
+<mvc:View
+	controllerName="teamfact.app.controller.Athlete"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"	
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout">
+
+	<Page
+		id="idPage"
+		title="{TeamName}"
+        showNavButton="true"
+		navButtonPress="onNavToAthletes"
+		class= "sapUiResponsivePadding--header" >
+        <headerContent>
+			<Button id="idLoadingButton" class="" type="Transparent" icon="sap-icon://synchronize" press="onSwitchLoading" />
+		</headerContent>		
+		<content>            	
+			<!--ObjectHeader title="{FullName}" backgroundDesign="Solid" icon="{PictureUrl}" number="100" numberUnit="{i18n>Rounds}"-->
+            <ObjectHeader title="{FullName}" backgroundDesign="Solid" icon="{PictureUrl}">
+				<attributes>
+					<ObjectAttribute title="{i18n>NextStartTime}" text="{ path: 'NextStartTime', type: 'sap.ui.model.type.Date', formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, pattern: 'HH:mm'}} {i18n>Clock}" />
+					<!--ObjectAttribute title="{i18n>FastestLap}" text="asdasd" /-->                    
+				</attributes>                                              
+			</ObjectHeader>
+
+            <Table id="idRoundsTable"
+                    sticky="HeaderToolbar,ColumnHeaders"
+                    inset="false"	
+                    class="sapFDynamicPageAlignContent"                   
+                    >
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>Rounds}" level="H2"/>
+                        <Title text="{Token}" visible="false"/>
+                        <Title text="{Team_ID}" visible="false"/>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>Round}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>StartTime}" />
+                    </Column>	                        
+                    <Column minScreenWidth="Medium" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>split1}" />
+                    </Column>	                        
+                    <Column minScreenWidth="Medium" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>split2}" />
+                    </Column>
+                    <Column minScreenWidth="Medium" demandPopin="true" popinDisplay="Inline">
+                        <Text text="{i18n>split3}" />
+                    </Column>                                                
+                    <Column>
+                        <Text text="{i18n>LapTime}"/>
+                    </Column>				
+                </columns>					
+            </Table>            
+		</content>
+	</Page>
+    
+</mvc:View>

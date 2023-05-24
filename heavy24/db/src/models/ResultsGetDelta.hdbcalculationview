@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="ResultsGetDelta" applyPrivilegeType="NONE" dataCategory="DEFAULT" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="ResultsGetDelta"/>
+<localVariables>
+  <variable id="P_EVENT_ID" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="INTEGER" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="Results2Model">
+    <targetVariable name="P_EVENT_ID" resourceUri="Results2Model"/>
+    <localVariable>P_EVENT_ID</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="TF_HEAVY24_LAPRESULT">
+    <resourceUri>TF_HEAVY24_LAPRESULT</resourceUri>
+  </DataSource>
+  <DataSource id="Results2Model">
+    <resourceUri>Results2Model</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Target_RaceResults">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="LAPNR"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK"/>
+      <viewAttribute id="ATHLETE_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_LAPRESULT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Data_Comparison" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="TEAMID" aggregationType="sum"/>
+      <viewAttribute id="LAPNR" aggregationType="sum"/>
+      <viewAttribute id="LAPTIME" aggregationType="sum"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN" aggregationType="sum"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK" aggregationType="sum"/>
+      <viewAttribute id="ATHLETE_ID" aggregationType="sum"/>
+      <viewAttribute id="targetTEAMID" aggregationType="sum"/>
+      <viewAttribute id="targetLAPNR" aggregationType="sum"/>
+      <viewAttribute id="targetLAPTIME" aggregationType="sum"/>
+      <viewAttribute id="targetATHLETE_ID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Source_ImportResults">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPSTARTSECSFROMCONTESTBEGIN" source="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENDTIME" source="ENDTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTRANK" source="CONTESTRANK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETE_ID" source="ATHLETE_ID"/>
+    </input>
+    <input node="Target_RaceResults">
+      <mapping xsi:type="Calculation:AttributeMapping" target="targetTEAMID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="targetLAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="targetLAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="targetATHLETE_ID" source="ATHLETE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+    </input>
+    <joinAttribute name="TEAMID"/>
+    <joinAttribute name="LAPNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Source_ImportResults">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="LAPNR"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK"/>
+      <viewAttribute id="ATHLETE_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Results2Model"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="New_Records">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="LAPNR"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK"/>
+      <viewAttribute id="ATHLETE_ID"/>
+      <viewAttribute id="targetTEAMID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Data_Comparison"/>
+    <filter>isNull(&quot;targetTEAMID&quot;)</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Changed_Records" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="LAPNR"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK"/>
+      <viewAttribute id="ATHLETE_ID"/>
+      <viewAttribute id="targetTEAMID"/>
+      <viewAttribute id="targetLAPTIME"/>
+      <viewAttribute id="targetATHLETE_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="Flag_record_changed" datatype="NVARCHAR" length="1" expressionLanguage="COLUMN_ENGINE">
+        <formula>
+if((&quot;targetLAPTIME&quot;-&quot;LAPTIME&quot; !=0), 'T',if(&quot;ATHLETE_ID&quot; != &quot;targetATHLETE_ID&quot;, 'A', '') )
+
+</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Data_Comparison"/>
+    <filter>(not isNull(&quot;targetTEAMID&quot;)) and (&quot;Flag_record_changed&quot; != '')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Delta_Records">
+    <viewAttributes>
+      <viewAttribute id="TEAMID" aggregationType="sum"/>
+      <viewAttribute id="LAPNR" aggregationType="sum"/>
+      <viewAttribute id="LAPTIME" aggregationType="sum"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN" aggregationType="sum"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK" aggregationType="sum"/>
+      <viewAttribute id="ATHLETE_ID" aggregationType="sum"/>
+    
+      <viewAttribute id="Flag_record_changed"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Changed_Records" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPSTARTSECSFROMCONTESTBEGIN" source="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENDTIME" source="ENDTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTRANK" source="CONTESTRANK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETE_ID" source="ATHLETE_ID"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Flag_record_changed" source="Flag_record_changed"/>
+    </input>
+    <input node="New_Records" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPSTARTSECSFROMCONTESTBEGIN" source="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENDTIME" source="ENDTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTRANK" source="CONTESTRANK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETE_ID" source="ATHLETE_ID"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Flag_record_changed" null="true" value=""/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Delta_Records">
+  <attributes>
+    <attribute id="TEAMID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAMID"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="TEAMID"/>
+    </attribute>
+    <attribute id="LAPNR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAPNUMBER"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="LAPNR"/>
+    </attribute>
+    <attribute id="LAPTIME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LapTimeSec"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="LAPTIME"/>
+    </attribute>
+    <attribute id="LAPSTARTSECSFROMCONTESTBEGIN" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LapStartFromContestBeginSec"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="LAPSTARTSECSFROMCONTESTBEGIN"/>
+    </attribute>
+    <attribute id="STARTTIME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Starttime"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="STARTTIME"/>
+    </attribute>
+    <attribute id="ENDTIME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Endtime"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="ENDTIME"/>
+    </attribute>
+    <attribute id="CONTESTRANK" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONTESTSTANDING"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="CONTESTRANK"/>
+    </attribute>
+    <attribute id="ATHLETE_ID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Delta_Records" columnName="ATHLETE_ID"/>
+    </attribute>
+  
+    <attribute id="Flag_record_changed" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Flag_record_changed"/>
+  
+      <keyMapping columnObjectName="Delta_Records" columnName="Flag_record_changed"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="344" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Target_RaceResults" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="661"/>
+      <rectangleSize height="30" width="239"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Data_Comparison" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="224" y="501"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Source_ImportResults" modelObjectNameSpace="Data_Comparison" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="39" y="68"/>
+      <rectangleSize width="290"/>
+    </shape>
+    <shape modelObjectName="Target_RaceResults" modelObjectNameSpace="Data_Comparison" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="406" y="60"/>
+      <rectangleSize width="290"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Source_ImportResults" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="381" y="661"/>
+      <rectangleSize height="30" width="218"/>
+    </shape>
+    <shape expanded="true" modelObjectName="New_Records" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="407" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Changed_Records" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="197" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Delta_Records" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="344" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

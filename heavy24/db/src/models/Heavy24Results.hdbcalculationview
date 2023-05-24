@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Heavy24Results" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="Heavy24Results"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="TF_HEAVY24_LAPRESULT">
+    <resourceUri>TF_HEAVY24_LAPRESULT</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_TEAM">
+    <resourceUri>TF_HEAVY24_TEAM</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_ATHLETE">
+    <resourceUri>TF_HEAVY24_ATHLETE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="LAPNR"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK"/>
+      <viewAttribute id="ATHLETE_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_LAPRESULT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="TOKEN"/>
+      <viewAttribute id="NUMBER"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID"/>
+      <viewAttribute id="EVENT_ID"/>
+      <viewAttribute id="MANAGER_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_TEAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER"/>
+      <viewAttribute id="DEFLAPTIME"/>
+      <viewAttribute id="PICTUREURL"/>
+      <viewAttribute id="TEAM_ID"/>
+      <viewAttribute id="EVENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_ATHLETE"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_3" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="ID_1" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER" aggregationType="sum"/>
+      <viewAttribute id="DEFLAPTIME" aggregationType="sum"/>
+      <viewAttribute id="PICTUREURL"/>
+      <viewAttribute id="TEAM_ID" aggregationType="sum"/>
+      <viewAttribute id="EVENT_ID_1" aggregationType="sum"/>
+      <viewAttribute id="LAPNR" aggregationType="sum"/>
+      <viewAttribute id="LAPTIME" aggregationType="sum"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN" aggregationType="sum"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULLNAME" source="FULLNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SORTORDER" source="SORTORDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEFLAPTIME" source="DEFLAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PICTUREURL" source="PICTUREURL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="TEAM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID_1" source="EVENT_ID"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPSTARTSECSFROMCONTESTBEGIN" source="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENDTIME" source="ENDTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTRANK" source="CONTESTRANK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ATHLETE_ID"/>
+    </input>
+    <joinAttribute name="TEAM_ID"/>
+    <joinAttribute name="ID_1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="CN_N" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Projection_3" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="ID_1" aggregationType="sum"/>
+      <viewAttribute id="STARTNUMBER"/>
+      <viewAttribute id="GENDER"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="FULLNAME"/>
+      <viewAttribute id="SORTORDER" aggregationType="sum"/>
+      <viewAttribute id="DEFLAPTIME" aggregationType="sum"/>
+      <viewAttribute id="PICTUREURL"/>
+      <viewAttribute id="TEAM_ID" aggregationType="sum"/>
+      <viewAttribute id="EVENT_ID_1" aggregationType="sum"/>
+      <viewAttribute id="LAPNR" aggregationType="sum"/>
+      <viewAttribute id="LAPTIME" aggregationType="sum"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN" aggregationType="sum"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK" aggregationType="sum"/>
+      <viewAttribute id="ID" aggregationType="sum"/>
+      <viewAttribute id="TOKEN"/>
+      <viewAttribute id="NUMBER"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID" aggregationType="sum"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute id="MANAGER_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOKEN" source="TOKEN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NUMBER" source="NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ICON" source="ICON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTEST_ID" source="CONTEST_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANAGER_ID" source="MANAGER_ID"/>
+    </input>
+    <input node="Join_1_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_1" source="ID_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTNUMBER" source="STARTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FULLNAME" source="FULLNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SORTORDER" source="SORTORDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEFLAPTIME" source="DEFLAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PICTUREURL" source="PICTUREURL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAM_ID" source="TEAM_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID_1" source="EVENT_ID_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPSTARTSECSFROMCONTESTBEGIN" source="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENDTIME" source="ENDTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTRANK" source="CONTESTRANK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="TEAM_ID"/>
+    </input>
+    <joinAttribute name="ID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1_2">
+  <attributes>
+    <attribute id="TOKEN" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TOKEN"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="TOKEN"/>
+    </attribute>
+    <attribute id="NUMBER" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NUMBER"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="NUMBER"/>
+    </attribute>
+    <attribute id="TEAMNAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAMNAME"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="TEAMNAME"/>
+    </attribute>
+    <attribute id="ICON" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ICON"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="ICON"/>
+    </attribute>
+    <attribute id="MANAGER_ID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MANAGER_ID"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="MANAGER_ID"/>
+    </attribute>
+    <attribute id="STARTNUMBER" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STARTNUMBER"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="STARTNUMBER"/>
+    </attribute>
+    <attribute id="GENDER" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GENDER"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="GENDER"/>
+    </attribute>
+    <attribute id="FIRSTNAME" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FIRSTNAME"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="FIRSTNAME"/>
+    </attribute>
+    <attribute id="LASTNAME" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LASTNAME"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="LASTNAME"/>
+    </attribute>
+    <attribute id="FULLNAME" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FULLNAME"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="FULLNAME"/>
+    </attribute>
+    <attribute id="PICTUREURL" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PICTUREURL"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="PICTUREURL"/>
+    </attribute>
+    <attribute id="STARTTIME" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STARTTIME"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="STARTTIME"/>
+    </attribute>
+    <attribute id="ENDTIME" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ENDTIME"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="ENDTIME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ID"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="ID"/>
+    </measure>
+    <measure id="CONTEST_ID" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CONTEST_ID"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="CONTEST_ID"/>
+    </measure>
+    <measure id="EVENT_ID" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EVENT_ID"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="EVENT_ID"/>
+    </measure>
+    <measure id="ID_1" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ID"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="ID_1"/>
+    </measure>
+    <measure id="SORTORDER" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SORTORDER"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="SORTORDER"/>
+    </measure>
+    <measure id="DEFLAPTIME" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEFLAPTIME"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="DEFLAPTIME"/>
+    </measure>
+    <measure id="TEAM_ID" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TEAM_ID"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="TEAM_ID"/>
+    </measure>
+    <measure id="EVENT_ID_1" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="EVENT_ID"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="EVENT_ID_1"/>
+    </measure>
+    <measure id="LAPNR" order="20" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="LAPNR"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="LAPNR"/>
+    </measure>
+    <measure id="LAPTIME" order="21" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="LAPTIME"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="LAPTIME"/>
+    </measure>
+    <measure id="LAPSTARTSECSFROMCONTESTBEGIN" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="LAPSTARTSECSFROMCONTESTBEGIN"/>
+    </measure>
+    <measure id="CONTESTRANK" order="25" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CONTESTRANK"/>
+      <measureMapping columnObjectName="Join_1_2" columnName="CONTESTRANK"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="361" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="391"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="391"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512" y="391"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="236"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="591" y="52"/>
+      <rectangleSize width="290"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

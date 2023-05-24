@@ -1,0 +1,17 @@
+{
+  "@sapui5/generator-sapui5-templates": {
+    "promptValues": {
+      "ApplicationTitle": "Team Planner",
+      "ApplicationDescription": "Team Planner",
+      "FLP": false,
+      "GroupId": "$auto",
+      "ServiceBaseUri": "http://localhost:4004/athlete",
+      "DatasourceUrl": "/athlete",
+      "ObjectCollection": "Athlete",
+      "ObjectCollection_Key": "ID",
+      "Object_Identifier": "FirstName",
+      "Object_Number": "DefLapTime",
+      "Object_UnitOfMeasure": ""
+    }
+  }
+}

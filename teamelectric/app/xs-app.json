@@ -1,0 +1,17 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "none",
+    "routes": [
+      {
+        "source": "/tpa/(.*)$",
+        "target": "/tpa/$1",
+        "destination": "srv-api",
+        "csrfProtection": true
+      },
+      {
+        "source": "^/(.*)$",
+        "target": "$1",
+        "localDir": "./"
+      }
+    ]
+  }

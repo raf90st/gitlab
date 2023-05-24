@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZGMIS_TMT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="AuthorizedTables" sap:content-version="1">
+				<Key><PropertyRef Name="tableId"/></Key><Property Name="tableId" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="description" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Values" Relationship="ZGMIS_TMT_SRV.TableValues" FromRole="FromRole_TableValues" ToRole="ToRole_TableValues"/><NavigationProperty Name="AssociatedTables" Relationship="ZGMIS_TMT_SRV.AssociatedTablesAssoc" FromRole="FromRole_AssociatedTablesAssoc"
+					ToRole="ToRole_AssociatedTablesAssoc"/><NavigationProperty Name="Fields" Relationship="ZGMIS_TMT_SRV.TableFields" FromRole="FromRole_TableFields" ToRole="ToRole_TableFields"/></EntityType>
+			<EntityType Name="FieldList" sap:content-version="1">
+				<Key><PropertyRef Name="tableId"/><PropertyRef Name="fieldId"/></Key><Property Name="tableId" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="fieldId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="fieldDescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="fieldType" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Int." sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="isKeyField" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Indicator" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="searchHelpEntity" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="AssociatedTables" sap:content-version="1">
+				<Key><PropertyRef Name="assocTableId"/></Key><Property Name="rootTableId" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="assocTableId" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="description" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="Values" Relationship="ZGMIS_TMT_SRV.AssociatedTableValues" FromRole="FromRole_AssociatedTableValues"
+					ToRole="ToRole_AssociatedTableValues"/><NavigationProperty Name="Fields" Relationship="ZGMIS_TMT_SRV.AssociatedTableFields" FromRole="FromRole_AssociatedTableFields"
+					ToRole="ToRole_AssociatedTableFields"/></EntityType>
+			<EntityType Name="Values" sap:content-version="1">
+				<Key><PropertyRef Name="tableId"/></Key><Property Name="tableId" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Key><PropertyRef Name="recordKeyHash"/></Key><Property Name="recordKeyHash" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Key><PropertyRef Name="fieldId"/></Key><Property Name="fieldId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="fieldValue" Type="Edm.String" Nullable="false" MaxLength="250" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="FieldTypes" sap:content-version="1">
+				<Key><PropertyRef Name="fieldType"/></Key><Property Name="fieldType" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Int." sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="dataType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="decimalPlaces" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="format" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="selectionType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RM" sap:content-version="1">
+				<Key><PropertyRef Name="RMKey"/></Key><Property Name="RMKey" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ReportingPeriod" sap:content-version="1">
+				<Key><PropertyRef Name="Date"/></Key><Property Name="Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="TH" sap:content-version="1">
+				<Key><PropertyRef Name="THKey"/></Key><Property Name="THKey" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Users" sap:content-version="1">
+				<Key><PropertyRef Name="unumber"/></Key><Property Name="unumber" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="U - Number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="name" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Long description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="OrgUnitWF" sap:content-version="1">
+				<Key><PropertyRef Name="THKey"/></Key><Property Name="THKey" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="OrgUnitMKPI" sap:content-version="1">
+				<Key><PropertyRef Name="THKey"/></Key><Property Name="THKey" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="OrgUnitMFSR" sap:content-version="1">
+				<Key><PropertyRef Name="THKey"/></Key><Property Name="THKey" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="CategoryMFSR" sap:content-version="1">
+				<Key><PropertyRef Name="CategoryKey"/></Key><Property Name="CategoryKey" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DisplayText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="TestSearchhelpentity" sap:content-version="1">
+				<Key><PropertyRef Name="key"/></Key><Property Name="key" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="U - Number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+					<Property Name="text" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="U - Number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<Association Name="AssociatedTableFields" sap:content-version="1"><End Type="ZGMIS_TMT_SRV.AssociatedTables" Multiplicity="1" Role="FromRole_AssociatedTableFields"/><End Type="ZGMIS_TMT_SRV.FieldList" Multiplicity="*" Role="ToRole_AssociatedTableFields"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AssociatedTableFields"><PropertyRef Name="assocTableId"/></Principal>
+					<Dependent Role="ToRole_AssociatedTableFields"><PropertyRef Name="tableId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="AssociatedTableValues" sap:content-version="1"><End Type="ZGMIS_TMT_SRV.AssociatedTables" Multiplicity="1" Role="FromRole_AssociatedTableValues"/><End Type="ZGMIS_TMT_SRV.Values" Multiplicity="*" Role="ToRole_AssociatedTableValues"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AssociatedTableValues"><PropertyRef Name="assocTableId"/></Principal>
+					<Dependent Role="ToRole_AssociatedTableValues"><PropertyRef Name="tableId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="AssociatedTablesAssoc" sap:content-version="1"><End Type="ZGMIS_TMT_SRV.AuthorizedTables" Multiplicity="1" Role="FromRole_AssociatedTablesAssoc"/><End Type="ZGMIS_TMT_SRV.AssociatedTables" Multiplicity="*" Role="ToRole_AssociatedTablesAssoc"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AssociatedTablesAssoc"><PropertyRef Name="tableId"/></Principal>
+					<Dependent Role="ToRole_AssociatedTablesAssoc"><PropertyRef Name="rootTableId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="TableValues" sap:content-version="1"><End Type="ZGMIS_TMT_SRV.AuthorizedTables" Multiplicity="1" Role="FromRole_TableValues"/><End Type="ZGMIS_TMT_SRV.Values" Multiplicity="*" Role="ToRole_TableValues"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_TableValues"><PropertyRef Name="tableId"/></Principal>
+					<Dependent Role="ToRole_TableValues"><PropertyRef Name="tableId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="TableFields" sap:content-version="1"><End Type="ZGMIS_TMT_SRV.AuthorizedTables" Multiplicity="1" Role="FromRole_TableFields"/><End Type="ZGMIS_TMT_SRV.FieldList" Multiplicity="*" Role="ToRole_TableFields"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_TableFields"><PropertyRef Name="tableId"/></Principal>
+					<Dependent Role="ToRole_TableFields"><PropertyRef Name="tableId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZGMIS_TMT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="AuthorizedTablesSet" EntityType="ZGMIS_TMT_SRV.AuthorizedTables" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="FieldListSet" EntityType="ZGMIS_TMT_SRV.FieldList" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="AssociatedTablesSet" EntityType="ZGMIS_TMT_SRV.AssociatedTables" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ValuesSet" EntityType="ZGMIS_TMT_SRV.Values" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="FieldTypesSet" EntityType="ZGMIS_TMT_SRV.FieldTypes" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="RMSet" EntityType="ZGMIS_TMT_SRV.RM" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false"
+				sap:addressable="false" sap:content-version="1"/><EntitySet Name="ReportingPeriodSet" EntityType="ZGMIS_TMT_SRV.ReportingPeriod" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="THSet" EntityType="ZGMIS_TMT_SRV.TH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false"
+				sap:addressable="false" sap:content-version="1"/><EntitySet Name="UsersSet" EntityType="ZGMIS_TMT_SRV.Users" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="OrgUnitWFSet" EntityType="ZGMIS_TMT_SRV.OrgUnitWF" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="OrgUnitMKPISet" EntityType="ZGMIS_TMT_SRV.OrgUnitMKPI" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="OrgUnitMFSRSet" EntityType="ZGMIS_TMT_SRV.OrgUnitMFSR" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="CategoryMFSRSet" EntityType="ZGMIS_TMT_SRV.CategoryMFSR" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="TestSearchhelpentitySet" EntityType="ZGMIS_TMT_SRV.TestSearchhelpentity" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="AssociatedTableValuesSet" Association="ZGMIS_TMT_SRV.AssociatedTableValues" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="AssociatedTablesSet" Role="FromRole_AssociatedTableValues"/><End EntitySet="ValuesSet" Role="ToRole_AssociatedTableValues"/></AssociationSet>
+				<AssociationSet Name="TableValuesSet" Association="ZGMIS_TMT_SRV.TableValues" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="AuthorizedTablesSet" Role="FromRole_TableValues"/><End EntitySet="ValuesSet" Role="ToRole_TableValues"/></AssociationSet>
+				<AssociationSet Name="AssociatedTablesAssocSet" Association="ZGMIS_TMT_SRV.AssociatedTablesAssoc" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="AuthorizedTablesSet" Role="FromRole_AssociatedTablesAssoc"/><End EntitySet="AssociatedTablesSet" Role="ToRole_AssociatedTablesAssoc"/></AssociationSet>
+				<AssociationSet Name="AssociatedTableFieldsSet" Association="ZGMIS_TMT_SRV.AssociatedTableFields" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="AssociatedTablesSet" Role="FromRole_AssociatedTableFields"/><End EntitySet="FieldListSet" Role="ToRole_AssociatedTableFields"/></AssociationSet>
+				<AssociationSet Name="TableFieldsSet" Association="ZGMIS_TMT_SRV.TableFields" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="AuthorizedTablesSet" Role="FromRole_TableFields"/><End EntitySet="FieldListSet" Role="ToRole_TableFields"/></AssociationSet>
+			</EntityContainer><atom:link rel="self" href="http://sap-12e.juliusbaer.com:8030/sap/opu/odata/SAP/ZGMIS_TMT_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version" href="http://sap-12e.juliusbaer.com:8030/sap/opu/odata/SAP/ZGMIS_TMT_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

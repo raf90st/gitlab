@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog		
+		title="Saisonauswahl"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: '/Seasons',
+		    parameters: {
+			    operationMode: 'Client'
+			},
+            sorter: { 
+                path: 'Season',
+                descending: true
+            }
+		}"
+		confirm="onSeasonSelectedWithValueHelp"
+		cancel="onGenericFragmentclose($event, '_seasonValueHelpDialog')"
+		liveChange="handleSeasonValueLiveChange">
+		<StandardListItem
+			title="{Season}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

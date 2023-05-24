@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="ResultsGetDeltaWithSimulation" applyPrivilegeType="NONE" dataCategory="DEFAULT" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="ResultsGetDeltaWithSimulation"/>
+<localVariables>
+  <variable id="P_EVENT_ID" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="INTEGER" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="CountSimulationLaps" parameter="true">
+    <descriptions defaultDescription="">
+      <comment text="0 = no simulation; value &gt; 0 are the number of processed laps"/>
+    </descriptions>
+    <variableProperties datatype="INTEGER" mandatory="false" defaultValue="0">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="ResultsGetDelta">
+    <targetVariable name="P_EVENT_ID" resourceUri="ResultsGetDelta"/>
+    <localVariable>P_EVENT_ID</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="TF_HEAVY24_TEAMMAXLAPFINISHED">
+    <resourceUri>TF_HEAVY24_TEAMMAXLAPFINISHED</resourceUri>
+  </DataSource>
+  <DataSource id="ResultsGetDelta">
+    <resourceUri>ResultsGetDelta</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CDS_MaxTeamLap" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="EVENT_ID"/>
+      <viewAttribute id="TEAM_LAP_MAX"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="MaxTeamResultLaps" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <formula>if(int('$$CountSimulationLaps$$') &gt; 0, &quot;TEAM_LAP_MAX&quot; + int('$$CountSimulationLaps$$') , &quot;TEAM_LAP_MAX&quot;+9999)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="TF_HEAVY24_TEAMMAXLAPFINISHED"/>
+    <filter>&quot;EVENT_ID&quot; = '$$P_EVENT_ID$$'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Results">
+    <viewAttributes>
+      <viewAttribute id="TEAMID"/>
+      <viewAttribute id="LAPNR"/>
+      <viewAttribute id="LAPTIME"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK"/>
+      <viewAttribute id="ATHLETE_ID"/>
+      <viewAttribute id="Flag_record_changed"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ResultsGetDelta"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_MaxTeamLap" cardinality="CN_1" joinType="leftOuter" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="TEAMID" aggregationType="sum"/>
+      <viewAttribute id="LAPNR" aggregationType="sum"/>
+      <viewAttribute id="LAPTIME" aggregationType="sum"/>
+      <viewAttribute id="LAPSTARTSECSFROMCONTESTBEGIN" aggregationType="sum"/>
+      <viewAttribute id="STARTTIME"/>
+      <viewAttribute id="ENDTIME"/>
+      <viewAttribute id="CONTESTRANK" aggregationType="sum"/>
+      <viewAttribute id="ATHLETE_ID" aggregationType="sum"/>
+      <viewAttribute id="Flag_record_changed"/>
+      <viewAttribute id="MaxTeamResultLaps" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Results">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPNR" source="LAPNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPTIME" source="LAPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAPSTARTSECSFROMCONTESTBEGIN" source="LAPSTARTSECSFROMCONTESTBEGIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STARTTIME" source="STARTTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENDTIME" source="ENDTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTESTRANK" source="CONTESTRANK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATHLETE_ID" source="ATHLETE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Flag_record_changed" source="Flag_record_changed"/>
+    </input>
+    <input node="CDS_MaxTeamLap">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaxTeamResultLaps" source="MaxTeamResultLaps"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMID" source="TEAMID"/>
+    </input>
+    <filter>&quot;LAPNR&quot;&lt;=&quot;MaxTeamResultLaps&quot;</filter>
+    <joinAttribute name="TEAMID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_MaxTeamLap">
+  <attributes>
+    <attribute id="TEAMID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAMID"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="TEAMID"/>
+    </attribute>
+    <attribute id="LAPNR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAPNUMBER"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="LAPNR"/>
+    </attribute>
+    <attribute id="LAPTIME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LapTimeSec"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="LAPTIME"/>
+    </attribute>
+    <attribute id="LAPSTARTSECSFROMCONTESTBEGIN" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LapStartFromContestBeginSec"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="LAPSTARTSECSFROMCONTESTBEGIN"/>
+    </attribute>
+    <attribute id="STARTTIME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Starttime"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="STARTTIME"/>
+    </attribute>
+    <attribute id="ENDTIME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Endtime"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="ENDTIME"/>
+    </attribute>
+    <attribute id="CONTESTRANK" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONTESTSTANDING"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="CONTESTRANK"/>
+    </attribute>
+    <attribute id="ATHLETE_ID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="ATHLETE_ID"/>
+    </attribute>
+    <attribute id="Flag_record_changed" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Flag_record_changed"/>
+      <keyMapping columnObjectName="Join_MaxTeamLap" columnName="Flag_record_changed"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="CDS_MaxTeamLap" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Results" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_MaxTeamLap" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Results" modelObjectNameSpace="Join_MaxTeamLap" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="107"/>
+    </shape>
+    <shape modelObjectName="CDS_MaxTeamLap" modelObjectNameSpace="Join_MaxTeamLap" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="414" y="30"/>
+      <rectangleSize width="173"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

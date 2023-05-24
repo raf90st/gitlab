@@ -1,0 +1,83 @@
+<mvc:View controllerName="adminStatistics.controller.Admin"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.unified"
+    xmlns:uxap="sap.uxap" displayBlock="true" height="100%">
+    <App id="adminStatsView">
+        <uxap:ObjectPageLayout id="ObjectPageLayout">
+            <uxap:sections>
+                <uxap:ObjectPageSection titleUppercase="false" title="Stammdaten">
+                    <uxap:ObjectPageSubSection title="Stammdaten">
+                        <uxap:blocks>
+                                <Table id="parametersTable" fixedLayout="false"
+                                class="parametersTable" items="{/MatchStatistics}">
+                                    <headerToolbar>
+                                        <Toolbar>
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column>
+                                            <Text text="Titel"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Geplanter Startzeitpunkt"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Startzeitpunkt"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Wettbewerb"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Spieltag"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Saison"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Match Status"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Daten Status"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Spiellänge"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Erstelldatum"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Spielergebnis"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Zur Teamstatistik"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{GameTitle}"></Text>
+                                                <Text text="{PlannedKickOff}"></Text>
+                                                <Text text="{KickOff}"></Text>
+                                                <Text text="{Competition}"></Text>
+                                                <Text text="{MatchDay}"></Text>
+                                                <Text text="{Season}"></Text>
+                                                <Text text="{MatchStatus}"></Text>
+                                                <Text text="{DataStatus}"></Text>
+                                                <Text text="{MinuteOfPlay}"></Text>
+                                                <Text text="{CreationDate}"></Text>
+                                                <Text text="{Result}"></Text>
+                                                <Button text="Team Statistiken" press="teamStatisticSelected($event, 'teamStatistics')"></Button>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </App>
+</mvc:View>

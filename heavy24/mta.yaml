@@ -1,0 +1,77 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = heavy24
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: heavy24
+version: 1.0.2
+description: "Heavy24 Race App"
+parameters:
+  enable-parallel-deployments: true
+   
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install --production
+      - npx -p @sap/cds-dk cds build --production
+      #- npx -p @sap/cds-dk@4.7.2 cds build --production # 03.02.22 DUSKEP: only as workaround https://answers.sap.com/questions/13577185/business-application-studio-cds-foss-310tgz-not-fo.html
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: heavy24-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   requires:
+    # Resources extracted from CAP configuration
+    - name: heavy24-db
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+   parameters:
+    disk-quota: 2048M
+    memory: 768M
+
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: heavy24-db-deployer
+ # ------------------------------------------------------------
+   type: hdb
+   path: gen/db  
+   parameters:
+     buildpack: nodejs_buildpack
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: heavy24-db
+
+ # --------------------- APPROUTER MODULE ---------------------
+ - name: heavy24-app
+ # ------------------------------------------------------------
+   type: approuter.nodejs
+   path: app
+   requires:
+    - name: srv-api
+      group: destinations
+      properties:
+        forwardAuthToken: true
+        name: srv-api
+        strictSSL: false
+        url: ~{srv-url}
+   parameters:
+     disk-quota: 1024M
+     memory: 256M
+
+resources:
+ # services extracted from CAP configuration
+ # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+# ------------------------------------------------------------
+ - name: heavy24-db
+# ------------------------------------------------------------
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hana  # or 'hanatrial' on trial landscapes
+     service-plan: hdi-shared
+   properties:
+     hdi-service-name: ${service-name}
+

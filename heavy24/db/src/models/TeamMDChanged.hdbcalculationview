@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="TeamMDChanged" applyPrivilegeType="NONE" dataCategory="DEFAULT" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="TeamMDChanged"/>
+<localVariables>
+  <variable id="P_EVENT_ID" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="INTEGER" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MasterData2Contest">
+    <resourceUri>MasterData2Contest</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_CONTEST">
+    <resourceUri>TF_HEAVY24_CONTEST</resourceUri>
+  </DataSource>
+  <DataSource id="TF_HEAVY24_TEAM">
+    <resourceUri>TF_HEAVY24_TEAM</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CV_MasterData">
+    <viewAttributes>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="ContestCategory"/>
+      <viewAttribute id="ContestGenderCategory"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MasterData2Contest"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="MD_Join" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="TeamNumber"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="CONTEST_ID" aggregationType="sum"/>
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$ContestCategory$CATEGORY"/>
+      <viewAttribute hidden="true" id="JOIN$ContestGenderCategory$GENDERCATEGORY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CV_MasterData">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TeamNumber" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestCategory$CATEGORY" source="ContestCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestGenderCategory$GENDERCATEGORY" source="ContestGenderCategory"/>
+    </input>
+  
+    <input node="Contest">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTEST_ID" source="ID"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestCategory$CATEGORY" source="CATEGORY"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ContestGenderCategory$GENDERCATEGORY" source="GENDERCATEGORY"/>
+  
+    </input>
+    <joinAttribute name="JOIN$ContestCategory$CATEGORY"/>
+    <joinAttribute name="JOIN$ContestGenderCategory$GENDERCATEGORY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Contest" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="EVENT_ID"/>
+    
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="GENDERCATEGORY"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_CONTEST"/>
+    <filter>&quot;EVENT_ID&quot; = '$$P_EVENT_ID$$'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Team">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NUMBER"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID"/>
+    
+      <viewAttribute id="EVENT_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="TF_HEAVY24_TEAM"/></calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Team_Join" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ID" aggregationType="sum"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID" aggregationType="sum"/>
+      <viewAttribute id="NEW_NAME"/>
+      <viewAttribute id="NEW_CONTEST_ID" aggregationType="sum"/>
+    
+      <viewAttribute id="EVENT_ID" aggregationType="sum"/>
+      <viewAttribute id="NUMBER"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MD_Join">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NEW_NAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NEW_CONTEST_ID" source="CONTEST_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NUMBER" source="TeamNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+    </input>
+    <input node="Team">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEAMNAME" source="TEAMNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ICON" source="ICON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONTEST_ID" source="CONTEST_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NUMBER" source="NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EVENT_ID" source="EVENT_ID"/>
+    </input>
+    <joinAttribute name="NUMBER"/>
+    <joinAttribute name="EVENT_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ChangedAndNewRecords" filterExpressionLanguage="COLUMN_ENGINE">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="TEAMNAME"/>
+      <viewAttribute id="ICON"/>
+      <viewAttribute id="CONTEST_ID"/>
+      <viewAttribute id="NEW_NAME"/>
+      <viewAttribute id="NEW_CONTEST_ID"/>
+    
+      <viewAttribute id="EVENT_ID"/>
+    
+      <viewAttribute id="NUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="NameChanged" datatype="BOOLEAN" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (not isnull(&quot;NEW_NAME&quot;), if (&quot;TEAMNAME&quot; != &quot;NEW_NAME&quot;, 1, 0), 0) </formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="ContestChanged" datatype="BOOLEAN" expressionLanguage="COLUMN_ENGINE">
+        <formula>if (not isnull(&quot;NEW_CONTEST_ID&quot;), if (&quot;CONTEST_ID&quot; != int(&quot;NEW_CONTEST_ID&quot;), 1, 0), 0)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Team_Join"/>
+    <filter>&quot;NameChanged&quot; or &quot;ContestChanged&quot; or isnull(&quot;ID&quot;)</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="ChangedAndNewRecords">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="ID"/>
+    </attribute>
+    <attribute id="TEAMNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEAMNAME"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="TEAMNAME"/>
+    </attribute>
+    <attribute id="ICON" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ICON"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="ICON"/>
+    </attribute>
+    <attribute id="CONTEST_ID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONTEST_ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="CONTEST_ID"/>
+    </attribute>
+    <attribute id="NEW_NAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NEW_NAME"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NEW_NAME"/>
+    </attribute>
+    <attribute id="NEW_CONTEST_ID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NEW_CONTEST_ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NEW_CONTEST_ID"/>
+    </attribute>
+    <attribute id="EVENT_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EVENT_ID"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="EVENT_ID"/>
+    </attribute>
+    <attribute id="NUMBER" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NUMBER"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NUMBER"/>
+    </attribute>
+    <attribute id="NameChanged" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NameChanged"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="NameChanged"/>
+    </attribute>
+    <attribute id="ContestChanged" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ContestChanged"/>
+      <keyMapping columnObjectName="ChangedAndNewRecords" columnName="ContestChanged"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="343" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="CV_MasterData" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="661"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MD_Join" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="521"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="CV_MasterData" modelObjectNameSpace="MD_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="152"/>
+    </shape>
+  
+    <shape modelObjectName="Contest" modelObjectNameSpace="MD_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Contest" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="330" y="651"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Team" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="410" y="521"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Team_Join" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="229" y="394"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="MD_Join" modelObjectNameSpace="Team_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape modelObjectName="Team" modelObjectNameSpace="Team_Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="155"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ChangedAndNewRecords" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="230" y="271"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

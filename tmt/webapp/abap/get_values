@@ -1,0 +1,35 @@
+  METHOD get_values.
+    DATA: tech_table   TYPE string,
+          lr_target    TYPE REF TO data,
+          loop_counter TYPE i,
+          num_lines    TYPE i,
+          key_concat   TYPE string.
+    FIELD-SYMBOLS: <lit_target>    TYPE ANY TABLE,
+                   <fs_fieldvalue> TYPE any,
+                   <fs_fieldval>   TYPE any.
+
+    CONCATENATE '/BIC/A' i_tableid '2' INTO tech_table.
+    loop_counter = 1.
+
+    CREATE DATA lr_target TYPE STANDARD TABLE OF (tech_table).
+    ASSIGN lr_target->* TO <lit_target>.
+
+    SELECT * FROM (tech_table) INTO CORRESPONDING FIELDS OF TABLE <lit_target>.
+    DATA(lt_fields) = get_fieldlist( i_tableid ).
+    LOOP AT <lit_target> ASSIGNING FIELD-SYMBOL(<fs_record>).
+
+      ADD 1 TO loop_counter.
+
+      LOOP AT lt_fields ASSIGNING FIELD-SYMBOL(<fs_field>).
+        ASSIGN COMPONENT <fs_field>-fieldid OF STRUCTURE <fs_record> TO <fs_fieldvalue>.
+        APPEND INITIAL LINE TO return ASSIGNING FIELD-SYMBOL(<fs_return>).
+        <fs_return>-tableid = i_tableid.
+        <fs_return>-recordindex = loop_counter.
+        <fs_return>-fieldvalue = <fs_fieldvalue>.
+        <fs_return>-fieldid = <fs_field>-fieldid.
+        <fs_return>-fieldid = clean_fieldname( <fs_return>-fieldid ).
+        <fs_return>-fieldtype = <fs_field>-fieldtype.
+      ENDLOOP.
+    ENDLOOP.
+
+  ENDMETHOD.

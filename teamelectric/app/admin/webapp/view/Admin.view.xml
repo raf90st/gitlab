@@ -1,0 +1,62 @@
+	<mvc:View controllerName="admin.controller.Admin"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.unified"
+    xmlns:uxap="sap.uxap" displayBlock="false" height="100%">
+    <App id="adminView">
+        <uxap:ObjectPageLayout id="ObjectPageLayout">
+            <uxap:sections>
+                <uxap:ObjectPageSection busy="{chargingInfo>/dataLoad}" titleUppercase="false" title="Dateiupload">
+                	<uxap:subSections>
+					    <uxap:ObjectPageSubSection title="Dateiauswahl" showTitle="false">
+					    	<uxap:blocks>
+                            <form:SimpleForm layout="ResponsiveGridLayout" id="getDataForChargeInfo">
+                                <Label text=""></Label>
+                                <ui:FileUploader fileType="csv" id="fileUploader" width="450px">
+                                </ui:FileUploader>
+                                <Label text=""></Label>
+                                <Button width="200px" text="Upload" type="Accept" press="handleUploadPress"/>
+                            </form:SimpleForm>	
+					    	</uxap:blocks>
+					    </uxap:ObjectPageSubSection>
+                        <uxap:ObjectPageSubSection title="Logtabelle" showTitle="false">
+                        <uxap:blocks>
+                            <Table id="logsTable" inset="false" items="{path: '/log',  
+                                sorter: {path: 'TimeStamp', descending: true}}">
+                                <columns>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Datum" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Tabellenname" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Art der Aktualisierung" />
+                                    </Column>
+                                    <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                        <Text text="Anzahl der Einträge" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{ path: 'TimeStamp', type: 'sap.ui.model.type.Date', 
+                                            formatOptions: {source: {pattern: 'yyyy-MM-ddTHH:mm:ssZ'}, 
+                                            pattern: 'dd.MM.yyyy HH:mm'} }" />
+                                            <Text text="{TableName}" />
+                                            <Text text="{ChangeType}" />
+                                            <Text text="{NumberOfRecords}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+				    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </App>
+</mvc:View>

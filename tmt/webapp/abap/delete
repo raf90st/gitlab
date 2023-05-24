@@ -1,0 +1,32 @@
+  METHOD delete_record.
+    DATA: adso_table     TYPE string,
+          table_row      LIKE LINE OF it_values,
+          ls_data_dso    TYPE REF TO data,
+          delete_counter TYPE i,
+          delete_ack     TYPE i.
+    FIELD-SYMBOLS: <fs_fieldid>    TYPE any,
+                   <fs_fieldvalue> TYPE any.
+
+    READ TABLE it_values INTO table_row INDEX 1.
+    CONCATENATE '/BIC/A' table_row-tableid '2' INTO adso_table.
+
+    SELECT fieldname
+    INTO TABLE @DATA(lt_columns)
+    FROM dd03l
+      LEFT OUTER JOIN rsdiobjv AS o ON fieldname = o~fieldnm
+    WHERE tabname = @adso_table AND o~objvers = 'A' AND o~langu = 'E' AND fieldname NE 'RECORDMODE'.
+
+    CREATE DATA ls_data_dso TYPE (adso_table).
+    ASSIGN ls_data_dso->* TO FIELD-SYMBOL(<lit_target>).
+
+    LOOP AT it_values INTO DATA(ls_record).
+
+      ASSIGN COMPONENT ls_record-fieldid OF STRUCTURE <lit_target> TO <fs_fieldvalue>.
+      IF sy-subrc EQ 0.
+        <fs_fieldvalue> = ls_record-fieldvalue.
+      ENDIF.
+    ENDLOOP.
+    DELETE (adso_table) FROM <lit_target>.
+
+    CALL FUNCTION 'DB_COMMIT'.
+  ENDMETHOD.
