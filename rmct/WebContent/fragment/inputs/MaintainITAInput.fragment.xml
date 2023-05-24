@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar>
+	<content>
+		<HBox class="rmToolbarWrapper">
+		<items>
+		<HBox class="rmInputWrapper">
+		<Label text="Year:"></Label>
+		<ComboBox id="MaintainITASelectedYear"
+		items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+		selectedKey="{global>/selectedMaintainITA/year}"
+		change="onMaintainITASelectedYearChanged">
+		<core:ListItem key="{year}" text="{year}" />
+		</ComboBox>
+		</HBox>
+		</items>
+		</HBox>
+	</content>
+
+	</Toolbar>
+</core:FragmentDefinition>

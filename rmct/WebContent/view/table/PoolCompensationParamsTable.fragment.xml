@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table"> 
+		<Table	id="poolCompParamsTable"
+				rows="{CompParameters}" selectionMode="Single">
+			<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Export" enabled="{= ${global>/selectedPool/poolName} !== undefined}" press="onCsvExport"/>
+			</m:OverflowToolbar>
+			</extension>
+		<columns>
+			<Column sortProperty="parameter" sorted="true" width="40%">
+				<m:Label text="Parameter" />
+				<template>
+					<m:Text renderWhitespace="false" class="sapUiSmallMarginBottom"
+						text="{name}" />
+				</template>
+			</Column>
+			<Column sortProperty="exception" sorted="false" width="12%">
+				<m:Label text="Exception" />
+				<template>
+				<m:CheckBox id="exceptParam" selected="{exception}" />
+				</template>
+			</Column>
+			<Column sortProperty="actual" sorted="true" width="24%">
+				<m:Label text="Actual" />
+				<template>
+				<m:Input type="Text" class="sapUiSmallMarginBottom" change="onPoolCompParamsChanged"
+						value="{actual}" editable="{exception}"/>
+				</template>
+			</Column>
+			<Column sortProperty="standard" sorted="true" width="24%">
+				<m:Label text="Standard" />
+				<template>
+				<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{standard}" editable="false"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>
+						

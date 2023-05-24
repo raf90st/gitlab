@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="maintainITATable"
+	rows="{global>/maintainTransferredAccounts}"
+	visibleRowCount="18"
+	enableSelectAll="false" selectionMode="Single" busy="{global>/selectedMaintainITA/ITAsBusy}">
+		<extension>
+			<m:OverflowToolbar>
+			<m:HBox class="scoreCardFilterBar">
+				<m:Button text="Add" press="onNewMaintainITA" 
+				icon="sap-icon://add" />
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField id="searchForMaintainITA" placeholder="Filter"
+					liveChange="filterAdvanced($event, 'maintainITA')" width="15rem" />
+				<m:MultiInput
+						id="multiInputMaintainITA"
+						placeholder = "Combined Filters"
+						valueHelpOnly="true"
+						valueHelpRequest="onCombinedFiltersOpen($event, 'maintainITA')"
+						tokenUpdate="onRemoveToken">
+				</m:MultiInput>
+				<m:Button text="Refresh" press="onItaRefresh" 
+				icon="sap-icon://refresh" />
+			</m:HBox>
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="zr" sorted="true">
+				<m:Label text="ZR"/>
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>zr}" />
+				</template>
+			</Column>
+			<Column sortProperty="closingdate" sorted="true">
+				<m:Label text="ZR Closing Date" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>closingdate}" />
+				</template>
+			</Column>
+			<Column sortProperty="newrm" sorted="true">
+				<m:Label text="New RM"/>
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>newrm}" />
+				</template>
+			</Column>
+			<Column sortProperty="newname" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>newname}" />
+				</template>
+			</Column>
+			<Column sortProperty="RegionTxt" sorted="true">
+				<m:Label text="Region"/>
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>RegionTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="MarketTxt" sorted="true">
+				<m:Label text="Subregion"/>
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>MarketTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="orgrm" sorted="true">
+				<m:Label text="Original RM"/>
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>orgrm}" />
+				</template>
+			</Column>
+			<Column sortProperty="orgname" sorted="true">
+				<m:Label text="Name"/>
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>orgname}" />
+				</template>
+			</Column>
+			<Column sortProperty="itaflag" sorted="false">
+				<m:Label text="ITA"/>
+				<template>
+					<m:CheckBox selected="{global>itaflag}" 
+					select="onMainItaModified"/>
+				</template>
+			</Column>
+			<Column sortProperty="bofflag" sorted="false">
+				<m:Label text="BOF Exception"/>
+				<template>
+					<m:CheckBox selected="{global>bofflag}" 
+					select="onMainItaModified"/>
+				</template>
+			</Column>
+			<Column sortProperty="period" sorted="true">
+				<m:Label text="Transfer Month" />
+				<template>
+				<m:Input id="tAPeriod" type="Text"
+				value="{global>periodExt}"
+				showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'modMainITA')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+				</template>
+			</Column>
+			<Column sortProperty="ItaUntilExt" sorted="true">
+				<m:Label text="Inherited Until End Of" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>ItaUntilExt}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

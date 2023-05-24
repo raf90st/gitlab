@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newPoolMemberId" title="Add Pool Member" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel" press="onGenericFragmentclose($event, '_newPoolMemberDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewPoolMember"></Button>
+		</endButton>
+		<HBox>
+			<Label text="RM"></Label>
+		</HBox>
+		<HBox width="100%">
+			<Input type="Text" value="{newPoolMember>/unumber}"
+				placeholder="..." showValueHelp="true"
+				class="sapUiSmallMarginBottom" width="100%" 
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newPoolMember')"/>
+				<!--  <Input value="{newITA>/zr}"></Input>-->
+		</HBox>
+
+		<HBox>
+			<Label text="Split Type"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+						items="{
+								path: '/AllocationTypeSet',
+								sorter: { path: 'allocationTxt' }
+						}"
+						selectedKey="{newPoolMember>/allocationType}" change="">
+						<core:ListItem key="{allocation}"
+							text="{allocationTxt}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Split"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newPoolMember>/allocation}"></Input>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

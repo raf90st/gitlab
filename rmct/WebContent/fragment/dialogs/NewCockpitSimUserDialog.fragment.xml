@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newUserRoleCockpitSim" title="Add New User Role"
+		afterClose="dialogAfterclose" contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel" press=".onCancelNewUserRole"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press=".onSaveNewUserRole"></Button>
+		</endButton>
+		<HBox>
+			<Label text="RM"></Label>
+		</HBox>
+		<HBox width="100%">
+			<Input id="simCockpitInput" type="Text"
+				value="{newUserRole>/name}" placeholder="..." showValueHelp="true"
+				valueHelpOnly="true" valueHelpRequest="handleUsersValueHelp"
+				class="sapUiSmallMarginBottom" width="100%" />
+		</HBox>
+
+		<HBox>
+			<Label text="Access to Sim Tool"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newUserRole>/accessSim}" />
+		</HBox>
+		<HBox>
+			<Label text="Access to Cockpit"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newUserRole>/accessCockpit}" />
+		</HBox>
+				<HBox>
+			<Label text="Is RM"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newUserRole>/isRM}" />
+		</HBox>
+				<HBox>
+			<Label text="Is RM Cockpit"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newUserRole>/isRMCockpit}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

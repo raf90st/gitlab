@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newPoolTransferredAccountId" title="Add ITA" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel" press="onGenericFragmentclose($event, '_newPoolTransferredAccountsDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewPoolTransferredAccount"></Button>
+		</endButton>
+		<HBox>
+			<Label text="ZR"></Label>
+		</HBox>
+		<HBox width="100%">
+			<Input type="Text" value="{newPoolITA>/zr}"
+				placeholder="..." showValueHelp="true"
+				class="sapUiSmallMarginBottom" width="100%" 
+				valueHelpRequest="onZrValueHelpRequest($event, 'newPoolITA')"/>
+				<!--  <Input value="{newITA>/zr}"></Input>-->
+		</HBox>
+
+		<HBox>
+			<Label text="New RM"></Label>
+		</HBox>
+		<HBox>
+		<ComboBox
+				items="{
+						path: 'Members',
+						sorter: { path: 'unumber' }
+				}"
+				selectedKey="{newPoolITA>/newrm}">
+				<core:ListItem key="{unumber}" text="{unumber}" />
+			</ComboBox>
+		<!-- <Text text="{global>/selectedRM/name}"/>-->
+		</HBox>
+		<HBox>
+			<Label text="Original RM"></Label>
+		</HBox>
+		<HBox>
+			<Input id="orgRM" type="Text" value="{newPoolITA>/orgrm}"
+				placeholder="..." showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newPoolITA')"
+				class="sapUiSmallMarginBottom" width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="Transfer Period"></Label>
+		</HBox>
+		<HBox>
+			<Input id="tp" type="Text"
+				value="{newPoolITA>/periodExt}"
+				showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'newPoolITA')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+				<!--  <Input value="{newITA>/period}"></Input>-->
+		</HBox>
+		<HBox>
+			<Label text="BOF Exception"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newPoolITA>/bofflag}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

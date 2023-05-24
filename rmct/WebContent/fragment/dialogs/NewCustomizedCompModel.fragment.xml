@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Compensation Model" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newCustCompModelDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewCustCompModel"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Model"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+						path: '/CompModelSet',
+						sorter: { path: 'Text' }
+				}"
+				selectedKey="{newCustCompModel>/Model}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newCustCompModel>/Year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

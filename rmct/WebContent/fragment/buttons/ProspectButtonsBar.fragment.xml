@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="InputActionButtonsWrapper">
+	<HBox class="topLinks">
+		<Button text="Transfer" visible="{= ${BtnTransferVisible} ? ${BtnTransferVisible} : false}" 
+		press="onProspectAction($event, 'transfer')"/>
+		<Button text="Deactivate" visible="{= ${BtnDeactivateVisible} ? ${BtnDeactivateVisible} : false}" 
+		press="onProspectAction($event, 'deactivate')"/>
+		<Button text="Reopen" visible="{= ${BtnReopenVisible} ? ${BtnReopenVisible} : false}" 
+		press="onProspectAction($event, 'reopen')"/>
+	</HBox>
+	</HBox>
+	<HBox class="rmTimeSeriesWrapper">
+		<core:Fragment
+			fragmentName="juliusbaer.rmct.fragment.ProspectTimeSeriesChangeLog"
+			type="XML" />
+	</HBox>
+</core:FragmentDefinition>

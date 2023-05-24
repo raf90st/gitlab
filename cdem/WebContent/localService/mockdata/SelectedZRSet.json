@@ -1,0 +1,19 @@
+[
+	{
+		"zrNumber": "12345678",
+		"respRM": "U34243",
+		"subRegion": "Germany & Austria",
+		"comment": "This is a Test Comment!",
+		"insDescription": "BR 2.1: Life Insurance - Private Individual",
+		"lastChangedBy": "U12345",
+		"lastChangedDate": "29.11.2022",
+		"lastChangedAt": "16:42",
+		"comDomicile": "Germany",
+		"exceptionCountry": "Switzerland",
+		"businessRule": "trust etc",
+		"globalException": "USA",
+		"brID": "1122334455",
+		"pbID": "6677889911",
+		"puID": "4789451479"
+	}
+]

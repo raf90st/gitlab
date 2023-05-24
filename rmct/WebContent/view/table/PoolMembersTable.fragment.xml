@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table rows="{Members}" visibleRowCount="15" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewPoolMember" icon="sap-icon://add" enabled="{= ${global>/selectedPool/poolName} !== undefined}" />
+				<m:Button text="Remove" press="onRemoveNewPoolMember" icon="sap-icon://delete" enabled="{= ${global>/selectedPool/poolName} !== undefined}" />
+				<m:Button text="Export" press="onCsvExport" enabled="{= ${global>/selectedPool/poolName} !== undefined}" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="Relationship Manager" />
+				<template>
+					<m:Link text="{unumber}" press="onNavToRMProfile"/>
+				</template>
+			</Column>
+			<Column sortProperty="name" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{name}" editable="false"
+						change="onPoolMemberUpdate" />
+				</template>
+			</Column>
+			<Column sortProperty="allocationType" sorted="false">
+				<m:Label text="Allocation Type" />
+				<template>
+					<m:ComboBox
+						items="{
+								path: '/AllocationTypeSet',
+								sorter: { path: 'allocationTxt' }
+						}"
+						selectedKey="{allocationType}" change="onPoolMemberUpdate">
+						<core:ListItem key="{allocation}"
+							text="{allocationTxt}" />
+					</m:ComboBox>
+				</template>
+			</Column>
+			<Column sortProperty="allocation" sorted="true">
+				<m:Label text="Allocation" />
+				<template>
+					<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{allocation}"
+						change="onPoolMemberUpdate" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

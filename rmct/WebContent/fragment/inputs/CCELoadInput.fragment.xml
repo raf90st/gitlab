@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="HboxWrapper">
+		<HBox class="HboxLeft">
+			<Label text="Period:"></Label>
+			<ComboBox id="RMSelectedYear"
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+				}"
+			selectedKey="{global>/cce/year}"
+			change="onRmSelectedYearChanged">
+		<core:ListItem key="{year}" text="{year}" />
+	</ComboBox>
+		</HBox>
+		<HBox class="HboxRight">
+			<Label text="Last Update:"></Label>
+			<Text text="11.08.2020"></Text>
+			<Label text="Latest Period Released:"></Label>
+			<Text text="21.08.2020"></Text>
+		</HBox>
+	</HBox>
+			<HBox class="HboxButtons">
+				<Button text="Refresh"></Button>
+				<Button text="Execute"></Button>
+		</HBox>
+</core:FragmentDefinition>

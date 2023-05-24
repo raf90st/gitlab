@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog		
+		title="Select RM"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: 'global>/users',
+			templateShareable: false
+		}"
+		search="_handleUsersValueHelpSearch"
+		confirm=""
+		cancel="onGenericFragmentclose($event, '_usersValueHelpNewDataDialog')"
+		liveChange="_handleUsersValueLiveChange">
+		<StandardListItem
+			title="{global>name}"
+			description="{global>unumber}"
+			icon="https://mysite.juliusbaer.com/User%20Photos/Profile%20Pictures/{global>unumber}_MThumb.jpg"/>
+	</SelectDialog>
+</core:FragmentDefinition>

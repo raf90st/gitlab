@@ -1,0 +1,81 @@
+.sapMLabel, .zrInput {
+    padding-right: 15px;
+}
+
+.sapMHBox {
+    padding: 5px 10px;
+}
+
+.sapMHBox .noPadding {
+	padding: 0;
+}
+
+.searchBar {
+	border-bottom: 1px solid lightgrey;
+}
+
+.selectedValues {
+	margin: 10px 0;
+}
+
+.fullWidth {
+	flex-flow: column;
+}
+
+.countryDeleteButton {
+	margin-left: 10px;
+}
+
+.topMessageStrip {
+	margin-bottom: 10px;
+}
+
+.columnContainer {
+	padding: 0;
+	flex-direction: column;
+}
+
+.limitedWidthContainer {
+	margin: 0 100px;
+	max-width: 1920px;
+}
+
+.searchBarContainer {
+	padding: 0 10px;
+}
+
+.flexWidth {
+	width: 50%;
+}
+
+.flexReducedWidth {
+	width: 35%
+}
+
+#__button2 {
+	display: none;
+}
+
+.sapFShellBar.customHeader {
+    background-color: white;
+    height: 60px;
+}
+
+.sapFShellBar.customHeader .sapFShellBarOTB {
+	height: 50px;
+    padding-top: 10px;
+}
+
+.sapMShellBrandingBar {
+	display: none;
+}
+
+.customHeader .sapFShellBarHomeIcon {
+	cursor: default;
+}
+
+@media screen and (min-width: 1922px) {
+ .limitedWidthContainer {
+    margin: 0 auto;
+  }
+}

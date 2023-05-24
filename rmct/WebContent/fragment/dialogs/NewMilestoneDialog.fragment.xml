@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Milestone" contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newMilestoneDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewMilestone"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Milestone:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newMilestone>/Id}" editable="false" />
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newMilestone>/year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<VBox>
+			<HBox>
+				<Label text="Cal. Year/Month:"></Label>
+			</HBox>
+			<HBox>
+				<Input type="Text" value="{newMilestone>/PeriodExt}"
+					showValueHelp="true" showValueHelpOnly="true"
+					valueHelpRequest="onTransferPeriodHelpRequest($event, 'newMilestone')"
+					class="sapUiSmallMarginBottom" width="100%" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="Amount:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newMilestone>/AmountMilestone}" />
+				<Input value="{newMilestone>/Currency}" editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="Amount Final:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newMilestone>/AmountFinal}" />
+				<Input value="{newMilestone>/Currency}" editable="false" />
+			</HBox>
+		</VBox>
+		<HBox>
+			<Label text="Remark:"></Label>
+		</HBox>
+		<HBox>
+			<TextArea value="{newMilestone>/Remark}" growing="true"
+				growingMaxLines="7" width="100%" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

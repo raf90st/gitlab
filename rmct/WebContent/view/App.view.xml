@@ -1,0 +1,91 @@
+<mvc:View height="100%"
+	controllerName="juliusbaer.rmct.controller.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:tnt="sap.tnt">
+	<tnt:ToolPage
+		id="app"
+		class="sapUiDemoToolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button
+					id="sideNavigationToggleButton"
+					icon="sap-icon://menu2"
+					type="Transparent"
+					press=".onSideNavButtonPress"
+					tooltip="{i18n>navigationToggleButtonTooltip}">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSpacer/>
+				<Title
+					text="{i18n>appTitle}"
+					level="H2"/>
+				<ToolbarSpacer/>
+				<!-- <Button
+					id="notificationButton"
+					icon="sap-icon://ui-notifications"
+					visible="{= ${alerts>/alerts/notifications}.length === 0 ? false : true }"
+					type="Transparent"
+					press=".onNotificationPress"
+					tooltip="{i18n>notificationButtonTooltip}">
+					<layoutData>
+						<OverflowToolbarLayoutData closeOverflowOnInteraction="false"/>
+					</layoutData>
+				</Button>
+				<Button
+					id="userButton"
+					text="{i18n>userName}"
+					type="Transparent"
+					press=".onUserNamePress">
+					<layoutData>
+						<OverflowToolbarLayoutData closeOverflowOnInteraction="false"/>
+					</layoutData>
+				</Button>-->
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation
+				expanded="true"
+				selectedKey="rm"
+				itemSelect=".onItemSelect">
+				<tnt:NavigationList
+					id="navList"
+					items="{
+						path: 'side>/navigation',
+						templateShareable: false
+					}">
+					<tnt:NavigationListItem
+						text="{side>title}"
+						icon="{side>icon}"
+						expanded="{side>expanded}"
+						items="{
+							path: 'side>items',
+							templateShareable: false
+						}"
+						key="{side>key}">
+						<tnt:NavigationListItem
+							text="{side>title}"
+							key="{side>key}">
+						</tnt:NavigationListItem>
+					</tnt:NavigationListItem>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+		<MessageStrip
+				text="Please be aware of the fact that you are working on a test system!"
+				showIcon="true"
+				showCloseButton="true"
+				visible="false"
+				id="testDevMsg"
+				class="testDevSystemMsg">
+				<!--  <Link text="Open Prod. System"
+						target="_blank"
+						href="" />-->
+			</MessageStrip>
+			<App id="mainContents"/>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

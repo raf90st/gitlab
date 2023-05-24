@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Condition"
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newMilestoneConditionDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewMilestoneCondition"></Button>
+		</endButton>
+		<VBox>
+		<HBox>
+			<Label text="RM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{global>/selectedRM/unumber}" editable="false" />
+			<Input value="{global>/selectedRM/name}" editable="false" />
+		</HBox>
+		</VBox>
+		<HBox>
+			<Label text="Condition:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newMilestoneCondition>/Condition}" editable="false" />
+		</HBox>
+		<HBox>
+			<Label text="Description:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newMilestoneCondition>/Description}" />
+		</HBox>
+		<HBox>
+			<Label text="Passed:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newMilestoneCondition>/Passed}" />
+		</HBox>
+		<HBox>
+			<Label text="Exception:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newMilestoneCondition>/Exception}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

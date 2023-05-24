@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog		
+		title="Select RM or Pool"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: 'global>/cleanupPoolsUsers',
+			templateShareable: false
+		}"
+		search="_handleUsersValueHelpSearch"
+		confirm="_handleUsersPoolsValueHelpClose"
+		cancel="onGenericFragmentclose($event, '_usersPoolsValueHelpDialog')"
+		liveChange="_handleUsersValueLiveChange">
+		<StandardListItem
+			title="{global>name}"
+			description="{global>unumber}"
+		/>
+	</SelectDialog>
+</core:FragmentDefinition>

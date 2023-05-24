@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<core:Title text="" />
+	<Label text="Payout Currency" />
+
+	<ComboBox
+		items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+		}"
+		selectedKey="{currency}"
+		change="onProspectProfileDataChange"
+		enabled="{= ${InputReady} ? ${InputReady} : false}">
+		<core:ListItem key="{currency}" text="{currency}" />
+	</ComboBox>
+
+	<Label text="Deferral" />
+	<CheckBox select="onProspectProfileDataChange"
+		selected="{deferral}"
+		enabled="{= ${InputReady} ? ${InputReady} : false}" />
+
+	<Label text="Model" />
+	<ComboBox
+		items="{
+				path: '/CompModelSet',
+				sorter: { path: 'Text' }
+		}"
+		selectedKey="{model}"
+		change="onProspectProfileDataChange"
+		enabled="{= ${InputReady} ? ${InputReady} : false}">
+		<core:ListItem key="{Id}" text="{Text}" />
+	</ComboBox>
+
+</core:FragmentDefinition>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+<title>Statusabfrage</title>
+<style>
+
+
+#blabla {
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 15px;
+    width: auto;
+    margin: 0 auto;
+}
+
+#statustext {
+    color:green;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 15px;
+    font-color:green;
+}
+
+</style>
+    <script type="text/javascript">
+    function change() {
+        document.getElementById("ladebalken").style.background = "green";
+    }
+    </script>
+
+	<script type="text/javascript">
+	function statusgut() {
+		document.getElementById("statustext").innerHTML = "System OK!";
+	}
+	</script>
+
+    <script type="text/javascript">
+    function animiere() {
+            var ladebalken = document.getElementById("ladebalken");
+            var laenge = parseInt(ladebalken.style.width);
+
+            laenge++;
+            ladebalken.style.width = laenge + "px";
+
+            if (laenge < 280) {
+                window.setTimeout(animiere, 10);
+            }
+
+           	else if (laenge == 280) {
+           		window.setTimeout(statusgut, 10);
+                window.setTimeout(change, 10);
+            }
+
+            
+        }
+    </script>
+</head>
+
+<body><br><br>
+
+	<div id="blabla">
+
+    <h2>Statusabfrage</h2>
+
+    <p>Prüfung: <br><br> <span id="ladebalken" style="display: block; background: red; width: 0px;">&nbsp;</span></p>
+
+    <p><a href="javascript:animiere()">Status abrufen</a></p><br><br>
+</div>
+<div id="statustext">
+</div>
+
+</body>
+</html>

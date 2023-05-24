@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.layout.form">
+	<SimpleForm title="" columnsL="1" columnsM="1"
+		editable="true" layout="ResponsiveGridLayout">
+		<core:Title text="Notes" />
+		<content>
+			<m:TextArea id="notes" placeholder="Enter Text" growing="true"
+				growingMaxLines="7" width="100%" />
+		</content>
+	</SimpleForm>
+</core:FragmentDefinition>

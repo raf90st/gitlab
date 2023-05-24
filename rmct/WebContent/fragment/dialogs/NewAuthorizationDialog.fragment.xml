@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newAuthDialog" title="Add Authorization" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newAuthDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewAuth"></Button>
+		</endButton>
+		<HBox>
+			<Label text="User:"></Label>
+		</HBox>
+		<HBox>
+		<Input type="Text" value="{newAuth>/User}"
+				showValueHelp="true"
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newAuthorization')"
+				class="sapUiSmallMarginBottom" width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="Entity:"></Label>
+		</HBox>
+		<HBox>
+			<RadioButton text="Organizational Unit" selected="{global>/authorizeOrgSelected}"/>
+			<RadioButton text="RM Profit Center" selected="{global>/authorizeProfitSelected}"/>
+		</HBox>
+		<HBox>
+			<Label text="Value:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{newAuth>/Value}"
+				showValueHelp="true"
+				valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.ProfitCenterValueHelpDialog%_profitCenterValueHelpDialog')"
+				class="sapUiSmallMarginBottom" visible="{global>/authorizeProfitSelected}" width="100%" />
+		</HBox>
+		<HBox>
+		<Input type="Text" value="{newAuth>/Value}"
+				showValueHelp="true"
+				valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.OrgUnitValueHelpDialog%_orgUnitValueHelpDialog')"
+				class="sapUiSmallMarginBottom" visible="{global>/authorizeOrgSelected}" width="100%" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

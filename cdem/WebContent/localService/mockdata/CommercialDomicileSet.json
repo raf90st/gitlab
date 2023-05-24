@@ -1,0 +1,38 @@
+[
+	{
+		"zrNumber": "12345678",
+		"partnerNumber": "87654321",
+		"role": "Account Holder",
+		"mainCountry": "Switzerland",
+		"cdCalculated": false,
+		"isInactive": true,
+		"brID": "1122334455",
+		"pbID": "6677889911",
+		"puID": "4789451479",
+		"cdException": true
+	},
+	{
+		"zrNumber": "12345678",
+		"partnerNumber": "111111111",
+		"role": "Account Holder",
+		"mainCountry": "Germany",
+		"cdCalculated": true,
+		"isInactive": false,
+		"brID": "4569321497",
+		"pbID": "8745744745",
+		"puID": "1477966541",
+		"cdException": false
+	},
+	{
+		"zrNumber": "12345678",
+		"partnerNumber": "22222222",
+		"role": "Beneficial Owner",
+		"mainCountry": "Spain",
+		"cdCalculated": false,
+		"isInactive": false,
+		"brID": "1476257424",
+		"pbID": "1548946511",
+		"puID": "4661618415",
+		"cdException": false
+	}
+]

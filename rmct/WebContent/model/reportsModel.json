@@ -1,0 +1,2272 @@
+{	
+	"juliusbaer.rmct---reports--scApp": [
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Last name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Comp. Model",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{Pool}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Region",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Request ID",
+			"content": "{RequestId}"
+		},
+		{
+			"name": "Status",
+			"content": "{RequestStatusTxt}"
+		},
+		{
+			"name": "Comment HR",
+			"content": "{CommentHr}"
+		},
+		{
+			"name": "Comment HR By",
+			"content": "{CommentHrBy}"
+		},
+		{
+			"name": "Comment HR On",
+			"content": "{CommentHrOn}"
+		},
+		{
+			"name": "Comment HR At",
+			"content": "{CommentHrAt}"
+		},
+		{
+			"name": "Comment RM",
+			"content": "{CommentRm}"
+		},
+		{
+			"name": "Comment RM By",
+			"content": "{CommentRmBy}"
+		},
+		{
+			"name": "Comment RM On",
+			"content": "{CommentRmOn}"
+		},
+		{
+			"name": "Comment RM At",
+			"content": "{CommentRmAt}"
+		},
+		{
+			"name": "Comment Manager",
+			"content": "{CommentMgr}"
+		},
+		{
+			"name": "Comment Manager By",
+			"content": "{CommentMgrBy}"
+		},
+		{
+			"name": "Comment Manager On",
+			"content": "{CommentMgrOn}"
+		},
+		{
+			"name": "Comment Manager At",
+			"content": "{CommentMgrAt}"
+		}
+	],
+	"juliusbaer.rmct---reports--decEAM": [
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{RM}"
+		},
+		{
+			"name": "Last name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Comp. Model (Text)",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{Pool}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Effective Year",
+			"content": "{Year}"
+		},
+		{
+			"name": "Account",
+			"content": "{Account}"
+		},
+		{
+			"name": "Group Currency",
+			"content": "{Currency}"
+		},
+		{
+			"name": "PCI YTD [CHFk]",
+			"content": "{PCI}"
+		},
+		{
+			"name": "CoC YTD [CHFk]",
+			"content": "{CoC}"
+		},
+		{
+			"name": "P&S Charges YTD [CHFk]",
+			"content": "{PSCharges}"
+		},
+		{
+			"name": "AuM [CHFm]",
+			"content": "{AuM}"
+		},
+		{
+			"name": "NNM YTD [CHFm]",
+			"content": "{NNM}"
+		},
+		{
+			"name": "Include EAM",
+			"content": "{IncludeEAM}"
+		},
+		{
+			"name": "Period From",
+			"content": "{PeriodFrom}"
+		},
+		{
+			"name": "Period To",
+			"content": "{PeriodTo}"
+		}
+	],
+	"juliusbaer.rmct---reports--simKPI": [
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Fiscal year / period",
+			"content": "{Fiscper}"
+		},
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{unumber}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Group Currency",
+			"content": "{GroupCurrency}"
+		},
+		{
+			"name": "PC I YTD",
+			"content": "{PCIYtd}"
+		},
+		{
+			"name": "PCI Annualized",
+			"content": "{PCIAnn}"
+		},
+		{
+			"name": "CoC YTD",
+			"content": "{CoCYtd}"
+		},
+		{
+			"name": "CoC Annualized",
+			"content": "{CoCAnn}"
+		},
+		{
+			"name": "P&S Charges YTD",
+			"content": "{PSChargesYtd}"
+		},
+		{
+			"name": "P&S Charges Annualized",
+			"content": "{PSChargesAnn}"
+		},
+		{
+			"name": "Prov. & Losses YTD",
+			"content": "{LossesAnn}"
+		},
+		{
+			"name": "General Expenses YTD",
+			"content": "{GeneralExpensesYtd}"
+		},
+		{
+			"name": "General Expenses Annualized",
+			"content": "{GeneralExpensesAnn}"
+		},
+		{
+			"name": "Personnel Expenses YTD",
+			"content": "{PersonnelExpensesYtd}"
+		},
+		{
+			"name": "Personnel Expenses Annualized",
+			"content": "{PersonnelExpensesAnn}"
+		},
+		{
+			"name": "AuM (T-2)",
+			"content": "{AuM}"
+		},
+		{
+			"name": "NNM (T-1)",
+			"content": "{NNM}"
+		},
+		{
+			"name": "Team HC Annualized",
+			"content": "{TeamHC}"
+		},
+		{
+			"name": "PCI Own YTD",
+			"content": "{PCIOwnYtd}"
+		}
+	],
+	"juliusbaer.rmct---reports--excl": [
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{unumber}"
+		},
+		{
+			"name": "Last name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Comp. Model (Text)",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Type",
+			"content": "{type}"
+		},
+		{
+			"name": "Instance",
+			"content": "{rmid}"
+		},
+		{
+			"name": "Excluded From",
+			"content": "{from}"
+		},
+		{
+			"name": "Excluded To",
+			"content": "{to}"
+		}
+	],
+	"juliusbaer.rmct---reports--simLog": [
+		{
+			"name": "User",
+			"content": "{User}"
+		},
+		{
+			"name": "Timestamp",
+			"content": "{Timestamp}"
+		},
+		{
+			"name": "Fiscal year / period",
+			"content": "{Fiscper}"
+		},
+		{
+			"name": "Fiscal year variant",
+			"content": "{Fiscvarnt}"
+		},
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{RM}"
+		},
+		{
+			"name": "Pool",
+			"content": "{Pool}"
+		},
+		{
+			"name": "PCI Simulated",
+			"content": "{PCI}"
+		},
+		{
+			"name": "CoC Simulated",
+			"content": "{CoC}"
+		},
+		{
+			"name": "P&S Charges Simulated",
+			"content": "{PSCharges}"
+		},
+		{
+			"name": "Provisions & Losses Simulated",
+			"content": "{Losses}"
+		},
+		{
+			"name": "General Expenses Simulated",
+			"content": "{GeneralExpenses}"
+		},
+		{
+			"name": "Personnel Expenses Simulated",
+			"content": "{PesonnelExpenses}"
+		},
+		{
+			"name": "PCIII S Simulated",
+			"content": "{PC3}"
+		},
+		{
+			"name": "PCIII S Pool Avg. Simulated",
+			"content": "{PC3PoolAvg}"
+		},
+		{
+			"name": "Team HC Simulated",
+			"content": "{TeamHC}"
+		},
+		{
+			"name": "BOF Simulated",
+			"content": "{BOF}"
+		},
+		{
+			"name": "NNM Simulated",
+			"content": "{NNM}"
+		},
+		{
+			"name": "AuM Simulated",
+			"content": "{AuM}"
+		},
+		{
+			"name": "Group currency",
+			"content": "{GroupCurrency}"
+		},
+		{
+			"name": "Growth (NNM / AuM) Simulated",
+			"content": "{Growth}"
+		},
+		{
+			"name": "Parameter in %",
+			"content": "{PC3Parameter}"
+		},
+		{
+			"name": "Growth Factor",
+			"content": "{GrowthFactor}"
+		},
+		{
+			"name": "Model Transition Adjustor",
+			"content": "{MTA}"
+		},
+		{
+			"name": "Payout in %",
+			"content": "{Payout}"
+		},
+		{
+			"name": "Non-Financial Business Goal 1 Rating",
+			"content": "{NonFinancialGoal1}"
+		},
+		{
+			"name": "Non-Financial Business Goal 2 Rating",
+			"content": "{NonFinancialGoal2}"
+		},
+		{
+			"name": "Non-Financial Business Goal 3 Rating",
+			"content": "{NonFinancialGoal3}"
+		},
+		{
+			"name": "Non-Financial Business Goal 4 Rating",
+			"content": "{NonFinancialGoal4}"
+		},
+		{
+			"name": "Conduct Assessment - Care Rating",
+			"content": "{CareRating}"
+		},
+		{
+			"name": "Conduct Assessment - Passion Rating",
+			"content": "{PassionRating}"
+		},
+		{
+			"name": "Conduct Assessment - Excellence Rating",
+			"content": "{ExcellenceRating}"
+		},
+		{
+			"name": "Conduct Assessment - Risk Behaviour Rating",
+			"content": "{RiskBehaviourRating}"
+		},
+		{
+			"name": "KRI Impact",
+			"content": "{KRI}"
+		},
+		{
+			"name": "Policy & Procedure Violations Impact",
+			"content": "{PPV}"
+		},
+		{
+			"name": "Company Performance Factor Impact",
+			"content": "{CPF}"
+		},
+		{
+			"name": "Indicative VC VC",
+			"content": "{VC}"
+		},
+		{
+			"name": "PayoutCurrency",
+			"content": "{PayoutCurrency}"
+		},
+		{
+			"name": "Unit of measure",
+			"content": "{Unit}"
+		}
+	],
+	"juliusbaer.rmct---reports--bc": [
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{unumber}"
+		},
+		{
+			"name": "Last name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{Firstname}"
+		},
+		{
+			"name": "Comp. Model (Text)",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{PoolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Group Currency",
+			"content": "{localCurrency}"
+		},
+		{
+			"name": "NNM",
+			"content": "{nnm}"
+		},
+		{
+			"name": "RoA",
+			"content": "{roa}"
+		},
+		{
+			"name": "AuM",
+			"content": "{aum}"
+		},
+		{
+			"name": "AuM Avg.",
+			"content": "{aumavg}"
+		},
+		{
+			"name": "PCI",
+			"content": "{pci}"
+		},
+		{
+			"name": "PCIII Baseline",
+			"content": "{pc3b}"
+		},
+		{
+			"name": "CCY NNM Tar. Contr.",
+			"content": "{currency}"
+		},
+		{
+			"name": "NNM Target Contr.",
+			"content": "{nnmTargetContribution}"
+		}
+	],
+	"juliusbaer.rmct---reports--kpi": [
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{unumber}"
+		},
+		{
+			"name": "Last name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Comp. Model (Text)",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Account",
+			"content": "{zr}"
+		},
+		{
+			"name": "Period",
+			"content": "{period}"
+		},
+		{
+			"name": "Group Currency",
+			"content": "{currency}"
+		},
+		{
+			"name": "PC I YTD",
+			"content": "{pc1ytd}"
+		},
+		{
+			"name": "CoC YTD",
+			"content": "{cocytd}"
+		},
+		{
+			"name": "P&S Charges",
+			"content": "{pandscharges}"
+		},
+		{
+			"name": "Personnel Expenses",
+			"content": "{persexpenses}"
+		},
+		{
+			"name": "General Expenses",
+			"content": "{genexpenses}"
+		},
+		{
+			"name": "Provisions & Losses",
+			"content": "{provlosses}"
+		},
+		{
+			"name": "AuM",
+			"content": "{aum}"
+		},
+		{
+			"name": "NNM",
+			"content": "{nnmmtd}"
+		},
+		{
+			"name": "Team HC",
+			"content": "{teamhcann}"
+		}
+	],
+	"juliusbaer.rmct---reports--ltdKpi": [
+		{
+			"name": "Comp. Relevant RM",
+			"content": "{unumber}"
+		},
+		{
+			"name": "Last name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{Firstname}"
+		},
+		{
+			"name": "Comp. Model (Text)",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Type",
+			"content": "{type}"
+		},
+		{
+			"name": "Instance",
+			"content": "{instance}"
+		},
+		{
+			"name": "Percentage",
+			"content": "{percentage}"
+		},
+		{
+			"name": "PCI Flag",
+			"content": "{pciflag}"
+		},
+		{
+			"name": "CoC Flag",
+			"content": "{cocflag}"
+		},
+		{
+			"name": "P&S Charges Flag",
+			"content": "{psflag}"
+		},
+		{
+			"name": "AuM Flag",
+			"content": "{aumflag}"
+		},
+		{
+			"name": "NNM Flag",
+			"content": "{nnmflag}"
+		}
+	],
+	"juliusbaer.rmct---reports--ita": [
+		{
+			"name": "ZR",
+			"content": "{zr}"
+		},
+		{
+			"name": "ZR Closing Date",
+			"content": "{closingdate}"
+		},
+		{
+			"name": "New RM",
+			"content": "{newrm}"
+		},
+		{
+			"name": "Name",
+			"content": "{newname}"
+		},
+		{
+			"name": "Original RM",
+			"content": "{orgrm}"
+		},
+		{
+			"name": "Name",
+			"content": "{orgname}"
+		},
+		{
+			"name": "ITA",
+			"content": "{itaflag}"
+		},
+		{
+			"name": "BOF",
+			"content": "{bofflag}"
+		},
+		{
+			"name": "Transfer Month",
+			"content": "{period}"
+		},
+		{
+			"name": "Inherited Until End Of",
+			"content": "{ItaUntilExt}"
+		},
+		{
+			"name": "Region Text",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Sub-Region Text",
+			"content": "{MarketTxt}"
+		}
+	],
+	"juliusbaer.rmct---reports--prosp": [
+		{
+			"name": "Id",
+			"content": "{Id}"
+		},
+		{
+			"name": "Name",
+			"content": "{Name}"
+		},
+		{
+			"name": "Region",
+			"content": "{Region}"
+		},
+		{
+			"name": "Market Text",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "U-Number",
+			"content": "{unumber}"
+		},
+		{
+			"name": "Start Date",
+			"content": "{StartDate}"
+		},
+		{
+			"name": "Status",
+			"content": "{Status}"
+		},
+		{
+			"name": "Region Text",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Legal Entity",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Status Text",
+			"content": "{StatusTxt}"
+		}
+	],
+	"juliusbaer.rmct---reports--cpo": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Split Type (Text)",
+			"content": "{SplitTypeTxt}"
+		},
+		{
+			"name": "Split",
+			"content": "{Split}"
+		},
+		{
+			"name": "Fin. Perf. Contr.",
+			"content": "{FinPerfContr}"
+		},
+		{
+			"name": "Fin. Perf. Contr. (Indiv. Share)",
+			"content": "{FinPerfContrIndivShare}"
+		}
+	],
+	"juliusbaer.rmct---reports--ce": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Element (Text)",
+			"content": "{elementTxt}"
+		},
+		{
+			"name": "Amount",
+			"content": "{amount}"
+		},
+		{
+			"name": "Currency",
+			"content": "{currency}"
+		}
+	],
+	"juliusbaer.rmct---reports--mile": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Id",
+			"content": "{Milestone}"
+		},
+		{
+			"name": "Period (External)",
+			"content": "{PeriodExt}"
+		},
+		{
+			"name": "Passed",
+			"content": "{Passed}"
+		},
+		{
+			"name": "Exception",
+			"content": "{Exception}"
+		},
+		{
+			"name": "Milestone Amount",
+			"content": "{AmountMilestone}"
+		},
+		{
+			"name": "Final Amount",
+			"content": "{AmountFinal}"
+		},
+		{
+			"name": "Pay-out Currency",
+			"content": "{Currency}"
+		}
+	],
+	"juliusbaer.rmct---reports--pList": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "VC Cash",
+			"content": "{Cash}"
+		},
+		{
+			"name": "Discretionary VC Cash",
+			"content": "{DiscCash}"
+		},
+		{
+			"name": "Performance Achievement",
+			"content": "{Performance}"
+		}
+	],
+	"juliusbaer.rmct---reports--fxr": [
+		{
+			"name": "Period",
+			"content": "{PeriodExt}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "RateType",
+			"content": "{RateType}"
+		},
+		{
+			"name": "RateType (Text)",
+			"content": "{RateTypeTxt}"
+		},
+		{
+			"name": "Rate",
+			"content": "{Rate}"
+		}
+	],
+	"juliusbaer.rmct---reports--kri": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Document Deficiencies (Actual)",
+			"content": "{DedCdsAct}"
+		},
+		{
+			"name": "Document Deficiencies (Projected)",
+			"content": "{DedCdsPro}"
+		},
+		{
+			"name": "AML (Actual)",
+			"content": "{DedAmlAct}"
+		},
+		{
+			"name": "AML (Projected)",
+			"content": "{DedAmlPro}"
+		},
+		{
+			"name": "KYC (Actual)",
+			"content": "{DedKycAct}"
+		},
+		{
+			"name": "KYC (Projected)",
+			"content": "{DedKycPro}"
+		},
+		{
+			"name": "Training (Actual)",
+			"content": "{DedTraAct}"
+		},
+		{
+			"name": "Training (Projected)",
+			"content": "{DedTraPro}"
+		},
+		{
+			"name": "Travel (Actual)",
+			"content": "{DedTrvAct}"
+		},
+		{
+			"name": "Travel (Projected)",
+			"content": "{DedTrvPro}"
+		},
+		{
+			"name": "Advisory (Actual)",
+			"content": "{DedAdvAct}"
+		},
+		{
+			"name": "Advisory (Projected)",
+			"content": "{DedAdvPro}"
+		},
+		{
+			"name": "Policy & Procedure Violations (Actual)",
+			"content": "{DedPpvAct}"
+		},
+		{
+			"name": "Policy & Procedury Violations (Projected)",
+			"content": "{DedPpvPro}"
+		},
+		{
+			"name": "Total (Actual)",
+			"content": "{DedTotAct}"
+		},
+		{
+			"name": "Total (Projected)",
+			"content": "{DedTotPro}"
+		},
+		{
+			"name": "Currency",
+			"content": "{Currency}"
+		}
+	],
+	"juliusbaer.rmct---reports--access": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Sim. Role (Target)",
+			"content": "{SimRoleTgt}"
+		},
+		{
+			"name": "Sim. Role (Actual)",
+			"content": "{SimRoleAct}"
+		},
+		{
+			"name": "Cockpit Role (Target)",
+			"content": "{CockpitRoleTgt}"
+		},
+		{
+			"name": "Cockpit Role (Actual)",
+			"content": "{CockpitRoleAct}"
+		},
+		{
+			"name": "Last Logon",
+			"content": "{LastLogon}"
+		},
+		{
+			"name": "Counter",
+			"content": "{Counter}"
+		},
+		{
+			"name": "Counter (Days)",
+			"content": "{CounterDays}"
+		}
+	],
+	"juliusbaer.rmct---reports--perf": [
+		{
+			"name": "RM",
+			"content": "{RM}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "Payout Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{Pool}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "PCI",
+			"content": "{PCI}"
+		},
+		{
+			"name": "PCI Own",
+			"content": "{PCIOwn}"
+		},
+		{
+			"name": "CoC",
+			"content": "{CoC}"
+		},
+		{
+			"name": "CoC Threshold",
+			"content": "{CoCThreshold}"
+		},
+		{
+			"name": "P&S Charges",
+			"content": "{PSCharges}"
+		},
+		{
+			"name": "General Expenses",
+			"content": "{GeneralExpenses}"
+		},
+		{
+			"name": "Personnel Expenses",
+			"content": "{PersonnelExpenses}"
+		},
+		{
+			"name": "Provisions & Losses",
+			"content": "{Losses}"
+		},
+		{
+			"name": "Loss Threshold",
+			"content": "{LossTH}"
+		},
+		{
+			"name": "Loss Threshold",
+			"content": "{LossTH}"
+		},
+		{
+			"name": "AuM Dec PY",
+			"content": "{AuMPY}"
+		},
+		{
+			"name": "AuM Dec YBL",
+			"content": "{AuMYBL}"
+		},
+		{
+			"name": "NNM PY (Financial Basis-relevant)",
+			"content": "{NNMPY}"
+		},
+		{
+			"name": "NNM CY",
+			"content": "{NNM}"
+		},
+		{
+			"name": "NNM CY (Financial Basis-relevant)",
+			"content": "{NNMFBRel}"
+		},
+		{
+			"name": "Team Headcount",
+			"content": "{TeamHC}"
+		},
+		{
+			"name": "PC3 Baseline in Group Currency",
+			"content": "{PC3BGC}"
+		},
+		{
+			"name": "PC3 Baseline in Local Currency",
+			"content": "{PC3BLC}"
+		},
+		{
+			"name": "PC3 Parameter",
+			"content": "{PC3Parameter}"
+		},
+		{
+			"name": "Growth Factor",
+			"content": "{GrowthFactor}"
+		},
+		{
+			"name": "MTA",
+			"content": "{MTA}"
+		},
+		{
+			"name": "Payout Rate",
+			"content": "{PayoutRate}"
+		},
+		{
+			"name": "Team Head Count",
+			"content": "{TeamHCAnn}"
+		},
+		{
+			"name": "BOF",
+			"content": "{BOF}"
+		},
+		{
+			"name": "Financial Basis",
+			"content": "{FinancialBasis}"
+		},
+		{
+			"name": "NNM Target",
+			"content": "{NNMTarget}"
+		},
+		{
+			"name": "NNM Target Contribution",
+			"content": "{NNMTgtContr}"
+		},
+		{
+			"name": "NNM Target Achievement Rate",
+			"content": "{NNMTgtAchRate}"
+		},
+		{
+			"name": "NNM Target Achievement",
+			"content": "{NNMTgtAchAmt}"
+		},
+		{
+			"name": "RoA Hurdle Rate",
+			"content": "{HurdleRate}"
+		},
+		{
+			"name": "RoA",
+			"content": "{RoA}"
+		},
+		{
+			"name": "Hurdle Rate Deduction",
+			"content": "{HurdleRateDed}"
+		},
+		{
+			"name": "Other Financial Basis",
+			"content": "{OthFinBas}"
+		},
+		{
+			"name": "Financial Performance Contribution Percentage",
+			"content": "{FinPerfCtrPct}"
+		},
+		{
+			"name": "Financial Performance Contribution",
+			"content": "{FinPerfCtr}"
+		},
+		{
+			"name": "Financial Performance Contribution - Individual Share",
+			"content": "{FinPerfCtrShare}"
+		},
+		{
+			"name": "Non Financial Goal Rating",
+			"content": "{NonFinGoalRat}"
+		},
+		{
+			"name": "Non Financial Goal Impact",
+			"content": "{NonFinGoalImp}"
+		},
+		{
+			"name": "Non Financial Goal Amount",
+			"content": "{NonFinGoalAmt}"
+		},
+		{
+			"name": "Risk Behaviour Rating",
+			"content": "{RBRat}"
+		},
+		{
+			"name": "Risk Behaviour Impact",
+			"content": "{RBImp}"
+		},
+		{
+			"name": "Risk Behaviour Amount",
+			"content": "{RBAmt}"
+		},
+		{
+			"name": "Care Rating",
+			"content": "{CareRat}"
+		},
+		{
+			"name": "Care Impact",
+			"content": "{CareImp}"
+		},
+		{
+			"name": "Care Amount",
+			"content": "{CareAmt}"
+		},
+		{
+			"name": "Passion Rating",
+			"content": "{PassionRat}"
+		},
+		{
+			"name": "Passion Impact",
+			"content": "{PassionImp}"
+		},
+		{
+			"name": "Passion Amount",
+			"content": "{PassionAmt}"
+		},
+		{
+			"name": "Excellence Rating",
+			"content": "{ExcRat}"
+		},
+		{
+			"name": "Excellence Impact",
+			"content": "{ExcImp}"
+		},
+		{
+			"name": "Excellence Amount",
+			"content": "{ExcAmt}"
+		},
+		{
+			"name": "Travel Rating",
+			"content": "{TravelRat}"
+		},
+		{
+			"name": "Travel Impact",
+			"content": "{TravelImp}"
+		},
+		{
+			"name": "Travel Amount",
+			"content": "{TravelAmt}"
+		},
+		{
+			"name": "AML Rating",
+			"content": "{AMLRat}"
+		},
+		{
+			"name": "AML Impact",
+			"content": "{AMLImp}"
+		},
+		{
+			"name": "AML Amount",
+			"content": "{AMLAmt}"
+		},
+		{
+			"name": "KYC Rating",
+			"content": "{KYCRat}"
+		},
+		{
+			"name": "KYC Impact",
+			"content": "{KYCImp}"
+		},
+		{
+			"name": "KYC Amount",
+			"content": "{KYCAmt}"
+		},
+		{
+			"name": "CDS Rating",
+			"content": "{CDSRat}"
+		},
+		{
+			"name": "CDS Impact",
+			"content": "{CDSImp}"
+		},
+		{
+			"name": "CDS Amount",
+			"content": "{CDSAmt}"
+		},
+		{
+			"name": "Advisory Rating",
+			"content": "{AdvRat}"
+		},
+		{
+			"name": "Advisory Impact",
+			"content": "{AdvImp}"
+		},
+		{
+			"name": "Advisory Amount",
+			"content": "{AdvAmt}"
+		},
+		{
+			"name": "Learning Rating",
+			"content": "{LearnRat}"
+		},
+		{
+			"name": "Learning Impact",
+			"content": "{LearnImp}"
+		},
+		{
+			"name": "Learning Amount",
+			"content": "{LearnAmt}"
+		},
+		{
+			"name": "TH KRI Impact",
+			"content": "{ThKriImp}"
+		},
+		{
+			"name": "TH KRI Amount",
+			"content": "{ThKriAmt}"
+		},
+		{
+			"name": "KRI Deduction Max.",
+			"content": "{KRIDedMax}"
+		},
+		{
+			"name": "KRI Deduction Total",
+			"content": "{KRIDedTot}"
+		},
+		{
+			"name": "KRI Deductin Amount",
+			"content": "{KRIDedAmt}"
+		},
+		{
+			"name": "Policy & Procecure Violations Impact",
+			"content": "{PPVImp}"
+		},
+		{
+			"name": "Policy & Procecure Violations Amount",
+			"content": "{PPVAmt}"
+		},
+		{
+			"name": "Company Performance Factor Impact",
+			"content": "{CPFImp}"
+		},
+		{
+			"name": "Company Performance Factor Amount",
+			"content": "{CPFAmt}"
+		},
+		{
+			"name": "Subsidizing",
+			"content": "{Subsidizing}"
+		},
+		{
+			"name": "Individual Performance Achievement",
+			"content": "{IndPerfAchImp}"
+		},
+		{
+			"name": "Add. Disc. VC",
+			"content": "{AddDiscVC}"
+		},
+		{
+			"name": "Other Adjustments",
+			"content": "{OthAdj}"
+		},
+		{
+			"name": "Variable Compensation Total",
+			"content": "{VCTot}"
+		},
+		{
+			"name": "Variable Compensation Cash Rate",
+			"content": "{VCCashRate}"
+		},
+		{
+			"name": "Variable Compensation Cash Amount",
+			"content": "{VCCashAmt}"
+		},
+		{
+			"name": "Variable Compensation Deferral Rate",
+			"content": "{VCDefRate}"
+		},
+		{
+			"name": "Variable Compensation Deferral Amount",
+			"content": "{VCDefAmt}"
+		}
+	],
+	"juliusbaer.rmct---reports--params": [
+		{
+			"name": "RM",
+			"content": "{rm}"
+		},
+		{
+			"name": "Year",
+			"content": "{year}"
+		},
+		{
+			"name": "Last Name",
+			"content": "{Surname}"
+		},
+		{
+			"name": "First Name",
+			"content": "{FirstName}"
+		},
+		{
+			"name": "Model Text",
+			"content": "{CompModelTxt}"
+		},
+		{
+			"name": "RM Currency",
+			"content": "{RMCurrency}"
+		},
+		{
+			"name": "Pool",
+			"content": "{poolNumber}"
+		},
+		{
+			"name": "Pool (Text)",
+			"content": "{PoolName}"
+		},
+		{
+			"name": "Pool Currency",
+			"content": "{PoolCurrency}"
+		},
+		{
+			"name": "Region (Text)",
+			"content": "{RegionTxt}"
+		},
+		{
+			"name": "Market (Text)",
+			"content": "{MarketTxt}"
+		},
+		{
+			"name": "Team (Text)",
+			"content": "{TeamTxt}"
+		},
+		{
+			"name": "Country (Text)",
+			"content": "{CountryTxt}"
+		},
+		{
+			"name": "Location (Text)",
+			"content": "{LocationTxt}"
+		},
+		{
+			"name": "Legal Entity (Text)",
+			"content": "{LegalEntityTxt}"
+		},
+		{
+			"name": "Leaving (contr.)",
+			"content": "{LeavingDate}"
+		},
+		{
+			"name": "Last Working Day",
+			"content": "{LastWD}"
+		},
+		{
+			"name": "Latest Payout",
+			"content": "{LatestPayout}"
+		},
+		{
+			"name": "From",
+			"content": "{From}"
+		},
+		{
+			"name": "To",
+			"content": "{To}"
+		},
+		{
+			"name": "Deferral",
+			"content": "{Deferral}"
+		},
+		{
+			"name": "Country Payout Curve",
+			"content": "{PayoutCurve}"
+		},
+		{
+			"name": "Country Payout Curve Exception",
+			"content": "{PayoutCurveExc}"
+		},
+		{
+			"name": "No Individual Scorecard",
+			"content": "{NoIndividualSC}"
+		},
+		{
+			"name": "Los Date",
+			"content": "{LosDate}"
+		},
+		{
+			"name": "Los Date Exception",
+			"content": "{LosDateExc}"
+		},
+		{
+			"name": "Rank",
+			"content": "{Rank}"
+		},
+		{
+			"name": "Key Risk Taker",
+			"content": "{KeyRiskTaker}"
+		},
+		{
+			"name": "ITA Treatment",
+			"content": "{ItaTreatmentTxt}"
+		},
+		{
+			"name": "Hurdle Rate",
+			"content": "{HurdleRate}"
+		},
+		{
+			"name": "CoC Threshold",
+			"content": "{CoCThreshold}"
+		},
+		{
+			"name": "Loss Threshold",
+			"content": "{LossThreshold}"
+		},
+		{
+			"name": "KRI Max. Deduction Rate",
+			"content": "{KRIMaxDedRate}"
+		},
+		{
+			"name": "CPF",
+			"content": "{CPF}"
+		},
+		{
+			"name": "BOF Weighting Factor",
+			"content": "{BOFWeightFct}"
+		},
+		{
+			"name": "Deferral Rate",
+			"content": "{DeferralRate}"
+		},
+		{
+			"name": "Approving Manager",
+			"content": "{AppMgr}"
+		},
+		{
+			"name": "Approving Manager (Last Name)",
+			"content": "{AppMgrSurname}"
+		},
+		{
+			"name": "Approving Manager (First Name)",
+			"content": "{AppMgrFirstName}"
+		},
+		{
+			"name": "Approving Manager Exc.",
+			"content": "{AppMgrExc}"
+		},
+		{
+			"name": "Notes",
+			"content": "{Notes}"
+		},
+		{
+			"name": "Scorecard Comment",
+			"content": "{SCComment}"
+		}
+	]
+}

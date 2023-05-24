@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+		<Label text="Last changed by:"></Label>
+		<Input id="lastChangedBy" value="" editable="false" width="10em"></Input>
+		<Label text="on:"></Label>
+		<Input id="changedOn" value="" editable="false" width="10em"></Input>
+</core:FragmentDefinition>

@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="InputActionButtonsWrapper">
+		<HBox class="topLinks">
+			<Button text="Limited KPI Recogniton ({global>/poolLimitedKPIRecognition/length})" 
+			enabled="{= ${global>/selectedPool/poolName} !== undefined}" 
+			press="onPoolLtdRecOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/poolLimitedKPIRecognition/length} > 0}" />
+				</customData>
+			</Button>
+			<Button text="Decentralized EAMs ({global>/poolDecentralizedEAMs/length})"
+			enabled="{= ${global>/selectedPool/poolName} !== undefined}"  
+			press="onPoolDecentralizedOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/poolDecentralizedEAMs/length} > 0}" />
+				</customData>
+			</Button>
+			<Button text="Transferred Accounts ({global>/poolTransferredAccounts/length})" 
+			enabled="{= ${global>/selectedPool/poolName} !== undefined}" 
+			press="onPoolITAOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/poolTransferredAccounts/length} > 0}" />
+				</customData>
+			</Button>
+			<Button text="KPI Corrections ({global>/poolKPIExceptions/length})"
+			enabled="{= ${global>/selectedPool/poolName} !== undefined}" 
+				press="onPoolKpiCorrectionsOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/poolKPIExceptions/length} > 0}" />
+				</customData>
+			</Button>
+			<Button text='Performance' enabled="{=${global>/selectedPool/poolName} !== undefined}"  press="openUrl(${global>poolProfile/CockpitUrl}, true)"/>
+			<Button text="Business Case({= ${global>/poolBusinessCase/length} > 0 ? 'Y' : 'N'})"
+			enabled="{= ${global>/selectedPool/poolName} !== undefined}" 
+				press="onPoolBusinessCasesOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/poolBusinessCase/length} > 0}" />
+				</customData>
+			</Button>
+		</HBox>
+	</HBox>
+	<HBox class="rmTimeSeriesWrapper">
+		<core:Fragment
+			fragmentName="juliusbaer.rmct.fragment.PoolTimeSeriesChangeLog"
+			type="XML" />
+	</HBox>
+</core:FragmentDefinition>

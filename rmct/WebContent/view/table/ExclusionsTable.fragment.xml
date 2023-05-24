@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="exclusionsTable" rows="{global>/exclusions}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add"
+					press="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.NewExclusionDialog%_newExclusionDialog')"
+					icon="sap-icon://add" />
+				<m:Button text="Remove" press="onExclusionsDelete" icon="sap-icon://delete" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="rmid" sorted="true">
+				<m:Label text="ZR" />
+				<template>
+					<m:Text text="{global>rmid}" />
+				</template>
+			</Column>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="RM" />
+				<template>
+					<m:Text text="{global>unumber}" />
+				</template>
+			</Column>
+			<Column sortProperty="from" sorted="true">
+				<m:Label text="From" />
+				<template>
+				<m:Input id="tpExclTable" type="Text"
+					value="{global>fromExt}"
+					showValueHelp="true"
+					valueHelpRequest="onTransferPeriodHelpRequest($event, 'modExclusionFrom')"
+					class="sapUiSmallMarginBottom"
+					width="100%"
+					change="onModifyExclusion" />
+				</template>
+			</Column>
+			<Column sortProperty="to" sorted="true">
+				<m:Label text="To" />
+				<template>
+					<m:Input id="tpExclTableTo" type="Text"
+					value="{global>toExt}"
+					showValueHelp="true"
+					valueHelpRequest="onTransferPeriodHelpRequest($event, 'modExclusionTo')"
+					class="sapUiSmallMarginBottom"
+					width="100%" editable="false"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

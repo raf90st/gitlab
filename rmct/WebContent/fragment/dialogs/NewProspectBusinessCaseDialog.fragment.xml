@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Business Case"
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newProspectBusinessCaseDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewProspectBusinessCase"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Prospect:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{global>/selectedProspect/prospect}" editable="false" />
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox id="RMSelectedYear"
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newProspectBC>/year}" change="">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<VBox>
+			<HBox>
+				<Label text="NNM:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/nnm}" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="RoA:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/roa}" />
+				<Input value="CHF"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="AuM:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/aum}" editable="false" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="AuM Avg:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/aumavg}" editable="false" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="PCI:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/pci}" editable="false" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="PCIII B:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/pc3b}" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="CCY NNM Tar. Contr.:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/currency}" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="NNM Target Contr.:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newProspectBC>/nnmTargetContribution}" />
+				<Input value="{global>/selectedProspect/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

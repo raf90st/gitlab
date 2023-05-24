@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>	
+
+* {
+    box-sizing: border-box;
+
+}
+
+	body {
+    	background-image:    url(Arduino-Wallpaper.png);
+    	background-size:     cover;                      
+    	background-repeat:   no-repeat;
+    	background-position: center center;             
+    	height: 800px;
+    	text-align: center;
+	}
+
+#page-wrap {
+  text-align: left;
+  width: auto;
+  margin: 0 auto;
+}
+
+#chartContainer {
+	padding: 5px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+#Beschriftung {
+	padding:5px;
+	margin-top: 30px;
+	margin-left: 80px;
+}
+
+#back {
+	text-align: center;
+	font-size: 20px;
+	margin-top: 90px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+</style>
+
+	<script type="text/javascript">
+	window.onload = function () {
+
+		var dps = []; // dataPoints
+
+		var chart = new CanvasJS.Chart("chartContainer",{
+			title:{
+				text: "Temperatur Grillfleisch"
+			},
+		
+			data: [{
+				type: "line",
+				dataPoints: dps 
+			}]
+		});
+
+		var xVal = 10;
+		var yVal = 100;	
+		var updateInterval = 500;
+		var dataLength = 200; // number of dataPoints visible at any point
+
+		var updateChart = function (count) {
+			count = count || 1;
+			// count is number of times loop runs to generate random dataPoints.
+			
+			for (var j = 0; j < count; j++) {	
+				yVal = yVal +  Math.round(1 + Math.random() *(-1-1));
+				dps.push({
+					x: xVal,
+					y: yVal
+				});
+				xVal++;
+			};
+			if (dps.length > dataLength)
+			{
+				dps.shift();				
+			}
+			
+			chart.render();		
+
+		};
+
+		// generates first set of dataPoints
+		updateChart(dataLength); 
+
+		// update chart after specified time. 
+		setInterval(function(){updateChart()}, updateInterval); 
+
+	}
+	</script>
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+</head>
+
+<body>
+<div id="page-wrap">
+
+	<div id="chartContainer" style="height: 300px; width:90%;">
+</div>
+
+	<div id="Beschriftung"><i><li>X-Wert: Zeit [s]</li></i>
+					   	   <i><li>Y-Wert: Temperatur [˚C]</li></i>
+</div>
+
+</div>
+
+<div id="back"><a href= "Grillduino.html">zurück</a>
+</div>
+
+
+</body>
+</html>

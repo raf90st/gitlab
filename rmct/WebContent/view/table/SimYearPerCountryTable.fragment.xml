@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="simYearPerCountryTable" rows="{global>/custFirstYearSim}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewSimYear" icon="sap-icon://add" />
+				<m:Button text="Copy" press="onCopyNewSimYear" icon="sap-icon://copy"/>
+				<m:Button text="Remove" press="onDeleteNewSimYear" icon="sap-icon://delete"/>
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'simYearPerCountry')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Country" sorted="true">
+				<m:Label text="Country" />
+				<template>
+					<m:Text text="{global>Country}" />
+				</template>
+			</Column>
+			<Column sortProperty="CountryTxt" sorted="true">
+				<m:Label text="Country Text" />
+				<template>
+					<m:Text text="{global>CountryTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="Year" sorted="true">
+				<m:Label text="Year" />
+				<template>
+					<m:Input
+					type="Text"
+					value="{global>Year}" 
+					change="onSimYearCustomizeChange"></m:Input>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

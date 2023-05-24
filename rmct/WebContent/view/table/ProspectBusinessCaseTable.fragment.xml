@@ -1,0 +1,117 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table rows="{ProspectBusinessCase}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.NewProspectBusinessCaseDialog%_newProspectBusinessCaseDialog')" 
+				icon="sap-icon://add" />
+				<m:Button text="Remove" press="onProspectBusinessCasesDelete" icon="sap-icon://delete" />
+				<!--  <m:Button text="Calculate" press="onCalculateBusinessCase" icon="sap-icon://simulate" />-->
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="Prospect" />
+				<template>
+					<m:Text text="{unumber}" />
+				</template>
+			</Column>
+			<Column sortProperty="year" sorted="true">
+				<m:Label text="Year" />
+				<template>
+					<m:Text text="{year}" />
+				</template>
+			</Column>
+			<Column sortProperty="currency" sorted="false">
+				<m:Label text="Currency" />
+				<template>
+					<m:Text text="{currency}" />
+				</template>
+			</Column>
+			<Column sortProperty="nnm" sorted="true">
+				<m:Label text="NNM" />
+				<template>
+					<m:Input
+					value="{nnm}" 
+					change="onProspectBusinessCaseChanged"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="roa" sorted="true">
+				<m:Label text="RoA" />
+				<template>
+					<m:Input
+					value="{roa}" 
+					change="onProspectBusinessCaseChanged"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="aum" sorted="true">
+				<m:Label text="AuM" />
+				<template>
+					<m:Text  
+					text="{
+							parts: [
+								{path: 'aum'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}" />
+				</template>
+			</Column>
+			<Column sortProperty="aumavg" sorted="true">
+				<m:Label text="AuM Avg." />
+				<template>
+					<m:Text
+					text="{
+							parts: [
+								{path: 'aumavg'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}" />
+				</template>
+			</Column>
+			<Column sortProperty="pci" sorted="true">
+				<m:Label text="PCI" />
+				<template>
+					<m:Text
+					text="{
+							parts: [
+								{path: 'pci'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"/>
+				</template>
+			</Column>
+			<Column sortProperty="pc3b" sorted="true">
+				<m:Label text="PCIII B" />
+				<template>
+					<m:Input
+					value="{pc3b}"
+					change="onProspectBusinessCaseChanged"/>
+				</template>
+			</Column>
+			<Column sortProperty="localCurrency" sorted="true">
+				<m:Label text="CCY NNM Tar. Contr." />
+				<template>
+					<m:Input
+					value="{localCurrency}"
+					change="onProspectBusinessCaseChanged"/>
+				</template>
+			</Column>
+			<Column sortProperty="nnmTargetContribution" sorted="true">
+				<m:Label text="NNM Target Contr." />
+				<template>
+					<m:Input
+					value="{nnmTargetContribution}"
+					change="onProspectBusinessCaseChanged"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

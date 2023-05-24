@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newProspectId" title="Add Prospect"
+		afterClose="" contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newProspectDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewProspect" enabled="{global>/prospectFieldStates/prospectSaveButtonEnabled}"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Id"></Label>
+		</HBox>
+		<HBox width="100%">
+				<Input value="{newProspect>/Id}" editable="false"/>
+		</HBox>
+		<HBox>
+			<Label text="Name:"></Label>
+		</HBox>
+		<HBox>
+			<Input valueState="{global>/prospectFieldStates/name}"
+				valueStateText="Please Enter a Name" 
+				value="{newProspect>/Name}"
+				change="prospectNameValidation"/>
+		</HBox>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+						path: '/CurrencySet',
+						sorter: { path: 'currency' }
+				}"
+				selectedKey="{newProspect>/currency}"
+				valueState="{global>/prospectFieldStates/currency}"
+				valueStateText="Please Select a Currency"
+				change="prospectCurrencyValidation">
+			<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Model:"></Label>
+		</HBox>
+			<ComboBox
+				items="{
+					path: '/CompModelSet',
+					sorter: { path: 'Text' }
+				}"
+				selectedKey="{newProspect>/model}"
+				valueState="{global>/prospectFieldStates/model}"
+				valueStateText="Please Select a Model"
+				change="prospectModelValidation">
+			<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>	
+		<HBox>
+			<Label text="Region"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+						path: '/RegionSet',
+						sorter: { path: 'Text' }
+				}"
+				selectedKey="{newProspect>/Region}"
+				valueState="{global>/prospectFieldStates/region}"
+				valueStateText="Please Select a Region"
+				change="prospectRegionValidation">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Market:"></Label>
+		</HBox>
+		<HBox>
+		<Input valueState="{global>/prospectFieldStates/market}"
+				valueStateText="Please Enter a Market" 
+				value="{newProspect>/MarketTxt}"
+				change="prospectMarketValidation"/>
+		</HBox>
+		<HBox>
+			<Label text="Legal Entity:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				width="100%"
+				items="{
+					path: '/LegalEntitySet',
+					sorter: { path: 'Text' }
+				}"
+				selectedKey="{newProspect>/LegalEntity}"
+				valueState="{global>/prospectFieldStates/legal}"
+				valueStateText="Please Select a Legal Entity"
+				change="prospectLegalValidation">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="U-Number:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{newProspect>/unumber}"
+				showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newProspect')"
+				class="sapUiSmallMarginBottom" width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="Start Date:"></Label>
+		</HBox>
+		<HBox>
+		<DatePicker
+			value="{newProspect>/StartDate}" 
+			displayFormat="dd.MM.yyyy"
+			valueState="{global>/prospectFieldStates/startDate}"
+			change="prospectStartDateFieldValidation"
+			valueStateText="Please Select Start Date"
+			valueFormat="yyyy-MM-dd"/>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

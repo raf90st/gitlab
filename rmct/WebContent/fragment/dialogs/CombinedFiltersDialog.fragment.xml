@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:core="sap.ui.core">
+	<ValueHelpDialog
+		id="combinedFiltersDialog"
+		title=" "
+		ok="onCombinedFiltersOk($event, 'scoreCards')"
+		cancel="onCombinedFiltersCancelPress"
+		afterClose="onCombinedFiltersAfterClose"
+		supportRanges="true"
+		supportRangesOnly="true">
+	</ValueHelpDialog>
+</core:FragmentDefinition>

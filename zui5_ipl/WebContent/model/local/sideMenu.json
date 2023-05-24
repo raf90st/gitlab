@@ -1,0 +1,36 @@
+{
+	"navigation": [
+		{
+			"title": "Overview",
+			"icon": "sap-icon://world",
+			"key": "overview"
+		},
+		{
+			"title": "Plannng Org Unit Maintenance",
+			"icon": "sap-icon://tree",
+			"key": "ipl"
+		},
+		{
+			"title": "FS Items",
+			"icon": "sap-icon://activity-items",
+			"expanded": true,
+			"key": "",
+			"items": [
+				{
+					"title": "Hierarchy Comparison",
+					"key": "missItems"
+				},
+				{
+					"title": "Item Categorization",
+					"key": "itemCat"
+				}
+			]
+		},
+		{
+			"title": "EC-CS to PC-V Delta Profit Center Mappings",
+			"icon": "sap-icon://disconnected",
+			"key": "profitcenter" 
+		}
+	],
+	"fixedNavigation": []
+}

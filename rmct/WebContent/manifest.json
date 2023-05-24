@@ -1,0 +1,313 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "juliusbaer.rmct",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/SAP/ZGMIS_RMCT_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "juliusbaer.rmct.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.ui.core": {
+					
+				},
+				"sap.m": {
+					
+				},
+				"sap.tnt": {
+					
+				},
+				"sap.ui.layout": {
+					
+				},
+				"sap.uxap": {
+					
+				},
+				"sap.suite.ui.microchart": {
+					"lazy": true
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"models": {
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "None"
+				}
+			},
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "juliusbaer.rmct.i18n.i18n"
+				}
+			},
+			"side": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/sideContent.json"
+			},
+			"types": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/types.json"
+			},
+			"reports": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/reportsModel.json"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"controlId": "mainContents",
+				"viewType": "XML",
+				"controlAggregation": "pages",
+				"viewPath": "juliusbaer.rmct.view",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "",
+					"target": "rm"
+				},
+				{
+					"pattern": "RM",
+					"name": "rm",
+					"target": "rm"
+				},
+				{
+					"pattern": "RM/{unumber}/{year}",
+					"name": "rmWithUnumber",
+					"target": "rm"
+				},
+				{
+					"pattern": "POOL/{pool}/{year}",
+					"name": "poolWithPoolNr",
+					"target": "pool"
+				},
+				{
+					"pattern": "POOL",
+					"name": "pool",
+					"target": "pool"
+				},
+				{
+					"pattern": "SIMCOCKPIT",
+					"name": "simcockpit",
+					"target": "simcockpit"
+				},
+				{
+					"pattern": "PROSPECT",
+					"name": "prospect",
+					"target": "prospect"
+				},
+				{
+					"pattern": "PROSPECT/{prospect}",
+					"name": "prospectWithXNumber",
+					"target": "prospect"
+				},
+				{
+					"pattern": "CALCSCORECARD",
+					"name": "calcscorecard",
+					"target": "calcscorecard"
+				},
+				{
+					"pattern": "REPORTS",
+					"name": "reports",
+					"target": "reports"
+				},
+				{
+					"pattern": "MAINITA",
+					"name": "mainITA",
+					"target": "mainITA"
+				},
+				{
+					"pattern": "COPYPROFILES",
+					"name": "copyprofiles",
+					"target": "copyprofiles"
+				},
+				{
+					"pattern": "MASTERDATA",
+					"name": "masterdata",
+					"target": "masterdata"
+				},
+				{
+					"pattern": "AUTHORIZATION",
+					"name": "authorizations",
+					"target": "authorizations"
+				},
+				{
+					"pattern": "EMAILTXT",
+					"name": "email",
+					"target": "email"
+				},
+				{
+					"pattern": "administration",
+					"name": "administration",
+					"target": "copyprofiles"
+				},
+				{
+					"pattern": "COMPMODELS",
+					"name": "compmodels",
+					"target": "compmodels"
+				},
+				{
+					"pattern": "COMPPARAMS",
+					"name": "compparams",
+					"target": "compparams"
+				},
+				{
+					"pattern": "PAYOUTCURVES",
+					"name": "payoutCurves",
+					"target": "payoutCurves"
+				},
+				{
+					"pattern": "GROWTHRATES",
+					"name": "growthRates",
+					"target": "growthRates"
+				},
+				{
+					"pattern": "SIMCURRENCY",
+					"name": "simCurrency",
+					"target": "simCurrency"
+				},
+				{
+					"pattern": "GROWTHRATEABSOLUTE",
+					"name": "growthRateAbs",
+					"target": "growthRateAbs"
+				},
+				{
+					"pattern": "SIMYEARPERCOUNTRY",
+					"name": "simYearPerCountry",
+					"target": "simYearPerCountry"
+				},
+				{
+					"pattern": "SIMTOOL",
+					"name": "simTool",
+					"target": "simTool"
+				}
+				
+			],
+			"targets": {
+				"rm": {
+					"viewId": "rmsettings",
+					"viewName": "settings.RMSettings"
+				},
+				"pool": {
+					"viewId": "poolsettings",
+					"viewName": "settings.PoolSettings"
+				},
+				"simcockpit": {
+					"viewId": "simcockpit",
+					"viewName": "settings.SimulationCockpitSettings"
+				},
+				"prospect": {
+					"viewId": "prospectsettings",
+					"viewName": "settings.ProspectSettings"
+				},
+				"calcscorecard": {
+					"viewId": "calcscorecard",
+					"viewName": "settings.CalcScorecardSettings"
+				},
+				"reports": {
+					"viewId": "reports",
+					"viewName": "settings.ReportsSettings"
+				},
+				"mainITA": {
+					"viewId": "maintainITA",
+					"viewName": "settings.MaintainITASettings"
+				},
+				"copyprofiles": {
+					"viewId": "copyprofiles",
+					"viewName": "settings.CopyProfiles"
+				},
+				"masterdata": {
+					"viewId": "masterdata",
+					"viewName": "settings.MasterData"
+				},
+				"authorizations": {
+					"viewId": "authorizations",
+					"viewName": "settings.Authorizations"
+				},
+				"email": {
+					"viewId": "email",
+					"viewName": "settings.EmailTexts"
+				},
+				"compmodels": {
+					"viewId": "compmodel",
+					"viewName": "settings.CompModels"
+				},
+				"compparams": {
+					"viewId": "compparam",
+					"viewName": "settings.CompParams"
+				},
+				"payoutCurves": {
+					"viewId": "payoutCurves",
+					"viewName": "settings.PayoutCurves"
+				},
+				"growthRates": {
+					"viewId": "growthRates",
+					"viewName": "settings.GrowthRates"
+				},
+				"simCurrency": {
+					"viewId": "simCurrency",
+					"viewName": "settings.SimCurrency"
+				},
+				"growthRateAbs": {
+					"viewId": "growthRateAbs",
+					"viewName": "settings.GrowthRateAbs"
+				},
+				"simYearPerCountry": {
+					"viewId": "simYearPerCountry",
+					"viewName": "settings.SimYearPerCountry"
+				},
+				"simTool": {
+					"viewId": "simTool",
+					"viewName": "settings.SimTool"
+				}
+			}
+		}
+	}
+}

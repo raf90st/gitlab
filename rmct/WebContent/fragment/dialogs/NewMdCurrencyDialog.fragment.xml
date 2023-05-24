@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newMdCurrencyDialog" title="Add Currency" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newMdCurrencyDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewMdCurrency"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{newMdCurrency>/Key}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

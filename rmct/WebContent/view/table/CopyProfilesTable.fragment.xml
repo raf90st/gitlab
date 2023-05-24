@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="copyProfilesTable" rows="{BpSet}"
+	enableSelectAll="true" busy="{global>/copyBusy}">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'copyProfiles')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Bp" sorted="true">
+				<m:Label text="Business Partner" />
+				<template>
+					<m:Text text="{Bp}" />
+				</template>
+			</Column>
+			<Column sortProperty="Name" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text text="{Name}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

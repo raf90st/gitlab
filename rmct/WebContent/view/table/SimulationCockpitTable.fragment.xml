@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="manageUserRolesTable"
+		rows="{global>/simCockpitUsers}"
+		visibleRowCount="20" class="cockpitSimAccess" sort="sortColumns">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Export" press="onDataExport" />
+				<m:Button text="Add" press="onAddNewUserRole"
+					icon="sap-icon://add" />
+				<m:Button text="Remove" press="onRemoveNewUserRole"
+					icon="sap-icon://delete" />
+				<m:SearchField id="searchForSimUsers" placeholder="Filter"
+					liveChange="filterGlobally" width="15rem" />
+				<m:HBox class="simSelectedYear">
+				<m:Label text="Select Year:"></m:Label>
+				<m:ComboBox id="simCockpitSelectedYear"
+					items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+					selectedKey="{global>/simCockpitSelectedYear}" change="onSimCockpitYearChanged">
+					<core:ListItem key="{year}" text="{year}" />
+				</m:ComboBox>
+				</m:HBox>
+				<m:Button text="Reset Year Filter"
+					press="onSimCockpitResetYear"/>
+				<m:Button text="Changelog"
+					press="onOpenChangelogCockpitSim"
+					icon="sap-icon://customer-history" />
+
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="User ID" />
+				<template>
+					<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{global>unumber}" editable="false" />
+				</template>
+			</Column>
+			<Column sortProperty="name" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{global>name}" editable="false" />
+				</template>
+			</Column>
+			<Column sortProperty="accessSim">
+				<m:Label text="Access to Sim Tool" />
+				<template>
+					<m:CheckBox select=".onUserRolesModified"
+						selected="{global>accessSim}" />
+				</template>
+			</Column>
+			<Column sortProperty="accessCockpit">
+				<m:Label text="Access to Cockpit" />
+				<template>
+					<m:CheckBox select=".onUserRolesModified"
+						selected="{global>accessCockpit}" />
+				</template>
+			</Column>
+			<Column sortProperty="isRM">
+				<m:Label text="Is RM" />
+				<template>
+					<m:CheckBox select=".onUserRolesModified"
+						selected="{global>isRM}" />
+				</template>
+			</Column>
+			<Column sortProperty="isRMCockpit">
+				<m:Label text="Is RM Cockpit" />
+				<template>
+					<m:CheckBox select=".onUserRolesModified"
+						selected="{global>isRMCockpit}" />
+				</template>
+			</Column>
+			<Column sortProperty="year">
+				<m:Label text="Year" />
+				<template>
+					<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{global>year}" editable="false" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

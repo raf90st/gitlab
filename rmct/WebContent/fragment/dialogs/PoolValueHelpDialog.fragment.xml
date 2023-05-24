@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+	id="newPoolValueHelp"		
+		title="Select an Pool"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: 'global>/pools',
+			templateShareable: false
+		}"
+		search="_handlePoolValueHelpSearch"
+		cancel="onGenericFragmentclose($event, '_poolValuehelpDialog')"
+		liveChange="_handlePoolValueLiveChange"
+		confirm="_handlePoolValueConfirm">
+		<StandardListItem
+			title="{global>poolName}"
+			description="{global>poolNumber}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

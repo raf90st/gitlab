@@ -1,0 +1,111 @@
+<mvc:View
+	controllerName="juliusbaer.rmct.controller.settings.Prospect"
+	xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout">
+	<m:Page showHeader="{device>/system/phone}"
+		showNavButton="{device>/system/phone}"
+		navButtonPress=".onNavButtonPress"
+		busy="{global>/prospectProfileBusy}">
+		<ObjectPageLayout id="objectPageLayout"
+			showTitleInHeaderContent="true" upperCaseAnchorBar="true" showAnchorBar="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle class="prospectTitle">
+					<content>
+						<core:Fragment
+							fragmentName="juliusbaer.rmct.fragment.inputs.ProspectInput" type="XML" />
+					</content>
+					<content>
+						<core:Fragment
+							fragmentName="juliusbaer.rmct.fragment.buttons.ProspectButtonsBar"
+							type="XML" />
+					</content>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<sections>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="ProfileId"
+							title="Profile">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CompProfileLazyLoader">
+									<f:SimpleForm title="" columnsL="2" columnsM="2"
+										editable="true" layout="ResponsiveGridLayout">
+										<f:content>							
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.ProspectProfile" type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="ProspectComParamtersId"
+							title="Compensation Profile">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CompParametersLazyLoader">
+									<f:SimpleForm title="" columnsL="2" columnsM="2"
+										editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.ProspectCompensationProfile"
+												type="XML" />
+										</f:content>
+										<core:Title text="" />
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="ContactsId"
+							title="Compensation Parameters">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CompParametersLazyLoader">
+									<f:SimpleForm title="" columnsL="2" columnsM="2"
+										layout="ResponsiveGridLayout">
+										<core:Title text="Compensation Parameters" />
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.view.table.ProspectCompensationParamsTable"
+												type="XML" />
+										</f:content>
+										<core:Title text="Compensation Elements" />
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.view.table.ProspectCompensationElementsTable"
+												type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="CorrespondanceId"
+							title="Correspondence">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CorrespondancesLazyLoader">
+									<core:Fragment
+										fragmentName="juliusbaer.rmct.fragment.forms.Notes"
+										type="XML" />
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar class="rmToolbar">
+	<content>
+		<HBox class="rmToolbarWrapper">
+		<items>
+		<HBox class="rmInputWrapper">
+		<Input id="prospectInput" type="Text" value="{global>/selectedProspect/prospect}"
+			showValueHelp="true" valueHelpOnly="true"
+			valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.ProspectValueHelpDialog%_prospectsValueHelpDialog')" class="sapUiSmallMarginBottom"
+			width="13rem" />
+		<!--  <Text text="{global>/selectedProspect/name}" renderWhitespace="false" /> -->
+		</HBox>
+		<HBox class="actionButtons">
+			<Button icon="sap-icon://document" text="Create" press="onCreateNewProspect"/>
+		</HBox>
+		</items>
+		</HBox>
+	</content>
+
+	</Toolbar>
+</core:FragmentDefinition>
+

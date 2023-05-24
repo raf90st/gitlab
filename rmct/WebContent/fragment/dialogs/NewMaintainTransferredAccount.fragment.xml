@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newMaintainTransferredAccountId" title="Add ITA"
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel" press="onGenericFragmentclose($event, '_newMaintainTransferredAccountsDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewMainTransferredAccount"></Button>
+		</endButton>
+		<HBox>
+			<Label text="ZR"></Label>
+		</HBox>
+		<HBox width="100%">
+			<Input type="Text" value="{newITA>/zr}"
+				placeholder="..." showValueHelp="true"
+				class="sapUiSmallMarginBottom" width="100%" 
+				valueHelpRequest="onZrValueHelpRequest($event, 'newITA')"/>
+		</HBox>
+
+		<HBox>
+			<Label text="New RM"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{newITA>/newrm}"
+				placeholder="..." showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newMainITANewRM')"
+				class="sapUiSmallMarginBottom" width="100%" />
+			<Text text="{newITA>/newname}"></Text>
+		</HBox>
+		<HBox>
+			<Label text="Original RM"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{newITA>/orgrm}"
+				placeholder="..." showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newMainITAOrgRM')"
+				class="sapUiSmallMarginBottom" width="100%" />
+				<Text text="{newITA>/orgname}"></Text>
+		</HBox>
+		<HBox>
+			<Label text="Transfer Period"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text"
+				value="{newITA>/periodExt}" placeholder="..."
+				showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'newITA')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="BOF Exception"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newITA>/bofflag}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

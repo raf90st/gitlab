@@ -1,0 +1,83 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Payout Curve" afterClose="" contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newPayoutCurveDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewPayoutCurve"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Model"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+						path: '/CompModelSet',
+						sorter: { path: 'Text' }
+				}"
+				selectedKey="{newPayoutCurve>/Model}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Country"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/CountryPayoutCurveSet',
+							sorter: { path: 'Text' }
+					}"
+				selectedKey="{newPayoutCurve>/Country}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newPayoutCurve>/Year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Amount From:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newPayoutCurve>/AmountFrom}" />
+		</HBox>
+		<HBox>
+			<Label text="Amount To:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newPayoutCurve>/AmountTo}" />
+		</HBox>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				editable="false"
+				items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+			}"
+				selectedKey="{newPayoutCurve>/Currency}">
+				<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Parameter:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newPayoutCurve>/Parameter}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

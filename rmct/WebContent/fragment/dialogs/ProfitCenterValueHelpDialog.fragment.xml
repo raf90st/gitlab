@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog		
+		title="Select Profit Center"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: '/ProfitCenterSet',
+			templateShareable: false,
+			parameters: {operationMode: 'Client'}
+		}"
+		confirm="onAuthValueConfirm"
+		search="_handleAuthValueHelpSearch"
+		cancel="onGenericFragmentclose($event, '_profitCenterValueHelpDialog')"
+		liveChange="_handleAuthValueLiveChange">
+		<StandardListItem
+			title="{Text}"
+			description="{Id}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

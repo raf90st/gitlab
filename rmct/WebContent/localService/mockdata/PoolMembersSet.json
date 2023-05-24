@@ -1,0 +1,50 @@
+[
+	{
+		"unumber": "U24303",
+		"poolNumber": "P0002",
+		"year": "2021",
+		"name": "Makoto Kawase",
+		"allocation": "0.250",
+		"allocationType": "Flexible"
+	},
+	{
+		"unumber": "U26303",
+		"poolNumber": "P0002",
+		"year": "2021",
+		"name": "Alex Cold",
+		"allocation": "0.750",
+		"allocationType": "Percentage"
+	},
+	{
+		"unumber": "U34290",
+		"poolNumber": "P0002",
+		"year": "2021",
+		"name": "Brian O Connel",
+		"allocation": "0.750",
+		"allocationType": "Percentage"
+	},
+	{
+		"unumber": "U47321",
+		"poolNumber": "P0002",
+		"year": "2021",
+		"name": "Michael Hermann",
+		"allocation": "0.750",
+		"allocationType": "Percentage"
+	},
+	{
+		"unumber": "U25303",
+		"poolNumber": "P0003",
+		"year": "2021",
+		"name": "Fiona Wong",
+		"allocation": "0.650",
+		"allocationType": "Flexible"
+	},
+	{
+		"unumber": "U25309",
+		"poolNumber": "P0003",
+		"year": "2021",
+		"name": "Barbara Reid",
+		"allocation": "0.950",
+		"allocationType": "Percentage"
+	}
+]

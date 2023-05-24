@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newMdYearDialog" title="Add Year" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newMdYearDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewMdYear"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{newMdYear>/Year}" />
+		</HBox>
+		<HBox>
+			<Label text="Default:"></Label>
+			<CheckBox selected="{newMdYear>/Default}" editable="false" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

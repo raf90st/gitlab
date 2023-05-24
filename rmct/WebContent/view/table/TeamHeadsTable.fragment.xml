@@ -1,0 +1,144 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="manageTeamHeadsTable"
+		rows="{
+		path : '',
+		parameters: {
+			operationMode: 'Client'
+		}
+	}"
+		class="cockpitSimAccess" visibleRowCount="15" sort="">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Export" press="onDataExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="User ID" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{unumber}" />
+				</template>
+			</Column>
+			<Column sortProperty="lastname" sorted="true">
+				<m:Label text="Lastname" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{lastname}" />
+				</template>
+			</Column>
+			<Column sortProperty="firstname" sorted="true">
+				<m:Label text="Firstname" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{firstname}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Scorecard" />
+				<template>
+					<m:Link icon="sap-icon://pdf-attachment" href="{scorecard}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Entrepreneur" />
+				<template>
+					<m:CheckBox select=".onUserRolesModified"
+						selected="{isRM}" />
+				</template>
+			</Column>
+			<Column sortProperty="pool">
+				<m:Label text="Pool" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{pool}" />
+				</template>
+			</Column>
+			<Column sortProperty="poolname">
+				<m:Label text="Pool Name" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{poolname}" />
+				</template>
+			</Column>
+			<Column sortProperty="country">
+				<m:Label text="Country" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{country}" />
+				</template>
+			</Column>
+			<Column sortProperty="location">
+				<m:Label text="Location" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{location}" />
+				</template>
+			</Column>
+
+			<Column sortProperty="region">
+				<m:Label text="Region" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{region}" />
+				</template>
+			</Column>
+			<Column sortProperty="market">
+				<m:Label text="Market" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{market}" />
+				</template>
+			</Column>
+			<Column sortProperty="team">
+				<m:Label text="Team" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{team}" />
+				</template>
+			</Column>
+			<Column sortProperty="prodbegin">
+				<m:Label text="Prod. Begin Time" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{prodbegin}" />
+				</template>
+			</Column>
+			<Column sortProperty="prodend">
+				<m:Label text="Prod. End Time" />
+				<template>
+					<m:Text class="sapUiSmallMarginBottom" text="{prodend}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Data" />
+				<template>
+					<m:Link class="sapUiSmallMarginBottom" text="View"
+						icon="sap-icon://search" href="{data}" />
+				</template>
+			</Column>
+			<Column sortProperty="scorecardid">
+				<m:Label text="Scorecard Approval ID" />
+				<template>
+					<m:Link class="sapUiSmallMarginBottom" text="{scorecardid}"
+						icon="sap-icon://search" href="" />
+				</template>
+			</Column>
+
+			<Column sortProperty="workflowdesc">
+				<m:Label text="Workflow Status" />
+				<template>
+					<m:Text text="{workflowdesc}"></m:Text>
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Workflow Status" />
+				<template>
+					<m:Text text="symbol"></m:Text>
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Locked?" />
+				<template>
+					<m:CheckBox selected="{locked}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Latest Payout" />
+				<template>
+					<m:CheckBox selected="{latestpayout}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

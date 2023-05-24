@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<HBox>
+		<Link id="params" text="01 Parameters"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="bc" text="02 Business Cases"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="cpo" text="03 Compensation Pool Overview"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="ita" text="04 Internally Transferred Accounts"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="ce" text="05 Compensation Elements"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="kpi" text="06 KPI Exceptions"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="mile" text="07 Milestones"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="decEAM" text="08 Decentralized EAMs"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="excl" text="09 Exclusions"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="ltdKpi" text="10 Limited KPI Recognition"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="accr" text="11 Accruals" press="downloadAccruals"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="perf" text="12 Performance"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="fxr" text="13 FX Rates" press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="pList" text="14 Payout List"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="kri" text="15 KRI Deduction"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+	
+	<HBox>
+		<Link id="scApp" text="16 Scorecard Approval"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="simKPI" text="21 Simulation KPIs"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="simLog" text="22 Simulation Tool Log"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="prosp" text="81 Prospects"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+	<HBox>
+		<Link id="access" text="91 Access Monitoring"
+			press="downloadCSVForReports"></Link>
+	</HBox>
+
+</core:FragmentDefinition>

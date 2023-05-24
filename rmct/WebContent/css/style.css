@@ -1,0 +1,237 @@
+.rmToolbar {
+	display: block;
+	height: 100% !important;
+	margin-top: 15px;
+	border: none !important;
+}
+
+.rmPicture img {
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+}
+
+.rmToolbar a,
+.rmTimeSeriesWrapper span {
+	padding-top: 7px;
+}
+
+.rmToolbar a:focus,
+.rmToolbar a:active,
+.rmToolbar a:visited {
+	outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.rmInputWrapper {
+	width: 100%;
+    justify-content: space-between;
+}
+
+.rmToolbarWrapper {
+	padding: 0;
+}
+
+.rmToolbarWrapper,
+.InputActionButtonsWrapper {
+	justify-content: space-between;
+}
+
+.rmInputWrapper > div:not(:last-child),
+.rmTimeSeriesWrapper > div:not(:last-child),
+.scoreCardInputWrapper > div:not(:last-child),
+.poolInputWrapper > div:not(:last-child),
+.scoreCardFilterBar > div:not(:last-child) {
+	margin-right: 10px;
+}
+
+.rmInputWrapper span,
+.scoreCardInputWrapper span {
+	vertical-align: middle;
+}
+
+.rmTimeSeriesWrapper {
+	justify-content: flex-end;
+}
+
+.dynamicHeader .sapFDynamicPageTitleMainInner {
+	display: block !important;	
+}
+
+.topLinks div:not(:last-child ) {
+	margin-right: 15px;
+}
+
+.topLinks button[data-newdata="new"] > span {
+	background-color: #394958;
+	color: white;	
+}
+
+.topLinks button[data-newdata="new"]:hover > span {
+	background-color: #394958;	
+}
+
+table .sapMInputBase {
+	display: table-cell;
+}
+
+.sapUiTable .sapMIBar {
+	padding-bottom: 5px;
+}
+
+.sapUiTable button:first-child {
+	margin-left: 0 !important;
+	padding-left: 0 !important;
+}
+
+.sapFDynamicPageTitleMainHeading {
+	display: none !important;
+}
+
+.formManager h5 {
+	display: none;
+}
+
+.changeManager {
+	align-items: center;
+}
+
+.changeManager div:not(:last-child) {
+	margin-right: 15px;
+}
+
+.changeManager .sapMInput {
+	margin-bottom: 0 !important;
+}
+
+.simSelectedYear .sapMLabel {
+	padding-top: 7px;
+    padding-right: 5px;
+}
+
+.HboxWrapper {
+	flex-basis: 100%;
+}
+
+.HboxLeft,
+.HboxRight {
+	flex-basis: 50%;
+    flex-direction: column;
+}
+
+.sapMDialogSection {
+	padding: 15px;
+}
+
+.lastKPIPool, .scoreCardLastText {
+	margin-bottom: 20px;
+}
+
+.lastKPI {
+	margin-bottom: 20px;
+	flex-flow: column;
+}
+
+div [id="juliusbaer.rmct---rmsettings--CompProfileId-innerGrid"] div [id="__container2--Grid"] .sapUiRespGridSpanXL4:nth-child(8) {
+	width: auto;
+}
+
+/*div [id="juliusbaer.rmct---rmsettings--CompProfileId-innerGrid"] div [id="__container2--Grid"] .sapUiRespGridSpanXL4:nth-child(9) {
+	width: 55%;
+}*/
+
+.losEntryDate .sapMFlexItem:nth-child(1) span {
+	padding-right: 15px;
+    padding-top: 7px;
+}
+
+.losEntryDate .sapMFlexItem:nth-child(2) {
+	width: 100%;
+}
+
+.newPoolTextArea {
+	display: block;
+}
+
+.noPadding .sapMDialogSection {
+	padding: 0;
+}
+
+.compParamsFullWidth {
+	display: inline!important;
+}
+
+.scoreCardForm .sapUiFormEdit .sapMText {
+	min-height: 0;
+	padding-bottom: 0;
+}
+
+.scoreCardTextArea {
+	padding-top: 15px;
+}
+
+.scoreCardButtonsWrap {
+	justify-content: space-between;
+}
+
+.scoreCardButtons button {
+	margin-right: 15px;
+}
+
+.scoreCardIcon {
+	width: auto !important;
+	margin-top: 15px;
+}
+
+button[data-calcgeneratebutton="yellow"] .sapMBtnIcon {
+	color: goldenrod;
+}
+
+.prospectTitle .sapFDynamicPageTitleContent-CTX {
+	width: 100%;
+}
+
+.inputProfileLabels {
+	margin-right: 10px;
+}
+
+.scoreCardFilterBar,
+.scoreCardFilterBar .sapMMultiInput,
+.scoreCardFilterBar #__data22 {
+	width: 100%;
+}
+
+.centeredCheckbox {
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+.prospectDialog .sapMDialogSection {
+	padding: 0;
+}
+
+.HboxButtons {
+	margin-right: 15px;
+}
+
+.poolDialog .sapMHBox {
+	display: block;
+}
+
+.testDevSystemMsg {
+	margin: 5px;
+    background-color: bisque;
+}
+
+#milestoneTable {
+	margin-bottom: 15px;
+}
+
+#milestoneConditionsTable {
+	margin-bottom: 30px;
+}
+
+/*.cockpitSimAccess .sapUiTableCtrl td:nth-child(3) .sapUiTableCellInner {
+	display: flex;
+	justify-content: center;
+}*/

@@ -1,0 +1,120 @@
+<mvc:View controllerName="juliusbaer.cdem.controller.Home"
+	displayBlock="true" xmlns:m="sap.m" xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.core">
+	<m:Page id="page" title="{i18n>title}" showHeader="false">
+		<m:content>
+		<c:Fragment fragmentName="juliusbaer.cdem.fragment.Header" type="XML" />
+		<m:HBox class="searchBarContainer columnContainer limitedWidthContainer">
+			<m:VBox>
+				<m:HBox class="searchBar">
+					<m:Toolbar style="Clear" id="toolbar1">
+						<m:Label text="ZR: " />
+						<m:SearchField search="onPressLookupZR" id="ZRInput"
+							width="100%" placeholder="Search for ZR" />
+					</m:Toolbar>
+				</m:HBox>
+				<m:VBox class="selectedValues">
+					<m:HBox>
+						<m:Label text="Relationship Manager: " />
+						<m:Text text="{respRM}" wrapping="false" />
+					</m:HBox>
+					<m:HBox class="noPadding flexWidth">
+						<m:HBox class="flexReducedWidth">
+							<m:Label text="Com. Domicile: " />
+							<m:Text text="{global>/comDomicile}" wrapping="false" />
+						</m:HBox>
+						<m:HBox>
+							<m:Label text="Business rule: " />
+							<m:Text text="{global>/businessRule}" wrapping="false" />
+						</m:HBox>
+					</m:HBox>
+					<m:HBox class="noPadding flexWidth">
+						<m:HBox class="flexReducedWidth">
+							<m:Label text="Manual Overwrite: " />
+							<m:Text text="{global>/exceptionCountry}" wrapping="false" />
+						</m:HBox>
+						<m:HBox>
+							<m:Label text="Global exception: " />
+							<m:Text text="{globalException}" wrapping="false" />
+						</m:HBox>
+					</m:HBox>
+				</m:VBox>
+			</m:VBox>
+			</m:HBox>
+			<m:HBox class="limitedWidthContainer">
+				<Table selectionMode="None" rows="{DomicilesForZR}"
+					busy="{global>/domicileTableBusy}">
+					<columns>
+						<Column hAlign="Center">
+							<m:Label text="Partner Number" />
+							<template>
+								<m:Text text="{partnerNumber}" wrapping="false" />
+							</template>
+						</Column>
+						<Column hAlign="Center" width="20%">
+							<m:Label text="Role" />
+							<template>
+								<m:Text text="{role}" wrapping="false" />
+							</template>
+						</Column>
+						<Column hAlign="Center">
+							<m:Label text="Inactive Partner Relation" />
+							<template>
+								<m:CheckBox selected="{isInactive}" enabled="false" />
+							</template>
+						</Column>
+						<Column hAlign="Center">
+							<m:Label text="Main Country" />
+							<template>
+								<m:Text text="{mainCountry}" wrapping="false" />
+							</template>
+						</Column>
+						<Column hAlign="Center">
+							<m:Label text="Commercial Domicile" />
+							<template>
+								<m:CheckBox selected="{cdCalculated}" enabled="false" />
+							</template>
+						</Column>
+						<Column hAlign="Center">
+							<m:Label text="Manual Overwrite" />
+							<template>
+								<m:CheckBox selected="{cdException}"
+									select="toggleException"
+									valueState="{= ${cdException} ? 'Error' : 'Information' }"
+									enabled="{= ${mainCountry} === '' ? false : ${isInactive} === true ? false : true }" />
+							</template>
+						</Column>
+					</columns>
+				</Table>
+			</m:HBox>
+			<m:HBox class="columnContainer limitedWidthContainer">
+				<m:VBox class="selectedValues">
+					<m:HBox class="fullWidth">
+						<m:Label text="Comment: " />
+						<m:TextArea id="commentField"
+							value="{comment}" width="100%" rows="1"
+							liveChange="checkCommentField" />
+						<m:MessageStrip id="commentNecessary" class="topMessageStrip"
+							text="Please enter comment to proceed" type="Error"
+							visible="{= ${global>/cdExceptionSelected} &amp;&amp; 
+							${comment} === ''}" showIcon="true"
+							showCloseButton="false">
+						</m:MessageStrip>
+						<m:MessageStrip id="cidWarning" text="Do not enter CID"
+							type="Warning" showIcon="true" visible="false"
+							showCloseButton="false">
+						</m:MessageStrip>
+					</m:HBox>
+					<m:HBox>
+						<m:Label text="Last changed: " />
+						<m:Text
+							text="{lastChangedBy}, {lastChangedDate} {lastChangedAt}" />
+					</m:HBox>
+					<m:HBox>
+						<m:Button id="saveButton" text="Save" enabled="false" press="onPressSaveZR" />
+					</m:HBox>
+				</m:VBox>
+			</m:HBox>
+		</m:content>
+	</m:Page>
+</mvc:View>

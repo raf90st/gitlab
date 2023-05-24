@@ -1,0 +1,142 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Edit KPI Correction" contentWidth="30%">
+		<beginButton>
+			<Button text="Close"
+				press="onGenericFragmentclose($event, '_editPoolKpiCorrectionDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveKPIEdit($event, 'POOLKPI')"></Button>
+		</endButton>
+		<HBox>
+			<Label text="RM:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text" value="{editKPIModel>/unumber}"
+				editable="false" />
+			<Text text="{editKPIModel>/name}"></Text>
+		</HBox>
+		<HBox>
+			<Label text="Period (mm.YYYY):"></Label>
+		</HBox>
+		<HBox>
+
+			<Input type="Text" value="{editKPIModel>/periodExt}"
+				placeholder="..." showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'editKPIModel')"
+				class="sapUiSmallMarginBottom" width="100%" editable="false" />
+			<!-- <Input value="{editKPIModel>/period}" /> -->
+
+		</HBox>
+		<HBox>
+			<Label text="Type:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+						path: 'types>/kpiTypes',
+						sorter: { path: 'Text' }
+				}"
+				selectedKey="{editKPIModel>/type}">
+				<core:ListItem key="{types>kpiType}"
+					text="{types>Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="ZR:"></Label>
+		</HBox>
+		<HBox width="100%">
+			<Input type="Text" value="{editKPIModel>/zr}" placeholder="..."
+				showValueHelp="true" class="sapUiSmallMarginBottom" width="100%"
+				valueHelpRequest="onZrValueHelpRequest($event, 'editKPIModel')"
+				editable="false" />
+			<!-- <Input value="{editKPIModel>/zr}" /> -->
+		</HBox>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+					path: '/CurrencySet',
+					sorter: { path: 'currency' }
+				}"
+				selectedKey="{editKPIModel>/currency}" change="" editable="false">
+				<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="PC I:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/pc1ytd}" />
+		</HBox>
+		<HBox>
+			<Label text="CoC:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/cocytd}" />
+		</HBox>
+		<HBox>
+			<Label text="P&amp;S:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/pandscharges}" />
+		</HBox>
+		<HBox>
+			<Label text="GE:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/genexpenses}" />
+		</HBox>
+		<HBox>
+			<Label text="PE:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/persexpenses}" />
+		</HBox>
+		<HBox>
+			<Label text="Losses:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/provlosses}" />
+		</HBox>
+		<HBox>
+			<Label text="AuM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/aum}" change="onKPIValuesChanged" />
+		</HBox>
+		<HBox>
+			<Label text="AuM (T-2):"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/aumt2}" />
+		</HBox>
+		<HBox>
+			<Label text="NNM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/nnmmtd}" />
+		</HBox>
+		<HBox>
+			<Label text="NNM (T-1):"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/nnm}" />
+		</HBox>
+		<HBox>
+			<Label text="Pool HC:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{editKPIModel>/teamhcann}" />
+		</HBox>
+		<HBox>
+			<Label text="Remark:"></Label>
+		</HBox>
+		<HBox width="100%" class="lastKPI">
+			<TextArea width="100%" height="100px"
+				value="{editKPIModel>/remark}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

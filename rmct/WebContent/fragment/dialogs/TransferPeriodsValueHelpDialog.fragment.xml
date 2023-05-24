@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog		
+		title="Select Transfer Period"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: '/TransferPeriodSet',
+			templateShareable: false,
+			parameters: {operationMode: 'Client'}
+		}"
+		search="_handleTpValueHelpSearch"
+		cancel="onGenericFragmentclose($event, '_tpValueHelpDialog')"
+		liveChange="_handleTpValueLiveChange">
+		<StandardListItem
+			title="{fiscperiodExternal}"
+			description="{desc}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

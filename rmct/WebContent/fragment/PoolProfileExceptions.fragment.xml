@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<core:Title text="Profile Exceptions" />
+	<Label text="Year" />
+	<ComboBox
+		items="{
+				path: '/YearsSet',
+				sorter: { path: 'year' }
+		}"
+		selectedKey="{global>/selectedPool/year}"
+		change="onPoolSelectedYearChanged">
+		<core:ListItem key="{year}" text="{year}" />
+	</ComboBox>
+	<Label text="Currency" />
+	<ComboBox
+		items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+		}"
+		selectedKey="{currency}"
+		change="onPoolProfileChange"
+		enabled="{= ${global>/selectedPool/poolName} !== undefined}">
+		<core:ListItem key="{currency}" text="{currency}" />
+	</ComboBox>
+	<Label text="Model" />
+	<ComboBox
+		items="{
+				path: '/CompModelSet',
+				sorter: { path: 'Text' }
+		}"
+		selectedKey="{model}"
+		change="onPoolProfileChange"
+		enabled="{= ${global>/selectedPool/poolName} !== undefined}">
+		<core:ListItem key="{Id}" text="{Text}" />
+	</ComboBox>
+	<Label text="Since" />
+	<DatePicker id="since" value="{since}"
+		displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-dd" 
+		change="onPoolProfileChange" 
+		enabled="{= ${global>/selectedPool/poolName} !== undefined}" />
+	<Label labelFor="until" text="Until" />
+	<DatePicker id="until" value="{until}"
+		displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-dd" 
+		change="onPoolProfileChange"
+		enabled="{= ${global>/selectedPool/poolName} !== undefined}" />
+	<core:Title text="" />
+</core:FragmentDefinition>

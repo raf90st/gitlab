@@ -1,0 +1,12 @@
+<c:FragmentDefinition xmlns="sap.m"
+	xmlns:c="sap.ui.core" xmlns:f="sap.f">
+	<f:ShellBar title="GMIS CDOA" class="customHeader"
+		secondTitle="Commercial Domicile Overwrite Application"
+		homeIcon="images/juliusbaer-logo.svg" showNotifications="false"
+		showProductSwitcher="true" showMenuButton="true">
+		<f:profile>
+			<f:Avatar initials="UI" displaySize="L" 
+			src="https://mysite.juliusbaer.com/User%20Photos/Profile%20Pictures/{global>/currentUser}_MThumb.jpg" />
+		</f:profile>
+	</f:ShellBar>
+</c:FragmentDefinition>

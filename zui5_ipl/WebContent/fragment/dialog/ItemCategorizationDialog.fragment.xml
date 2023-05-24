@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		noDataText="No Categories Found"
+		title="Change Categorization"
+		confirm="onCategorizationChangeConfirm"
+		cancel="onGenericFragmentclose($event, '_itemCatDialog')"
+		items="{
+			path: '/ItemCategorySet'
+		}">
+		<StandardListItem
+			title="{itemTxt}"
+			description="{item}"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

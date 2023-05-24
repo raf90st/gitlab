@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<style>
+* {
+    box-sizing: border-box;
+
+}
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+
+}
+.header {
+    background-color: rgb(102, 108, 135);
+    color: black;
+    padding: 15px;
+    text-align: center;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+.menu li {
+    margin-top: 10%;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: rgb(102, 108, 135);
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
+.aside {
+    background-color: #0099cc;
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.footer {
+    color: black;
+    text-align: center;
+    font-size: 14px;
+    padding: 15px;
+    background-color: rgb(102, 108, 135);
+}
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+    
+
+}
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+
+    #alles {
+        width: 100%;
+        height: 860px;
+        background-image: url('Arduino-Wallpaper.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+#intrinsic-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+
+}
+
+/* 16x9 Aspect Ratio */
+#intrinsic-container-16x9 {
+  padding-bottom: 56.25%;
+}
+
+/* 4x3 Aspect Ratio */
+#intrinsic-container-4x3 {
+  padding-bottom: 75%;
+}
+
+#intrinsic-container iframe {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+#voher {
+
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    
+
+}
+
+</style>
+</head>
+<body>
+
+<div id= "alles">
+        <div class="header">
+            <h1>Grillduino</h1>
+        </div>
+
+    <div class="row">
+        <div class="col-3 col-m-3 menu">
+            <ul>
+                <li class = "status"><a href = "teststatus.html" target = "iframe_a">Status</a></li>
+                <li class = "steuerung"><a href = "menu.html" target = "iframe_a">Luftsteuerung</a></li>
+                <li class = "console"><a href = "console2.html" target = "iframe_a">Konsole</a></li>
+                <li class = "timedate"><a href = "date.htm" target = "iframe_a">Zeit/Datum</a></li>
+            </ul>
+                
+        </div>
+
+            <div class="col-6 col-m-9">
+            
+                <div class="intrinsic-container">
+            
+                    <iframe src="about:blank" id="frame" name="iframe_a" width:"400" height="300" style ="border:none"></iframe>
+
+                </div>           
+
+
+            </div>
+
+    </div>
+
+            <div id= "voher"><a href = "Grillduino.html" style = "color:black;">zurück</a></div>
+
+        <div class="footer">
+            <p>Made by R.Staiger and J.Ströbel</p>
+        </div>
+
+</div>    
+</body>
+</html>

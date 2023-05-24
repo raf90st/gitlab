@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+	xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+	xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZGMIS_CDEM_SRV" xml:lang="en"
+			sap:schema-version="1"
+			xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="SelectedZR" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="zrNumber" />
+				</Key>
+				<Property Name="globalException" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="mainCountryCode" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="puID" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="pbID" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="brID" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="lastChangedAt" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="lastChangedDate" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="lastChangedBy" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="insDescription" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="comment" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="respRM" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="zrNumber" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<NavigationProperty Name="DomicilesForZR"
+					Relationship="ZGMIS_CDEM_SRV.SelectedZRtoDomicile"
+					FromRole="FromRole_SelectedZRtoDomicile"
+					ToRole="ToRole_SelectedZRtoDomicile" />
+			</EntityType>
+			<EntityType Name="CommercialDomicile"
+				sap:content-version="1">
+				<Key>
+					<PropertyRef Name="puID" />
+					<PropertyRef Name="pbID" />
+					<PropertyRef Name="brID" />
+				</Key>
+				<Property Name="businessRule" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="cdException" Type="Edm.Boolean"
+					Nullable="false" sap:unicode="false" sap:label="Indicator"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" />
+				<Property Name="isInactive" Type="Edm.Boolean"
+					Nullable="false" sap:unicode="false" sap:label="Indicator"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" />
+				<Property Name="puID" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="pbID" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="brID" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="cdCalculated" Type="Edm.Boolean"
+					Nullable="false" sap:unicode="false" sap:label="Indicator"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" />
+				<Property Name="mainCountryCode" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="mainCountry" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="role" Type="Edm.String" Nullable="false"
+					sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" />
+				<Property Name="partnerNumber" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+				<Property Name="zrNumber" Type="Edm.String"
+					Nullable="false" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+			</EntityType>
+			<Association Name="SelectedZRtoDomicile"
+				sap:content-version="1">
+				<End Type="ZGMIS_CDEM_SRV.SelectedZR" Multiplicity="1"
+					Role="FromRole_SelectedZRtoDomicile" />
+				<End Type="ZGMIS_CDEM_SRV.CommercialDomicile" Multiplicity="*"
+					Role="ToRole_SelectedZRtoDomicile" />
+				<ReferentialConstraint>
+					<Principal Role="FromRole_SelectedZRtoDomicile">
+						<PropertyRef Name="zrNumber" />
+					</Principal>
+					<Dependent Role="ToRole_SelectedZRtoDomicile">
+						<PropertyRef Name="zrNumber" />
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZGMIS_CDEM_SRV_Entities"
+				m:IsDefaultEntityContainer="true"
+				sap:supported-formats="atom json xlsx">
+				<EntitySet Name="SelectedZRSet"
+					EntityType="ZGMIS_CDEM_SRV.SelectedZR" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:pageable="false"
+					sap:addressable="false" sap:content-version="1" />
+				<EntitySet Name="CommercialDomicileSet"
+					EntityType="ZGMIS_CDEM_SRV.CommercialDomicile"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:addressable="false"
+					sap:content-version="1" />
+				<AssociationSet Name="SelectedZRtoDomicileSet"
+					Association="ZGMIS_CDEM_SRV.SelectedZRtoDomicile"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:content-version="1">
+					<End EntitySet="SelectedZRSet"
+						Role="FromRole_SelectedZRtoDomicile" />
+					<End EntitySet="CommercialDomicileSet"
+						Role="ToRole_SelectedZRtoDomicile" />
+				</AssociationSet>
+			</EntityContainer>
+			<atom:link rel="self"
+				href="http://sap-12e.juliusbaer.com:8030/sap/opu/odata/SAP/ZGMIS_CDEM_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom" />
+			<atom:link rel="latest-version"
+				href="http://sap-12e.juliusbaer.com:8030/sap/opu/odata/SAP/ZGMIS_CDEM_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom" />
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

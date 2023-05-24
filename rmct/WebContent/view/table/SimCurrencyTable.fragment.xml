@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="simCurrencyTable" rows="{global>/custSimCurrency}"
+		enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewSimCurrency" icon="sap-icon://add" />
+				<m:Button text="Copy" press="onCopyNewSimCurrency" icon="sap-icon://copy" />
+				<m:Button text="Remove" press="onDeleteNewSimCurrency" icon="sap-icon://delete" />
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'simCurrency')"
+					width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Country" sorted="true">
+				<m:Label text="Country" />
+				<template>
+					<m:Text text="{global>Country}" />
+				</template>
+			</Column>
+			<Column sortProperty="CountryTxt" sorted="true">
+				<m:Label text="Country Text" />
+				<template>
+					<m:Text text="{global>CountryTxt}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="Currency" sorted="true">
+				<m:Label text="Currency" />
+				<template>
+					<m:ComboBox
+						items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+			}"
+						selectedKey="{global>Currency}"
+						change="onSimCurrencyCustomizeChange">
+						<core:ListItem key="{currency}" text="{currency}" />
+					</m:ComboBox>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

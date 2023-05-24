@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="maintainRegionsTable" rows="{global>/mdRegions}"
+		enableSelectAll="true">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewMaintainRegion" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Key" sorted="true">
+				<m:Label text="Key" />
+				<template>
+					<m:Text text="{global>Key}" />
+				</template>
+			</Column>
+			<Column sortProperty="Text" sorted="true">
+				<m:Label text="Text" />
+				<template>
+					<m:Input value="{global>Text}" change="onMdRegionChanged"/>
+				</template>
+			</Column>
+			<Column sortProperty="Valid" sorted="true">
+				<m:Label text="Valid" />
+				<template>
+					<m:CheckBox select="onMdRegionChanged" selected="{global>Valid}"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

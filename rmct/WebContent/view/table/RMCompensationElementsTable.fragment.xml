@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table rows="{global>/compElements}" visibleRowCount="6" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="addNewCompElement"
+					icon="sap-icon://add"
+					enabled="{= ${global>/selectedRM/name} !== undefined}" />
+				<m:Button text="Remove" press="onDeleteCompElement"
+					icon="sap-icon://delete" 
+					enabled="{= ${global>/selectedRM/name} !== undefined}"/>
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column>
+				<m:Label text="Element" />
+				<template>
+					<m:Text text="{global>elementTxt}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Amount" />
+				<template>
+				<m:Input
+					type="Text"
+					value="{global>amount}" 
+					change="onCompElementChanged">
+				</m:Input>
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Currency" />
+				<template>
+				<m:Input type="Text" class="sapUiSmallMarginBottom"
+						value="{global>/compensationProfile/currency}" 
+						editable="false" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>
+						

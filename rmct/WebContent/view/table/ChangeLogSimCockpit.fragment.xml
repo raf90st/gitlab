@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="changeLogSimTable"
+		rows="{path : '/CockpitSimChangelogSet',
+		parameters: {
+			operationMode: 'Client'
+		}}"
+		visibleRowCount="6">
+		<columns>
+			<Column>
+				<m:Label text="User ID" />
+				<template>
+					<m:Text text="{unumber}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Year" />
+				<template>
+					<m:Text text="{year}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Has access" />
+				<template>
+					<m:CheckBox editable="false" selected="{hasAccess}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Has access to cockpit" />
+				<template>
+					<m:CheckBox editable="false"
+						selected="{hasAccessCockpit}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Is RM" />
+				<template>
+					<m:CheckBox editable="false" selected="{isRM}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Is RM Cockpit" />
+				<template>
+					<m:CheckBox editable="false" selected="{isRMCockpit}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Is deleted?" />
+				<template>
+					<m:Text text="{isDeleted}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Modified by" />
+				<template>
+					<m:Text text="{modBy}" />
+				</template>
+			</Column>
+			<Column>
+				<m:Label text="Modified on" />
+				<template>
+					<m:Text text="{modOn}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>
+						

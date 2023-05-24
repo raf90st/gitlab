@@ -1,0 +1,28 @@
+[
+	{
+		"type": "ZR",
+		"psflag": false,
+		"percentage": "10.00",
+		"pciflag": true,
+		"nnmflag": false,
+		"unumber": "U24303",
+		"year": "2021",
+		"cocflag": true,
+		"aumflag": false,
+		"instance": "0000000001",
+		"poolNumber": "P0002"
+	},
+	{
+		"type": "ZR",
+		"psflag": true,
+		"percentage": "20.00",
+		"pciflag": true,
+		"nnmflag": false,
+		"unumber": "U26303",
+		"year": "2021",
+		"cocflag": true,
+		"aumflag": true,
+		"instance": "0000000002",
+		"poolNumber": "P0002"
+	}
+]

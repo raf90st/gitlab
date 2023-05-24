@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="customizeCompModelsTable" rows="{global>/custCompModel}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewCustomizedCompModel" icon="sap-icon://add" />
+				<m:Button text="Copy" press="onCopyNewCustomizedCompModel" icon="sap-icon://copy"/>
+				<m:Button text="Remove" press="onDeleteNewCustomizedCompModel" icon="sap-icon://delete"/>
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'customizeCompModels')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Model" sorted="true">
+				<m:Label text="Model" />
+				<template>
+					<m:Text text="{global>Model}" />
+				</template>
+			</Column>
+			<Column sortProperty="ModelTxt" sorted="true">
+				<m:Label text="Model Text" />
+				<template>
+					<m:Text text="{global>ModelTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="Year" sorted="true">
+				<m:Label text="Effective Year" />
+				<template>
+					<m:Text text="{global>Year}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

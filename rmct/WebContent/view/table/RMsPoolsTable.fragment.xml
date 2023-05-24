@@ -1,0 +1,145 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table"
+	xmlns:chart="sap.suite.ui.microchart">
+	<Table id="manageScorecardsTable" rows="{RMSet}" class=""
+		visibleRowCount="15" busy="{global>/calculationBusy}">
+		<extension>
+			<m:OverflowToolbar>
+			<m:HBox class="scoreCardFilterBar">
+				<m:Button text="Export" press="onCsvExportToolBar" />
+				<m:SearchField id="searchForScoreCards" placeholder="Filter"
+					liveChange="filterAdvanced($event, 'scoreCards')" width="15rem" />
+				<m:MultiInput
+						id="multiInput"
+						placeholder = "Combined Filters"
+						valueHelpOnly="true"
+						valueHelpRequest="onCombinedFiltersOpen($event, 'scoreCards')"
+						tokenUpdate="onRemoveToken">
+				</m:MultiInput>
+				<m:Button text="Customize Columns" press="onCustomizeColumns"/>
+			</m:HBox>
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column visible="{global>/selectedScColumnsItems/0/visible}" width="6.5%" sortProperty="Rm" sorted="true">
+				<m:Label text="User ID" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{Rm}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/1/visible}" width="6%" sortProperty="Surname" sorted="true">
+				<m:Label text="Lastname" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{Surname}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/2/visible}" width="6%" sortProperty="Firstname" sorted="true">
+				<m:Label text="Firstname" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{Firstname}" />
+				</template>
+			</Column>
+			<Column width="6%">
+				<m:Label text="Scorecard" />
+				<template>
+					<m:Button icon="sap-icon://pdf-attachment"
+					press="openUrl(${ScorecardUrl}, true)"></m:Button>
+					<!--  <m:Link text="PDF" href="" />-->
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/3/visible}" width="4.5%" sortProperty="Pool" sorted="true">
+				<m:Label text="Pool" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{Pool}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/4/visible}" width="6%" sortProperty="PoolName" sorted="true">
+				<m:Label text="Pool Name" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{PoolName}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/5/visible}" width="6%" sortProperty="PersAreaTxt" sorted="true">
+				<m:Label text="Country" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{PersAreaTxt}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/6/visible}" width="6%" sortProperty="PersSareaTxt" sorted="true">
+				<m:Label text="Location" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{PersSareaTxt}" />
+				</template>
+			</Column>
+
+			<Column visible="{global>/selectedScColumnsItems/7/visible}" width="6%" sortProperty="RegionTxt" sorted="true">
+				<m:Label text="Region" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{RegionTxt}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/8/visible}" width="6%" sortProperty="MarketTxt" sorted="true">
+				<m:Label text="Market" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{MarketTxt}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/9/visible}" width="6%" sortProperty="ProdBegin" sorted="true">
+				<m:Label text="Prod. Begin Time" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{ProdBegin}" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/10/visible}" width="6%" sortProperty="ProdEnd" sorted="true">
+				<m:Label text="Prod. End Time" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{ProdEnd}" />
+				</template>
+			</Column>
+			<Column width="4.5%">
+				<m:Label text="Cockpit" />
+				<template>
+					<m:Link class="sapUiSmallMarginBottom" text="Cockpit" 
+					press="openUrl(${CockpitUrl}, true)" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/11/visible}" width="6%" sortProperty="RequestId" sorted="true">
+				<m:Label text="Scorecard Approval ID" />
+				<template>
+					<m:Link class="sapUiSmallMarginBottom" text="{RequestId}"
+						press="navToWorkflowApplication" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/12/visible}" width="10%" sortProperty="RequestStatusText" sorted="true">
+				<m:Label text="Workflow Status" />
+				<template>
+         			<!--  <chart:BulletMicroChart class="microChart"
+						size="XS" scale="M" minValue="0" maxValue="1"
+						showValueMarker="false" showTargetValue="false">
+						<chart:actual>
+							<chart:BulletMicroChartData
+								value="0.25" class="capTableText"
+								color="Good" />
+						</chart:actual>
+					</chart:BulletMicroChart>-->
+					<m:Text text="{RequestStatusText}" wrapping="false" renderWhitespace="false"></m:Text>
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/13/visible}" width="3%" sortProperty="RequestIsLocked" sorted="true">
+				<m:Label text="Locked?" />
+				<template>
+					<m:CheckBox selected="{RequestIsLocked}"
+						editable="false" />
+				</template>
+			</Column>
+			<Column visible="{global>/selectedScColumnsItems/14/visible}" width="5%" sortProperty="LatestPayoutMonth" sorted="true">
+				<m:Label text="Latest Payout" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{path: 'LatestPayoutMonth',
+					formatter: '.formatter.formatLatestPayoutDateSC'}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+	
+</core:FragmentDefinition>

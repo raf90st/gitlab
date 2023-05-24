@@ -1,0 +1,23 @@
+[
+	{
+		"Id": "X00001",
+		"Name": "Wu Xiang",
+		"MarketTxt": "Emerging Asia",
+		"RegionTxt": "Region Asia Pacific (CA)",
+		"StatusTxt": "Hired"
+	},
+	{
+		"Id": "X00002",
+		"Name": "Shubidu",
+		"MarketTxt": "Panama",
+		"RegionTxt": "Region Americas (CM)",
+		"StatusTxt": "Declined"
+	},
+	{
+		"Id": "X00003",
+		"Name": "Vincent Lee",
+		"MarketTxt": "Panama",
+		"RegionTxt": "Region Americas (CM)",
+		"StatusTxt": "Hired"
+	}
+]

@@ -1,0 +1,47 @@
+[
+	{
+		"unumber": "U12101",
+		"name": "Germain Christophe",
+		"accessSim": false,
+		"accessCockpit": true,
+		"isRM": false,
+		"isRMCockpit": true,
+		"year": "2019"
+	},
+	{
+		"unumber": "U21069",
+		"name": "Chandarpal Arianne",
+		"accessSim": false,
+		"accessCockpit": true,
+		"isRM": false,
+		"isRMCockpit": true,
+		"year": "2020"
+	},
+	{
+		"unumber": "U21191",
+		"name": "Chen Xin Xin",
+		"accessSim": false,
+		"accessCockpit": true,
+		"isRM": false,
+		"isRMCockpit": true,
+		"year": "2021"
+	},
+	{
+		"unumber": "U21193",
+		"name": "Chia Kai Lun",
+		"accessSim": true,
+		"accessCockpit": true,
+		"isRM": true,
+		"isRMCockpit": true,
+		"year": "2018"
+	},
+	{
+		"unumber": "U21225",
+		"name": "Caviness George",
+		"accessSim": false,
+		"accessCockpit": false,
+		"isRM": false,
+		"isRMCockpit": false,
+		"year": "2019"
+	}
+]

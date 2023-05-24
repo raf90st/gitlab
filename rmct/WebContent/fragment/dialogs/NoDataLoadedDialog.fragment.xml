@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="noDataId" title="No Data for selection Available"
+		afterClose="noDataAfterclose" contentWidth="30%">
+		<beginButton>
+			<Button text="New Profile" press="onCreateNewRmProfile"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="onNewProfileCancel"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Year" />
+		</HBox>
+		<HBox>
+			<ComboBox id="RMSelectedYear"
+				items="{
+					path: '/YearsSet',
+					sorter: { path: 'year' }
+				}"
+				selectedKey="{newCompProfile>/year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Currency" />
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+					path: '/CurrencySet',
+					sorter: { path: 'currency' }
+				}"
+				selectedKey="{newCompProfile>/currency}">
+				<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Model" />
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+					path: '/CompModelSet',
+					sorter: { path: 'Text' }
+				}"
+				selectedKey="{newCompProfile>/model}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

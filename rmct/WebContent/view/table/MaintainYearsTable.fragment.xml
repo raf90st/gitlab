@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="maintainYearsTable" rows="{global>/mdYears}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewMaintainYear" />
+				<m:Button text="Remove" press="onRemoveMaintainYear" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Year" sorted="true">
+				<m:Label text="Year" />
+				<template>
+					<m:Text text="{global>Year}" />
+				</template>
+			</Column>
+			<Column sortProperty="Valid" sorted="true">
+				<m:Label text="Valid" />
+				<template>
+					<m:CheckBox select="onMdYearSelected" selected="{global>Default}"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

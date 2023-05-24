@@ -1,0 +1,82 @@
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+
+<style>
+    #auswahl {
+        text-align: center;
+        font-size: 15px;
+        font-family: sans-serif;
+    }
+
+</style>
+
+<script language="JavaScript"><!--
+function onClick() {
+  var Current =
+    document.formName4.selectName4.selectedIndex;
+  document.formName4.currentText4.value =
+    document.formName4.selectName4.options[Current].text;
+  document.formName4.currentValue4.value =
+    document.formName4.selectName4.options[Current].value;
+}
+//--></script>
+</head>
+
+<body><br><br><br><br>
+<div id="auswahl">
+
+<form
+  name="formName4"
+  onSubmit="return false;"
+>
+<select
+  name="selectName4"
+>
+<option
+  value="Option viertel offen"
+>
+0.25 
+<option
+  value="Option halb offen"
+>
+0.5
+<option
+  value="Option dreiviertel offen"
+>
+0.75
+<option
+  value="Option voll offen"
+>
+1
+</option>
+</select>
+<input
+  name="submitName4"
+  type="submit"
+  value="Eingabe"
+  onClick="onClick();return false;"
+>
+<input
+  name="resetName4"
+  type="reset"
+  value="Löschen"
+>
+<br><br><br>
+Auswahl:
+<input
+  name="currentText4"
+  type="text"
+  value=""
+><br><br><br>
+Neuer Status:
+<input
+  name="currentValue4"
+  type="text"
+  value=""
+>
+</form>
+</div>
+
+</body>

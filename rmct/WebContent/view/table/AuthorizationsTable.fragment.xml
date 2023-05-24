@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="authorizationsTable" rows="{global>/authorize}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewAuthorization" />
+				<m:Button text="Remove" press="onRemoveAuthorization" />
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'authTable')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="User" sorted="true">
+				<m:Label text="U-Nummer" />
+				<template>
+					<m:Text text="{global>User}" />
+				</template>
+			</Column>
+			<Column sortProperty="Entity" sorted="true">
+				<m:Label text="Entity Object" />
+				<template>
+					<m:Text text="{= ${global>Entity} === 'ZRMPC2' ? 'Profit Center' : 'Organizational Unit'}" />
+				</template>
+			</Column>
+			<Column sortProperty="Value" sorted="true">
+				<m:Label text="Entity Value" />
+				<template>
+					<m:Text text="{global>Value}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

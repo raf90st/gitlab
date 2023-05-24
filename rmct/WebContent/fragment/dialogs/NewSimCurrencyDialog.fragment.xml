@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Sim Currency" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newSimCurrencyDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewSimCurrency"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Country:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+				path: '/CountryPayoutCurveSet',
+				sorter: { path: 'Text' }
+					}"
+				selectedKey="{newSimCurrency>/Country}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+				}"
+				selectedKey="{newSimCurrency>/Currency}">
+				<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

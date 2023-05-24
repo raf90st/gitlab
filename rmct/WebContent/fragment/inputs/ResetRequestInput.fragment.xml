@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox>
+		<Label text="Request:"></Label>
+	</HBox>
+	<HBox>
+		<Input type="Text" value="{global>/resetRequest/requestId}"
+			width="100%">
+		</Input>
+	</HBox>
+	<HBox>
+		<Label text="New Status"></Label>
+	</HBox>
+	<HBox>
+		<ComboBox
+			items="{
+				path: '/RequestStatusSet',
+				sorter: { path: 'Text' }
+					}"
+			selectedKey="{global>/resetRequest/statusId}">
+			<core:ListItem key="{Id}" text="{Text}" />
+		</ComboBox>
+	</HBox>
+	<HBox>
+		<Label text="Reset Comments"></Label>
+		<CheckBox selected="{global>/resetRequest/resetComments}" />
+	</HBox>
+</core:FragmentDefinition>

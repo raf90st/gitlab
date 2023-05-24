@@ -1,0 +1,46 @@
+<mvc:View
+	controllerName="juliusbaer.rmct.controller.settings.Report"
+	xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout">
+	<m:Page showHeader="{device>/system/phone}"
+		showNavButton="{device>/system/phone}"
+		navButtonPress=".onNavButtonPress"
+		busy="{global>/selectedReport/busyWithCsv}">
+		<ObjectPageLayout id="objectPageLayout"
+			showTitleInHeaderContent="true" upperCaseAnchorBar="true">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle class="dynamicHeader">
+					<content>
+						<core:Fragment
+							fragmentName="juliusbaer.rmct.fragment.inputs.ReportInput"
+							type="XML" />
+					</content>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<sections>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection
+							title="Reports">
+							<blocks>
+								<ObjectPageLazyLoader>
+									<f:SimpleForm title="" columnsL="1" columnsM="1"
+										editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+										<m:VBox id="downloadArea">
+										<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.ReportDownloadLinksList"
+												type="XML" />
+										</m:VBox>
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

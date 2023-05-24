@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="customizeCompParamsTable" rows="{global>/custCompParams}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewCustCompParam" icon="sap-icon://add" />
+				<m:Button text="Copy" press="onCopyNewCustCompParam" icon="sap-icon://copy"/>
+				<m:Button text="Remove" press="onDeleteNewCustCompParam" icon="sap-icon://delete"/>
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'customizeCompParams')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Parameter" sorted="true">
+				<m:Label text="Parameter" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>Parameter}" />
+				</template>
+			</Column>
+			<Column sortProperty="ParameterTxt" sorted="true">
+				<m:Label text="Parameter Text" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>ParameterTxt}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="Year" sorted="true">
+				<m:Label text="Effective Year" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>Year}" />
+				</template>
+			</Column>
+			<Column sortProperty="EntityObject" sorted="true">
+				<m:Label text="Entity Object" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>EntityObject}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="EntityObjectTxt" sorted="true">
+				<m:Label text="Entity Object Text" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>EntityObjectTxt}"></m:Text>	
+				</template>
+			</Column>
+			<Column sortProperty="EntityValue" sorted="true">
+				<m:Label text="Entity Value" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>EntityValue}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="EntityValueTxt" sorted="true">
+				<m:Label text="Entity Value Text" />
+				<template>
+					<m:Text wrapping="false" renderWhitespace="false" text="{global>EntityValueTxt}"></m:Text>	
+				</template>
+			</Column>
+			<Column sortProperty="PrioritySeqNr" sorted="true">
+				<m:Label text="Priority" />
+				<template>
+					<m:Input
+					type="Text"
+					value="{global>PrioritySeqNr}" 
+					change="onCompParamsCustomizeChange"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="Value" sorted="true">
+				<m:Label text="Value" />
+				<template>
+					<m:Input
+					type="Text"
+					value="{global>Value}" 
+					change="onCompParamsCustomizeChange"></m:Input>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

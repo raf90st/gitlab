@@ -1,0 +1,136 @@
+{
+	"navigation": [
+		{
+			"title": "Profile",
+			"icon": "sap-icon://customer",
+			"expanded": true,
+			"key": "profile",
+			"items": [
+				{
+					"title": "RM",
+					"key": "rm"
+				},
+				{
+					"title": "Pool",
+					"key": "pool"
+				}
+			]
+		},
+		{
+			"title": "Production",
+			"icon": "sap-icon://factory",
+			"expanded": true,
+			"key": "masterSettings",
+			"items": [
+				{
+					"title": "Calculation / Scorecard",
+					"key": "calcscorecard"
+				},
+				{
+					"title": "Sim. Tool",
+					"key": "simTool"
+				}
+			]
+		},
+		{
+			"title": "Reports",
+			"icon": "sap-icon://manager-insight",
+			"expanded": true,
+			"key": "reports",
+			"items": [
+				{
+					"title": "Maintain Transferred Accounts",
+					"key": "mainITA"
+				}
+			]
+		},
+		{
+			"title": "Customizing",
+			"icon": "sap-icon://customize",
+			"expanded": true,
+			"key": "customizing",
+			"items": [
+				{
+					"title": "Compensation Models",
+					"key": "compmodels"
+				},
+				{
+					"title": "Compensation Parameters",
+					"key": "compparams"
+				},
+				{
+					"title": "Payout Curves",
+					"key": "payoutCurves"
+				},
+				{
+					"title": "Growth Rates",
+					"key": "growthRates"
+				},
+				{
+					"title": "Simulation Currency",
+					"key": "simCurrency"
+				},
+				{
+					"title": "Growth Rate - Absolute Grid",
+					"key": "growthRateAbs"
+				},
+				{
+					"title": "First Sim. Year per Country",
+					"key": "simYearPerCountry"
+				}
+			]
+		},
+		{
+			"title": "Administration",
+			"icon": "sap-icon://key-user-settings",
+			"expanded": true,
+			"key": "administration",
+			"items": [
+				{
+					"title": "Copy Profiles",
+					"key": "copyprofiles"
+				},
+				{
+					"title": "Cleanup Profiles",
+					"key": "cleanup"
+				},
+				{
+					"title": "Master Data",
+					"key": "masterdata"
+				},
+				{
+					"title": "Release",
+					"key": "release"
+				},
+				{
+					"title": "Authorizations",
+					"key": "authorizations"
+				},
+				{
+					"title": "Reset Request",
+					"key": "reset"
+				},
+				{
+					"title": "E-Mail Text",
+					"key": "email"
+				},
+				{
+					"title": "Access Rights Mgmt",
+					"key": "simcockpit"
+				}
+			]
+		}
+	],
+	"fixedNavigation": [
+		{
+			"title": "Important Links",
+			"icon": "sap-icon://chain-link",
+			"key": "Important Links was pressed"
+		},
+		{
+			"title": "Legal",
+			"icon": "sap-icon://compare",
+			"key": "Legal was pressed"
+		}
+	]
+}

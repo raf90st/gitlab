@@ -1,0 +1,117 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog class="poolDialog" id="newPoolCaseDialog" title="Add Pool"
+		contentWidth="35%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onNewPoolCancel"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" type="Emphasized"
+			enabled="{global>/poolWizardData/finishButtonVisible}" press="onSaveNewPool" />
+		</endButton>
+		<HBox>
+			<Label text="Pool ID" required="true" />
+		</HBox>
+		<HBox width="100%">
+			<Input id="poolId" value="{newPool>/poolNumber}" editable="false" />
+		</HBox>
+		<HBox>
+			<Label text="Pool Name" />
+		</HBox>
+		<HBox width="100%">
+			<Input id="poolName" valueState="{global>/poolWizardData/poolNameState}" 
+			liveChange="additionalInfoValidation" 
+			valueStateText="Please Enter Pool Name" value="{newPool>/poolName}" />
+		</HBox>
+		<VBox>
+			<HBox>
+				<Label text="Year" />
+			</HBox>
+			<HBox width="100%">
+				<ComboBox
+					width="100%"
+					id="poolYear" 
+					valueStateText="Select Year"
+						items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+						}"
+						selectedKey="{newPoolProfile>/year}">
+						<core:ListItem key="{year}" text="{year}" />
+				</ComboBox>
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="Region" />
+			</HBox>
+			<HBox width="100%">
+				<ComboBox
+					width="100%"
+					id="poolRegion" valueState="{global>/poolWizardData/poolRegionState}" 
+					selectionChange="additionalInfoValidation" 
+					valueStateText="Select Region"
+						items="{
+							path: '/RegionSet',
+							sorter: { path: 'Text' }
+						}"
+						selectedKey="{newPoolProfile>/Region}">
+						<core:ListItem key="{Id}" text="{Text}" />
+				</ComboBox>
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="Market" />
+			</HBox>
+			<HBox width="100%">
+				<ComboBox
+					width="100%"
+					id="poolMarket" valueState="{global>/poolWizardData/poolMarketState}" 
+					selectionChange="additionalInfoValidation" 
+					valueStateText="Select Market"
+					items="{
+							path: '/MarketSet',
+							sorter: { path: 'Text' }
+					}"
+					selectedKey="{newPoolProfile>/Market}">
+					<core:ListItem key="{Id}" text="{Text}" />
+				</ComboBox>
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="Location" />
+			</HBox>
+			<HBox width="100%">
+				<Input id="poolLocation" type="Text" value="{newPoolProfile>/PersSareaTxt}"
+				showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.LocationsValueHelpDialog%_locationsValueHelpDialog')" 
+				valueState="{global>/poolWizardData/poolLocationState}"
+				class="sapUiSmallMarginBottom"
+				width="100%"
+				valueStateText="Please Select Location"/>
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="Legal Entity" />
+			</HBox>
+			<HBox width="100%">
+				<ComboBox
+					width="100%"
+					id="poolLegalEntity" valueState="{global>/poolWizardData/poolLegalEntityState}" 
+					selectionChange="additionalInfoValidation" 
+					valueStateText="Please Select Legal Entity"
+						items="{
+							path: '/LegalEntitySet',
+							sorter: { path: 'Text' }
+						}"
+						selectedKey="{newPoolProfile>/LegalEntity}">
+						<core:ListItem key="{Id}" text="{Text}" />
+				</ComboBox>
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

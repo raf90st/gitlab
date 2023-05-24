@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:layout="sap.ui.layout" xmlns:t="sap.ui.table">
+	<Dialog id="wizardDialog" showHeader="false" class="noPadding"
+		verticalScrolling="false" contentHeight="90%" contentWidth="80%">
+		<f:DynamicPage stickySubheaderProvider="RM Wizard"
+			toggleHeaderOnTitleClick="false" class="sapUiNoContentPadding"
+			showFooter="true">
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Pool Wizard" />
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+			<f:content>
+				<Wizard id="poolWizard"
+					class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+					showNextButton="false">
+					<WizardStep id="PoolBasicInfoStep" title="New Pool"
+						validated="true" activate="">
+						<form:SimpleForm editable="true">
+							<Label text="Pool ID" required="true" />
+							<Input id="poolId" value="{newPool>/poolNumber}" editable="false" />
+							<Label text="Pool Name" />
+							<Input id="poolName" valueState="{global>/poolWizardData/poolNameState}" 
+							liveChange="additionalInfoValidation" 
+							valueStateText="Enter Pool Name" value="{newPool>/poolName}" />
+							<Label text="Year" />
+							<ComboBox
+							id="poolYear" 
+							selectionChange="additionalExceptionsValidation" valueStateText="Select Year"
+								items="{
+									path: '/YearsSet',
+									sorter: { path: 'year' }
+								}"
+								selectedKey="{newPoolProfile>/year}">
+								<core:ListItem key="{year}" text="{year}" />
+							</ComboBox>
+							<Label text="Region" />
+							<ComboBox
+							id="poolRegion" valueState="{global>/poolWizardData/poolRegionState}" selectionChange="additionalInfoValidation" valueStateText="Select Region"
+								items="{
+												path: '/RegionSet',
+												sorter: { path: 'Text' }
+												}"
+								selectedKey="{newPoolProfile>/Region}">
+								<core:ListItem key="{Id}" text="{Text}" />
+							</ComboBox>
+							<Label text="Market" />
+							<ComboBox
+							id="poolMarket" valueState="{global>/poolWizardData/poolMarketState}" selectionChange="additionalInfoValidation" valueStateText="Select Market"
+								items="{
+												path: '/MarketSet',
+												sorter: { path: 'Text' }
+												}"
+								selectedKey="{newPoolProfile>/Market}">
+								<core:ListItem key="{Id}" text="{Text}" />
+							</ComboBox>
+							<Label text="Location" />
+							<Input id="poolLocation" type="Text" value="{newPoolProfile>/PersSareaTxt}"
+							showValueHelp="true" valueHelpOnly="true"
+							valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.LocationsValueHelpDialog%_locationsValueHelpDialog')" 
+							valueState="{global>/poolWizardData/poolLocationState}"
+							class="sapUiSmallMarginBottom"
+							width="100%"
+							valueStateText="Select Location"/>
+							<!--  <ComboBox
+							id="poolLocation" valueState="{global>/poolWizardData/poolLocationState}" selectionChange="additionalInfoValidation" valueStateText="Select Location"
+								items="{
+												path: '/LocationSet',
+												sorter: { path: 'Text' },
+												parameters: {operationMode: 'Client'}
+												}"
+								selectedKey="{newPoolProfile>/PersArea}">
+								<core:ListItem key="{Id}" text="{Text}" />
+							</ComboBox> -->
+							<Label text="Legal Entity" />
+							<ComboBox
+							id="poolLegalEntity" valueState="{global>/poolWizardData/poolLegalEntityState}" selectionChange="additionalInfoValidation" valueStateText="Select Legal Entity"
+								items="{
+												path: '/LegalEntitySet',
+												sorter: { path: 'Text' }
+												}"
+								selectedKey="{newPoolProfile>/LegalEntity}">
+								<core:ListItem key="{Id}" text="{Text}" />
+							</ComboBox>
+						</form:SimpleForm>
+					</WizardStep>
+				</Wizard>
+			</f:content>
+			<f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer />
+					<Button text="Finish" type="Emphasized"
+						visible="{global>/poolWizardData/finishButtonVisible}" press="handleWizardSubmit" />
+					<Button text="Cancel" type="Transparent"
+						press="handleWizardCancel" />
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+	</Dialog>
+</core:FragmentDefinition>

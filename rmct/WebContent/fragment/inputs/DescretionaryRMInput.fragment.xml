@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar class="rmToolbar">
+	<content>
+		<HBox class="rmToolbarWrapper">
+		<items>
+		<HBox class="rmInputWrapper">
+		<Input id="rmInput" type="Text" value="" placeholder="..."
+			showValueHelp="true" valueHelpOnly="true"
+			valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.userValueHelpDialog%_usersValueHelpDialog')" class="sapUiSmallMarginBottom"
+			width="15rem" />
+		<Text text="" renderWhitespace="true" />
+		<Button text="" press="" icon="sap-icon://account" />
+		<Button text="Documents" press="" icon="sap-icon://open-folder" />
+		<Button text="Business Case" press="" />
+		</HBox>
+		</items>
+		</HBox>
+	</content>
+
+	</Toolbar>
+</core:FragmentDefinition>
+

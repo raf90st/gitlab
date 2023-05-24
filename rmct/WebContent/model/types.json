@@ -1,0 +1,24 @@
+{
+	"kpiTypes": [
+		{
+			"kpiType": "00",
+			"Text": "Cockpit & Sim. Tool"
+		},
+		{
+			"kpiType": "01",
+			"Text": "Sim. Tool only"
+		},
+		{
+			"kpiType": "02",
+			"Text": "Cockpit only"
+		}
+	],
+	"ltdKpiRec": [
+		{
+			"ltdKpiRecType": "RM"
+		},
+		{
+			"ltdKpiRecType": "ZR"
+		}
+	]
+}

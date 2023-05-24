@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar class="rmToolbar">
+	<content>
+		<HBox class="rmToolbarWrapper">
+		<items>
+		<HBox class="scoreCardInputWrapper">
+		<Label text="Period:"></Label>
+		<ComboBox
+		items="{
+			path: '/LoadingPeriodSimSet',
+			sorter: { path: 'Fiscper' }
+		}"
+		selectedKey="{global>/simToolPeriod}" change="onFiscalPeriodChange">
+		<core:ListItem key="{Fiscper}" text="{Text}" />
+		</ComboBox>
+		</HBox>
+		</items>
+		</HBox>
+	</content>
+
+	</Toolbar>
+</core:FragmentDefinition>

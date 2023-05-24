@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Javascript Date Time Picker Demo Page</title>
+    <script src="datetimepicker_css.js"></script>
+<style>
+#knopf {
+
+	font-size: 15px;
+	text-align: center;
+
+}
+
+#done {
+	color:#FF007F;
+	font-style:sans-serif;
+	text-align: center;
+	font-size: 17px;
+	padding: 0px;
+}
+
+</style>
+
+<script>
+function speichern() {
+    document.getElementById("erfolg").innerHTML = "Datum gespeichert!"; 
+}
+</script>
+
+</head>
+
+<body><br>
+    <div style="text-align:center; margin:50px auto 100px auto;font-size:15px;">
+        <label for="demo2">Datum und Uhrzeit auswählen &gt;&gt;</label>
+        <input type="Text" id="demo2" maxlength="25" size="25"/>
+        <img src="images2/cal.gif" onclick="javascript:NewCssCal ('demo2','ddMMyyyy','dropdown',true,'24',true)" 	  style="cursor:pointer"/>
+    </div>
+
+
+<div id="knopf">
+
+<button type="button" onclick="speichern()">Speichern</button>
+
+</div>
+
+<div id="done">
+<p id="erfolg"></p>
+</div>
+
+</body>
+</html>

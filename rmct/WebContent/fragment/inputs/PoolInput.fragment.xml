@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar class="rmToolbar">
+	<content>
+		<HBox class="rmToolbarWrapper">
+		<items>
+		<HBox class="poolInputWrapper">
+		<Input id="poolInput" type="Text" value="{global>/selectedPool/poolNumber}"
+			showValueHelp="true" valueHelpOnly="true"
+			change='OnPoolDataChange'
+			valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.PoolValueHelpDialog%_poolValuehelpDialog')" 
+			class="sapUiSmallMarginBottom" />
+		<Input value="{poolName}" editable="true" width="17rem" change='onPoolProfileChange' enabled="{= ${global>/selectedPool/poolName} !== undefined}" />
+		<Label text="Location:"></Label>
+		<Input type="Text" value="{PersSareaTxt}"
+				change='onPoolProfileChange'
+				showValueHelp="true" valueHelpOnly="true"
+				enabled="{= ${global>/selectedPool/poolName} !== undefined}"
+				valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.LocationsValueHelpDialog%_locationsValueHelpDialogPoolUpdate')" />
+		<Label text="Legal Entity:"></Label>
+		<ComboBox items="{
+							path: '/LegalEntitySet',
+							sorter: { path: 'Text' }
+						}"
+				change='onPoolProfileChange'
+				selectedKey="{LegalEntity}"
+				enabled="{= ${global>/selectedPool/poolName} !== undefined}">
+				<core:ListItem key="{Id}" text="{Text}" />
+		</ComboBox>
+		</HBox>
+			<HBox class="actionButtons">
+			<Button text="Create" icon="sap-icon://document" press="onCreateNewPool"/>
+		</HBox>
+		</items>
+		</HBox>
+	</content>
+
+	</Toolbar>
+</core:FragmentDefinition>
+

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+		<Label text="Proc. Month:"></Label>
+		<Input value="01.2021" editable="false" width="10em"></Input>
+		<Label text="Proc. Week:"></Label>
+		<Input value="04.2021" editable="false" width="10em"></Input>
+</core:FragmentDefinition>

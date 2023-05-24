@@ -1,0 +1,96 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="poolTranferredAccountId" rows="{PoolTransferredAccounts}" enableSelectAll="false"
+		selectionMode="Single" busy="{global>/poolITABusy}">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add"
+					press="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.NewPoolTransferredAccountsDialog%_newPoolTransferredAccountsDialog')"
+					icon="sap-icon://add" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="zr" sorted="true">
+				<m:Label text="ZR" />
+				<template>
+					<m:Text text="{zr}" />
+				</template>
+			</Column>
+			<Column sortProperty="newRm" sorted="true">
+				<m:Label text="New RM" />
+				<template>
+					<m:Text text="{newrm}" />
+				</template>
+			</Column>
+			<Column sortProperty="newName" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text text="{newname}" />
+				</template>
+			</Column>
+			<Column sortProperty="region" sorted="true">
+				<m:Label text="Region" />
+				<template>
+					<m:Text text="{RegionTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="market" sorted="true">
+				<m:Label text="Market" />
+				<template>
+					<m:Text text="{MarketTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="legal" sorted="true">
+				<m:Label text="Legal" />
+				<template>
+					<m:Text text="{LegalEntityTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="orgRm" sorted="true">
+				<m:Label text="Original RM" />
+				<template>
+					<m:Text text="{orgrm}" />
+				</template>
+			</Column>
+			<Column sortProperty="orgName" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text text="{orgname}" />
+				</template>
+			</Column>
+			<Column sortProperty="itaFlag" sorted="false">
+				<m:Label text="ITA" />
+				<template>
+					<m:CheckBox selected="{itaflag}" 
+					select="onPoolItaModified" />
+				</template>
+			</Column>
+			<Column sortProperty="bofFlag" sorted="false">
+				<m:Label text="BOF Exception" />
+				<template>
+					<m:CheckBox selected="{bofflag}" 
+					select="onPoolItaModified" />
+				</template>
+			</Column>
+			<Column sortProperty="transferPeriod" sorted="true">
+				<m:Label text="Transfer Period" />
+				<template>
+					<m:Input id="tAPoolPeriod" type="Text"
+						value="{periodExt}"
+						placeholder="..." showValueHelp="true"
+						valueHelpRequest="onTransferPeriodHelpRequest($event, 'modPoolITA')"
+						class="sapUiSmallMarginBottom" width="100%"
+						change="onPoolItaModified" />
+					<!-- <m:Input value="{global>period}" select="onItaModified"/> -->
+				</template>
+			</Column>
+			<Column sortProperty="ItaUntilExt" sorted="true">
+				<m:Label text="Inherited Until End Of" />
+				<template>
+					<m:Text text="{ItaUntilExt}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

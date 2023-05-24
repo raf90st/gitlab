@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="milestoneTable" rows="{global>/milestones}"
+		enableSelectAll="false" selectionMode="Single" rowSelectionChange="onMilestoneRowSelected">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewMilestone" icon="sap-icon://add" />
+				<m:Button text="Remove" visible="{global>/milestoneButtonsVisible}" press="onMilestoneDelete" icon="sap-icon://delete" />
+				<m:Button text="Change" visible="{global>/milestoneButtonsVisible}" press="onMilestoneChange" icon="sap-icon://edit" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Id" sorted="true">
+				<m:Label text="Milestone" />
+				<template>
+					<m:Text text="{global>Id}" />
+				</template>
+			</Column>
+			<Column sortProperty="AmountMilestone" sorted="true">
+				<m:Label text="Milestone Amount" />
+				<template>
+					<m:Text text="{global>AmountMilestone}" />
+				</template>
+			</Column>
+			<Column sortProperty="AmountFinal" sorted="true">
+				<m:Label text="Final Amount" />
+				<template>
+					<m:Text text="{global>AmountFinal}"/>
+				</template>
+			</Column>
+			<Column sortProperty="currency" sorted="true">
+				<m:Label text="Currency" />
+				<template>
+					<m:ComboBox
+						items="{
+							path: '/CurrencySet',
+							sorter: { path: 'currency' }
+						}"
+						selectedKey="{global>/Currency}" editable="false">
+						<core:ListItem key="{currency}" text="{currency}" />
+					</m:ComboBox>
+				</template>
+			</Column>
+			<Column sortProperty="Passed" sorted="true">
+				<m:Label text="Passed" />
+				<template>
+					<m:CheckBox selected="{global>Passed}" select="onMilestoneCheckboxSelected"/>
+				</template>
+			</Column>
+			<Column sortProperty="Exception" sorted="true">
+				<m:Label text="Exception" />
+				<template>
+					<m:CheckBox selected="{global>Exception}" select="onMilestoneCheckboxSelected" />
+				</template>
+			</Column>
+			<Column sortProperty="year" sorted="true">
+				<m:Label text="Accrual Year" />
+				<template>
+					<m:Text text="{global>year}" />
+				</template>
+			</Column>
+			<Column sortProperty="PeriodExt" sorted="true">
+				<m:Label text="Measurement Period" />
+				<template>
+					<m:Text text="{global>PeriodExt}" width="100%" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+	
+	<Table id="milestoneConditionsTable"
+		selectionMode="Single" enableSelectAll="false" rowSelectionChange="onMilestoneConditionRowSelected">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" visible="{global>/milestoneButtonsVisible}" press="onAddNewMilestoneCondition" icon="sap-icon://add" />
+				<m:Button text="Remove" visible="{global>/conditionVisible}" press="onMilestoneConditionDelete" icon="sap-icon://delete" />
+				<m:Button text="Change" visible="{global>/conditionVisible}" press="onMilestoneConditionChange" icon="sap-icon://edit" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Condition" sorted="true">
+				<m:Label text="Condition" />
+				<template>
+					<m:Text text="{Condition}" />
+				</template>
+			</Column>
+			<Column sortProperty="Description" sorted="true">
+				<m:Label text="Description" />
+				<template>
+					<m:Text text="{Description}"/>
+				</template>
+			</Column>
+			
+			<Column sortProperty="Passed" sorted="true">
+				<m:Label text="Passed?" />
+				<template>
+					<m:CheckBox selected="{Passed}" select="onMilestoneConditionCheckboxSelected"/>
+				</template>
+			</Column>
+			
+			<Column sortProperty="Exception" sorted="true">
+				<m:Label text="Exception?" />
+				<template>
+					<m:CheckBox selected="{Exception}" select="onMilestoneConditionCheckboxSelected" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+	
+</core:FragmentDefinition>

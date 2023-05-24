@@ -1,0 +1,112 @@
+<mvc:View
+	controllerName="juliusbaer.rmct.controller.settings.RM"
+	xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout">
+	<m:Page showHeader="{device>/system/phone}"
+		showNavButton="{device>/system/phone}"
+		navButtonPress=".onNavButtonPress"
+		busy="{global>/compProfileBusy}">
+		<ObjectPageLayout id="objectPageLayout"
+			showTitleInHeaderContent="true" upperCaseAnchorBar="true" showAnchorBar="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle
+					class="dynamicHeader">
+					<content>
+						<core:Fragment
+							fragmentName="juliusbaer.rmct.fragment.inputs.RMInput" type="XML" />
+					</content>
+					<content>
+						<core:Fragment
+							fragmentName="juliusbaer.rmct.fragment.buttons.RMButtonsBar" type="XML" />
+					</content>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<sections>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="CompProfileId"
+							title="Compensation Profile">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CompProfileLazyLoader">
+									<f:SimpleForm title="" columnsL="2" columnsM="2"
+										editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.RMCompensationProfile"
+												type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="ComParamtersId"
+							title="Compensation Parameters">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CompParametersLazyLoader">
+									<f:SimpleForm title="" columnsL="2" columnsM="2"
+										editable="true" layout="ResponsiveGridLayout">
+										<core:Title text="Compensation Parameters" />
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.view.table.RMCompensationParamsTable"
+												type="XML" />
+										</f:content>
+										<core:Title text="Compensation Elements" />
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.view.table.RMCompensationElementsTable"
+												type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="ContactsId"
+							title="Approving Manager (Scorecard)">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="ContactsLazyLoader">
+									<f:SimpleForm class="formManager" columnsL="1"
+										columnsM="1" editable="true" layout="ResponsiveGridLayout">
+										<core:Title text="" />
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.RMContacts"
+												type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="CorrespondanceId"
+							title="Notes &amp; SC Comments">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="CorrespondancesLazyLoader">
+									<core:Fragment
+										fragmentName="juliusbaer.rmct.fragment.forms.NotesCommentsForm"
+										type="XML" />
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

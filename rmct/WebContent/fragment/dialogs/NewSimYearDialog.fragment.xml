@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add First Sim. Year per Country" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newSimYearDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewSimYear"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Country"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/CountryPayoutCurveSet',
+							sorter: { path: 'Text' }
+					}"
+				selectedKey="{newSimYear>/Country}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newSimYear>/Year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

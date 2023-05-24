@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog	
+		id="custEntityValueHelp"	
+		title="Select Entry"
+		class="sapUiPopupWithPadding"
+		search="_handleLocationValueHelpSearch"
+		confirm="onCustEntitySelected"
+		cancel="onGenericFragmentclose($event, '_custEntityValueHelpDialog')"
+		liveChange="_handleLocationValueLiveChange">
+		<!--  <StandardListItem
+			title="{Text}"
+			description="{Id}"/> -->
+	</SelectDialog>
+</core:FragmentDefinition>

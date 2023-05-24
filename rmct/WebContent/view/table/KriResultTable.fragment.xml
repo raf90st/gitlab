@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="kriResultTable" rows="{global>/kriResult}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="TopicTxt" sorted="true">
+				<m:Label text="Topic" />
+				<template>
+					<m:Text text="{global>TopicTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="TrafficLightColor" sorted="true">
+				<m:Label text="Traffic Light" />
+				<template>
+					<core:Icon src="{global>TrafficLightIcon}"
+						color="{global>TrafficLightColor}">
+						<core:layoutData>
+							<m:FlexItemData growFactor="1" />
+						</core:layoutData>
+					</core:Icon>
+				</template>
+			</Column>
+			<Column sortProperty="Exception" sorted="false">
+				<m:Label text="Exception" />
+				<template>
+					<m:CheckBox select="onKRIExceptionSelected" selected="{global>Exception}"/>
+				</template>
+			</Column>
+			<Column sortProperty="Deduction" sorted="true">
+				<m:Label text="Deduction" />
+				<template>
+					<m:Input value="{global>Deduction}" change="onKriResultDeductionChanged" editable="{global>Exception}"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

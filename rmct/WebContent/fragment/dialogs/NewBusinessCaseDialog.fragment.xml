@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newBusinessCaseDialog" title="Add Business Case"
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newBusinessCaseDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewBusinessCase"></Button>
+		</endButton>
+		<HBox>
+			<Label text="RM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{global>/selectedRM/unumber}" editable="false" />
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox id="RMSelectedYear"
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newBusinessCase>/year}" change="">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<VBox>
+			<HBox>
+				<Label text="NNM:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/nnm}" />
+				<Input value="{global>/compensationProfile/groupCurrency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="RoA:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/roa}" />
+				<Input value="{global>/compensationProfile/basispoint}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="AuM:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/aum}" editable="false" />
+				<Input value="{global>/compensationProfile/groupCurrency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="AuM Avg:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/aumavg}" editable="false" />
+				<Input value="{global>/compensationProfile/groupCurrency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="PCI:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/pci}" editable="false" />
+				<Input value="{global>/compensationProfile/groupCurrency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox>
+				<Label text="PCIII B:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/pc3b}" />
+				<Input value="{global>/compensationProfile/groupCurrency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+		<!--  <VBox>
+			<HBox>
+				<Label text="CCY NNM Tar. Contr.:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/currency}" />
+				<Input value="{global>/compensationProfile/groupCurrency}"
+					editable="false" />
+			</HBox>
+		</VBox> -->
+		<VBox>
+			<HBox>
+				<Label text="NNM Target Contr.:"></Label>
+			</HBox>
+			<HBox>
+				<Input value="{newBusinessCase>/nnmTargetContribution}" />
+				<Input value="{global>/compensationProfile/currency}"
+					editable="false" />
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

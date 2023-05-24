@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="changeManager">
+		<Label labelFor="managerExcep" text="Exception" />
+		<CheckBox selected="{global>/relationshipManager/exception}"
+		enabled="{= ${global>/selectedRM/name} !== undefined}"
+		select="onContactExceptionSelected" />
+		<Label labelFor="contacts" text="Approving Manager" />
+		<Input type="Text" value="{global>/relationshipManager/approvemgr}" showValueHelp="true"
+			valueHelpRequest="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.ApprovingManagerHelpDialog%_approvingManagersValueHelpDialog')" class="sapUiSmallMarginBottom"
+			width="15rem" editable="{global>/relationshipManager/exception}" enabled="{= ${global>/selectedRM/name} !== undefined}"/>
+		<Text text="{global>/relationshipManager/approvemgrname}"></Text>
+	</HBox>
+</core:FragmentDefinition>

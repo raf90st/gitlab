@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog	
+		title="Select ZR"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: '/ZrListSet',
+			templateShareable: false,
+			parameters: {operationMode: 'Client'}
+		}"
+		search="_handleZrValueHelpSearch"
+		cancel="onGenericFragmentclose($event, '_zrValueHelpDialog')"
+		liveChange="_handleZrValueLiveChange">
+		<StandardListItem
+			title="{zr}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

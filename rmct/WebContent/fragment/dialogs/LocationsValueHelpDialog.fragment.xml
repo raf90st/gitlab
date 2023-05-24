@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog	
+		title="Select Location"
+		class="sapUiPopupWithPadding"
+		items="{
+			path: 'global>/locations',
+			templateShareable: false
+		}"
+		search="_handleLocationValueHelpSearch"
+		confirm="_handleLocationValueHelpClose"
+		cancel="onGenericFragmentclose($event, '_locationsValueHelpDialog')"
+		liveChange="_handleLocationValueLiveChange">
+		<StandardListItem
+			title="{global>Text}"
+			description="{global>Id}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

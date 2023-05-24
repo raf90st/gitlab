@@ -1,0 +1,129 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newKPiCorrectionDialog" title="Add KPI Correction" afterClose="afterNewKpiClosed"
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newKpiCorrectionDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" enabled="{global>/rmFieldStates/saveButtonEnabled}" 
+			press="onSaveNewKPICorrection($event, 'RMKPI')"></Button>
+		</endButton>
+		<HBox>
+			<Label text="RM:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text"
+				value="{newKpiCorrection>/unumber}" editable="false" />
+			<Text text="{newKpiCorrection>/name}"></Text>
+		</HBox>
+		<HBox>
+			<Label text="Period (YYYYmmm):"></Label>
+		</HBox>
+		<HBox>
+
+			<Input id="kpiTransferPeriod" value="{newKpiCorrection>/periodExt}"
+				liveChange="transferPeriodFieldValidation"
+				valueLiveUpdate="true"
+				showValueHelp="true"
+				valueState="{global>/rmFieldStates/kpiTransferPeriodState}"
+				valueStateText="Enter a valid Transfer Period (mm.YYYY)"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'newKPICorrection')"
+				class="sapUiSmallMarginBottom" width="100%" />
+			<!-- <Input value="{newKpiCorrection>/period}" /> -->
+
+		</HBox>
+		<HBox>
+			<Label text="Type:"></Label>
+		</HBox>
+		<HBox>
+				<ComboBox
+		items="{
+												path: 'types>/kpiTypes',
+												sorter: { path: 'Text' }
+												}"
+		selectedKey="{newKpiCorrection>/type}">
+		<core:ListItem key="{types>kpiType}" text="{types>Text}" />
+	</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="ZR:"></Label>
+		</HBox>
+		<HBox width="100%">
+				<Input type="Text" value="{newKpiCorrection>/zr}"
+				placeholder="..." showValueHelp="true"
+				class="sapUiSmallMarginBottom" width="100%"
+				valueHelpRequest="onZrValueHelpRequest($event, 'newKPICorr')"/>
+			<!-- <Input value="{newKpiCorrection>/zr}" />-->
+		</HBox>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+												path: '/CurrencySet',
+												sorter: { path: 'currency' }
+												}"
+				selectedKey="{newKpiCorrection>/currency}" change=""
+				editable="false">
+				<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="PC I:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/pc1ytd}" />
+		</HBox>
+		<HBox>
+			<Label text="CoC:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/cocytd}" />
+		</HBox>
+		<HBox>
+			<Label text="P&amp;S:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/pandscharges}" />
+		</HBox>
+		<HBox>
+			<Label text="GE:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/genexpenses}" />
+		</HBox>
+		<HBox>
+			<Label text="PE:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/persexpenses}" />
+		</HBox>
+		<HBox>
+			<Label text="Losses:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/provlosses}" />
+		</HBox>
+		<HBox>
+			<Label text="AuM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/aum}" />
+		</HBox>
+		<HBox>
+			<Label text="NNM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newKpiCorrection>/nnmmtd}" />
+		</HBox>
+		<HBox>
+			<Label text="Pool HC:"></Label>
+		</HBox>
+		<HBox class="lastKPIPool">
+			<Input value="{newKpiCorrection>/teamhcann}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

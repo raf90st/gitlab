@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="decentralizedEAMsTable" rows="{RmDecEam}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+		<Column sortProperty="Account" sorted="true">
+				<m:Label text="Account" />
+				<template>
+					<m:Text text="{Account}" />
+				</template>
+			</Column>
+			<Column sortProperty="IncludeEAM" sorted="true">
+				<m:Label text="Include EAM" />
+				<template>
+					<m:CheckBox class="centeredCheckbox" selected="{IncludeEAM}" select="onRMdecEAMsSelected"/>
+				</template>
+			</Column>
+			<Column sortProperty="PeriodFrom" sorted="true">
+				<m:Label text="Period From" />
+				<template>
+				<m:Input type="Text"
+					value="{PeriodFromExt}"
+					showValueHelp="true"
+					valueStateText="Enter a valid Transfer Period (mm.YYYY)"
+					valueHelpRequest="onTransferPeriodHelpRequest($event, 'modEAMsFrom')"
+					class="sapUiSmallMarginBottom"
+					width="100%"
+					liveChange="decEAMsFieldValidation($event, 'from')"
+					valueLiveUpdate="true"
+					change="onDecEAMSPeriodManUpdate" />
+				</template>
+			</Column>
+			<Column sortProperty="PeriodTo" sorted="true">
+				<m:Label text="Period To" />
+				<template>
+					<m:Input type="Text"
+					value="{PeriodToExt}"
+					showValueHelp="true"
+					valueStateText="Enter a valid Transfer Period (mm.YYYY)"
+					valueHelpRequest="onTransferPeriodHelpRequest($event, 'modEAMsTo')"
+					class="sapUiSmallMarginBottom"
+					width="100%"
+					liveChange="decEAMsFieldValidation($event, 'to')"
+					valueLiveUpdate="true"
+					change="onDecEAMSPeriodManUpdate"/>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

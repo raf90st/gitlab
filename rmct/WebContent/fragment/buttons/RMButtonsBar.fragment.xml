@@ -1,0 +1,126 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="InputActionButtonsWrapper">
+		<HBox class="topLinks">
+			<Button enabled="{= ${global>/selectedRM/name} !== undefined}"
+				text='Transferred Accounts ({global>/transferredAccounts/length})'
+				press="onItaOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/transferredAccounts/length} > 0}" />
+				</customData>
+			</Button>
+			<Button
+				text='KPI Corrections ({global>/kpiCorrections/length})'
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onKpiCorrectionsOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/kpiCorrections/length} > 0}" />
+				</customData>
+			</Button>
+			<Button text='Exclusions ({global>/exclusions/length})'
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onExclusionsOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/exclusions/length} > 0}" />
+				</customData>
+			</Button>
+			<Button
+				text='Limited KPI Recognition ({global>/limitedKpiRecognition/length})'
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onLimitedKPIRecOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/limitedKpiRecognition/length} > 0}" />
+				</customData>
+			</Button>
+			<Button 
+				text='Decentralized EAMs ({global>/decentralizedEAMs/length})'
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onDecentralizedEAMsOpen" >
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/decentralizedEAMs/length} > 0}" />
+				</customData>
+			</Button>
+			<!--  <Button text='P &amp; S Charge'
+				enabled="{= ${global>/selectedRM/name} !== undefined}" />-->
+			<Button
+				text="Business Case ({= ${global>/businessCase/length} > 0 ? 'Y' : 'N'})"
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onBusinessCaseOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/businessCase/length} > 0}" />
+				</customData>
+			</Button>
+			<Button text="Milestones ({global>/milestones/length})"
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onMilestonesOpen">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/milestones/length} > 0}" />
+			</customData>
+			</Button>
+			<Button text="Non-Financial Goal ({= ${global>/nonFinGoal} !== '0.00' ? 'Y' : 'N'})"
+				enabled="{= ${global>/selectedRM/name} !== undefined}"
+				press="onNonFinancialGoalOpen" >
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/nonFinGoal} !== '0.00'}" />
+				</customData>
+			</Button>
+		</HBox>
+
+	</HBox>
+	<HBox class="topLinks">
+		<Button text="Conduct Assessment ({= ${global>/conductAssessment/Care} !== '00' &amp;&amp; ${global>/conductAssessment/Care} !== undefined ? 'Y' : 'N'})"
+			enabled="{= ${global>/selectedRM/name} !== undefined}"
+			press="onConductAssessmentOpen">
+			<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/conductAssessment/Care} !== '00' &amp;&amp; ${global>/conductAssessment/Care} !== undefined}" />
+			</customData>
+		</Button>
+		<Button text='Performance'
+			enabled="{= ${global>/selectedRM/name} !== undefined}"
+			press="openUrl(${global>/compensationProfile/CockpitUrl}, true)" />
+		<Button text='KRI Result ({global>/kriResult/length})'
+			enabled="{= ${global>/selectedRM/name} !== undefined}"
+			press="onKriResultOpen" >
+			<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/kriResult/length} > 0}" />
+			</customData>
+		</Button>
+		<Button text="Policy &amp; Procedure Violation ({= ${global>/policyProcedureDeduction} !== '0.000' &amp;&amp; ${global>/policyProcedureDeduction} !== '' ? 'Y' : 'N'})"
+			enabled="{= ${global>/selectedRM/name} !== undefined}"
+			press="onPolicyProceduresOpen">
+			<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/policyProcedureDeduction} !== '0.000' &amp;&amp; ${global>/policyProcedureDeduction} !== ''}" />
+			</customData>
+		</Button>
+		<Button text="MTA ({= ${global>/RmMTA} !== '0.0' &amp;&amp; ${global>/RmMTA} !== '' ? 'Y' : 'N'})" press="onMTAOpen" class="mtaButton"
+				enabled="{= ${global>/selectedRM/name} !== undefined}">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/RmMTA} !== '0.0' &amp;&amp; ${global>/RmMTA} !== ''}" />
+				</customData>
+		</Button>
+		<Button text="Team Head KRI ({= ${global>/thKRIDeduction} !== '0.000' &amp;&amp; ${global>/thKRIDeduction} !== '' ? 'Y' : 'N'})" press="onThKRIOpen"
+				enabled="{= ${global>/selectedRM/name} !== undefined}">
+				<customData>
+					<core:CustomData key="newData" value="new"
+						writeToDom="{= ${global>/thKRIDeduction} !== '0.000' &amp;&amp; ${global>/thKRIDeduction} !== ''}" />
+				</customData>
+		</Button>
+	</HBox>
+	<HBox class="rmTimeSeriesWrapper">
+		<core:Fragment
+			fragmentName="juliusbaer.rmct.fragment.RMTimeSeriesChangeLog"
+			type="XML" />
+	</HBox>
+</core:FragmentDefinition>

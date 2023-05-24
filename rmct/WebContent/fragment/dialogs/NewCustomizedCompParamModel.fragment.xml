@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Compensation Parameter" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newCustCompParamModelDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSavenewCustCompParamModel"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Parameter:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/CompParameterSet',
+							sorter: { path: 'Text' }
+					}"
+				selectedKey="{newCustCompParamModel>/Parameter}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>	
+		</HBox>
+		<HBox>
+			<Label text="Effective Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newCustCompParamModel>/Year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Entity Object:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/EntityObjectSet',
+							sorter: { path: 'Text' }
+					}"
+				selectedKey="{newCustCompParamModel>/EntityObject}"
+				change="onEntityObjectSelected">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>	
+		<HBox>
+			<Label text="Entity:"></Label>
+		</HBox>
+		<HBox>
+			<Input type="Text"
+				id="inputForCustomEntity"
+				value="{newCustCompParamModel>/EntityValueTxt}"
+				showValueHelp="true"
+				valueHelpOnly="true"
+				valueHelpRequest="onCustEntityValueHelpRequest" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="Priority:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newCustCompParamModel>/PrioritySeqNr}" />
+		</HBox>
+		<HBox>
+			<Label text="Parameter Value:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newCustCompParamModel>/Value}" />	
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

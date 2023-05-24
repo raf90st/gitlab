@@ -1,0 +1,84 @@
+.sapUiTableHeaderRow {
+	background-color: #3F5161 !important;
+}
+
+.sapUiTableCell .sapMLabel {
+	color: white;
+}
+
+.sapUiTableHeaderCell:not(.sapUiTableRowActionHeaderCell):hover {
+    background-color: #3F5161 !important;
+}
+
+.sapUiTableColHdrCnt {
+	background-color: #3F5161 !important;
+}
+
+.overviewTilePanel .sapMListUl .textSpace {
+	margin-bottom: 15px;
+}
+
+.overviewTilePanel .headerMargin {
+	margin-bottom: 15px;
+}
+
+.objectNumber span {
+	font-size: 36px;
+}
+
+.sapUiTableColSorted.sapUiTableHeaderDataCell>.sapUiTableCellInner::after, 
+.sapUiTableColFiltered.sapUiTableHeaderDataCell>.sapUiTableCellInner::after {
+	color: white !important;
+}
+
+.releasePeriod {
+	background-color: #eff4f9 !important;
+	margin: 2px;
+}
+
+.releasePeriod span {
+	font-size: 1rem;
+}
+
+#__toolbar1 {
+	margin-right: 10px !important;
+}
+
+.sapMTBSeparator {
+	background: black !important;
+}
+
+.hierConfirmButton span span bdi {
+	padding: 10px;
+}
+
+.boldLabel {
+	font-weight: bold;
+}
+
+.underlined {
+	text-decoration: underline;
+}
+
+.sapFCardContent {
+	padding: 15px;
+}
+
+.confirmTxt {
+	padding-right: 5px;
+}
+
+.customTilesClass .sapUiLayoutCSSGridItem {
+	margin-top: 15px;
+	padding: 0;
+	box-shadow: 0px 0px 8px 0px rgb(0 0 0 / 20%);
+}
+
+.overviewTilePanel h2 {
+	font-size: 1rem;
+	text-align: center;
+    padding: 0;
+    background-color: #3f5161;
+    color: white;
+    text-decoration: underline;
+}

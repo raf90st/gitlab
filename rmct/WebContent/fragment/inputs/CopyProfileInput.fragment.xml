@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar>
+		<content>
+			<HBox class="rmToolbarWrapper">
+				<items>
+					<HBox class="rmInputWrapper">						
+						<Label text="From" />
+						<ComboBox
+							items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+							}"
+							selectedKey="{global>/copyProfilesFrom}"
+							change="onCopyFromYearChanged">
+							<core:ListItem key="{year}" text="{year}" />
+						</ComboBox>
+						<Label text="To" />
+						<ComboBox
+							items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+							}"
+							selectedKey="{global>/copyProfilesTo}">
+							<core:ListItem key="{year}" text="{year}" />
+						</ComboBox>
+						<HBox>
+							<Button text="Copy" press="onProfilesCopy"></Button>
+						</HBox>
+					</HBox>
+				</items>
+			</HBox>
+		</content>
+
+	</Toolbar>
+</core:FragmentDefinition>

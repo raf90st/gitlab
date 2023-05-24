@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<core:Title text="" />
+	<Label text="Start Date" />
+
+	<DatePicker id="since" value="{StartDate}"
+		displayFormat="dd.MM.yyyy" change="onProspectProfileDataChange" 
+		enabled="{= ${InputReady} ? ${InputReady} : false}"/>
+
+	<Label text="Legal Entity" />
+	<Input value="{LegalEntityTxt}" editable="false"></Input>
+
+	<Label text="Region" />
+	<Input value="{RegionTxt}" editable="false"></Input>
+
+	<Label text="Market" />
+	<Input value="{MarketTxt}" editable="false"></Input>
+
+	<Label text="" />
+	<HBox class="topLinks">
+	<Button
+		width="10rem"
+		text="Business Case ({= ${global>/prospectBusinessCase/length} > 0 ? 'Y' : 'N'})"
+		press="onOpenProspectBusinessCase"
+		enabled="{= ${global>/selectedProspect/unumber} !== undefined &amp;&amp; ${Status} === 'P'}">
+		<customData>
+			<core:CustomData key="newData" value="new"
+				writeToDom="{= ${global>/prospectBusinessCase/length} > 0}" />
+		</customData>
+	</Button>
+	</HBox>
+
+	<core:Title text="" />
+</core:FragmentDefinition>

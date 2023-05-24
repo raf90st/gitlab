@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <P13nDialog showReset="false" showResetEnabled="false" ok="onOKPerColumns" cancel="onCancelPerColumns"
+                reset="onReset" class="sapUiSizeCompact">
+        <panels>
+            <P13nColumnsPanel id="columnsPanel"
+                              items="{path: 'global>/selectedScItems'}"
+                              columnsItems="{path: 'global>/selectedScColumnsItems'}">
+                <items>
+                    <P13nItem columnKey="{global>columnKey}" text="{global>text}"/>
+                </items>
+                <columnsItems>
+                    <P13nColumnsItem columnKey="{global>columnKey}" index="{global>index}" visible="{global>visible}"/>
+                </columnsItems>
+            </P13nColumnsPanel>
+        </panels>
+    </P13nDialog>
+</core:FragmentDefinition>

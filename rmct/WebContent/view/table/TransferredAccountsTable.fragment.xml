@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table rows="{global>/transferredAccounts}"
+		enableSelectAll="false" selectionMode="Single" busy="{global>/ITABusy}">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add"
+					press="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.NewTransferredAccountDialog%_newTransferredAccountsDialog')"
+					icon="sap-icon://add" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="zr" sorted="true">
+				<m:Label text="ZR" />
+				<template>
+					<m:Text text="{global>zr}" />
+				</template>
+			</Column>
+			<Column sortProperty="closingdate" sorted="true">
+				<m:Label text="ZR Closing Date" />
+				<template>
+					<m:DatePicker value="{global>closingdate}"
+						displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-dd"
+						editable="false" />
+				</template>
+			</Column>
+			<Column sortProperty="newrm" sorted="true">
+				<m:Label text="New RM" />
+				<template>
+					<m:Text text="{global>newrm}" />
+				</template>
+			</Column>
+			<Column sortProperty="newname" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text text="{global>newname}" />
+				</template>
+			</Column>
+			<Column sortProperty="orgrm" sorted="true">
+				<m:Label text="Original RM" />
+				<template>
+					<m:Text text="{global>orgrm}" />
+				</template>
+			</Column>
+			<Column sortProperty="orgname" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text text="{global>orgname}" />
+				</template>
+			</Column>
+			<Column sortProperty="itaflag" sorted="false">
+				<m:Label text="ITA" />
+				<template>
+					<m:CheckBox selected="{global>itaflag}"
+						select="onItaModified" />
+				</template>
+			</Column>
+			<Column sortProperty="bofflag" sorted="false">
+				<m:Label text="BOF Exception" />
+				<template>
+					<m:CheckBox selected="{global>bofflag}"
+						select="onItaModified" />
+				</template>
+			</Column>
+			<Column sortProperty="period" sorted="true">
+				<m:Label text="Transfer Month" />
+				<template>
+					<m:Input id="tAPeriod" type="Text"
+						value="{global>periodExt}"
+						showValueHelp="true"
+						valueHelpRequest="onTransferPeriodHelpRequest($event, 'modITA')"
+						class="sapUiSmallMarginBottom" width="100%"
+						change="onItaModified" />
+					<!-- <m:Input value="{global>period}" select="onItaModified"/> -->
+				</template>
+			</Column>
+			<Column sortProperty="ItaUntilExt" sorted="true">
+				<m:Label text="Inherited Until End Of" />
+				<template>
+					<m:Text text="{global>ItaUntilExt}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

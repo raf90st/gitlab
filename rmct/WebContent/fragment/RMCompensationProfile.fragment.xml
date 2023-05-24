@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<core:Title text="Compensation Profile" />
+	<Label text="Year" />
+	<ComboBox id="RMSelectedYear"
+		items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+		selectedKey="{global>/selectedRM/year}"
+		change="onRmSelectedYearChanged">
+		<core:ListItem key="{year}" text="{year}" />
+	</ComboBox>
+	<Label text="Country Payout Curve Exception" />
+	<CheckBox select="onCountryPayoutFlagSelected"
+		selected="{global>/compensationProfile/payoutCurveException}"
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+	<Label labelFor="countries" text="Country (Payout-Curve)" />
+	<ComboBox 
+		items="{ 
+			path: '/CountryPayoutCurveSet', 
+			sorter: { path: 'Text' } 
+		
+		}" selectedKey="{global>/compensationProfile/payoutCurve}"
+		enabled="{= ${global>/selectedRM/name} !== undefined &amp;&amp; ${global>/compensationProfile/payoutCurveException} === true}" 
+		change="onProfileDataChange"> 
+		<core:ListItem key="{Id}" text="{Text}" /> 
+	</ComboBox>
+	<Label labelFor="PayoutCurrency" text="Payout Currency" />
+	<ComboBox
+		items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+		}"
+		selectedKey="{global>/compensationProfile/currency}"
+		change="onProfileDataChange"
+		enabled="{= ${global>/selectedRM/name} !== undefined}">
+		<core:ListItem key="{currency}" text="{currency}" />
+	</ComboBox>
+	<Label labelFor="deferral" text="Deferral" />
+	<CheckBox select="onProfileDataChange"
+		selected="{= ${global>/compensationProfile/deferral} !== undefined ? ${global>/compensationProfile/deferral} : true}"
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+	<Label text="No individual Scorecard" />
+	<CheckBox select="onProfileDataChange"
+		selected="{global>/compensationProfile/noscorecard}"
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+	<Label labelFor="payoutmonth"
+		text="Latest Payout Month (mm.YYYY)" />
+	<Input
+		value="{global>/relationshipManager/latestpayout}"
+		change="onRmDataChange"
+		enabled="{= ${global>/selectedRM/name} !== undefined}"></Input>
+	<core:Title text="" />
+	<Label text="Model" />
+	<ComboBox
+		items="{
+												path: '/CompModelSet',
+												sorter: { path: 'Text' }
+												}"
+		selectedKey="{global>/compensationProfile/model}"
+		change="onProfileDataChange"
+		enabled="{= ${global>/selectedRM/name} !== undefined}">
+		<core:ListItem key="{Id}" text="{Text}" />
+	</ComboBox>
+	<Label labelFor="since" text="Since" />
+	<DatePicker id="since"
+		value="{global>/compensationProfile/since}" displayFormat="dd.MM.yyyy"
+		valueFormat="yyyy-MM-dd" change="onProfileDataChange" placeholder=""
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+	<Label labelFor="until" text="Until" />
+	<DatePicker id="until"
+		value="{global>/compensationProfile/until}" displayFormat="dd.MM.yyyy"
+		valueFormat="yyyy-MM-dd" change="onProfileDataChange" placeholder=""
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+
+
+	<Label text="LoS Exception" />
+	<CheckBox id="losentry" select="onLosEntrySelected"
+		selected="{global>/compensationProfile/losexception}"
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+
+
+	<HBox class="losEntryDate">
+		<Label text="LoS Entry Date:" />
+		<DatePicker id="los"
+			value="{global>/compensationProfile/losdate}"
+			displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-dd"
+			change="onProfileDataChange"
+			editable="{global>/compensationProfile/losexception}"
+			enabled="{= ${global>/selectedRM/name} !== undefined}" />
+	</HBox>
+
+	<Label text="Rank" />
+	<Input value="{global>/compensationProfile/rank}"
+		editable="false"></Input>
+	<Label text="Key Risk Taker" />
+	<CheckBox select="onProfileDataChange"
+		selected="{global>/compensationProfile/keyRiskTaker}"
+		enabled="{= ${global>/selectedRM/name} !== undefined}" />
+	<Label text="ITA Treatment" />
+	<ComboBox
+		items="{
+												path: '/ItaTreatmentSet',
+												sorter: { path: 'Id' }
+												}"
+		selectedKey="{global>/compensationProfile/BofCalcAlt}"
+		change="onProfileDataChange"
+		enabled="{= ${global>/selectedRM/name} !== undefined}">
+		<core:ListItem key="{Id}" text="{Text}" />
+	</ComboBox>
+</core:FragmentDefinition>

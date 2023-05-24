@@ -1,0 +1,22 @@
+[
+	{
+		"poolNumber": "P0002",
+		"year": "2021",
+		"unumber": "u34098",
+		"name": "Paul Loba",
+		"zrGroup": "1234567",
+		"zr": "0012305332",
+		"pci": "1.00",
+		"deduction": "2.000"
+	},
+	{
+		"poolNumber": "P0003",
+		"year": "2021",
+		"unumber": "u34548",
+		"name": "Frank Turn",
+		"zrGroup": "1234567",
+		"zr": "0012305332",
+		"pci": "1.00",
+		"deduction": "2.000"
+	}
+]

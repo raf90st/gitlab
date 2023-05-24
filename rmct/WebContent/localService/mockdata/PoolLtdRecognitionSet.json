@@ -1,0 +1,50 @@
+[
+	{
+		"year": "2021",
+		"poolNumber": "P0002",
+		"unumber": "U23098",
+		"percentage": "10.00",
+		"kpiInstance": "12345678",
+		"aumFlag": true,
+		"cocFlag": false,
+		"nnmFlag": false,
+		"pciFlag": false,
+		"psFlag": true
+	},
+	{
+		"year": "2021",
+		"poolNumber": "P0002",
+		"unumber": "U23098",
+		"percentage": "60.00",
+		"kpiInstance": "00000001",
+		"aumFlag": true,
+		"cocFlag": false,
+		"nnmFlag": false,
+		"pciFlag": false,
+		"psFlag": true
+	},
+	{
+		"year": "2021",
+		"poolNumber": "P0003",
+		"unumber": "U23098",
+		"percentage": "45.00",
+		"kpiInstance": "385857372",
+		"aumFlag": true,
+		"cocFlag": false,
+		"nnmFlag": false,
+		"pciFlag": false,
+		"psFlag": true
+	},
+	{
+		"year": "2021",
+		"poolNumber": "P0003",
+		"unumber": "U23098",
+		"percentage": "10.00",
+		"kpiInstance": "1234325545",
+		"aumFlag": true,
+		"cocFlag": false,
+		"nnmFlag": false,
+		"pciFlag": false,
+		"psFlag": true
+	}
+]

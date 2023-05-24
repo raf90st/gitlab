@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox>
+		<Label text="Period" />
+	</HBox>
+	<HBox>
+		<Input
+			value="{global>/release/FiscperExt}"
+			valueHelpOnly="true"
+			showValueHelp="true"
+			valueHelpRequest="onTransferPeriodHelpRequest($event, 'releasePeriod')"
+			class="sapUiSmallMarginBottom" width="100%" />
+	</HBox>
+	<HBox>
+		<Label text="Last Changed By" />
+	</HBox>
+	<HBox>
+		<Text text="{LastChanged}"></Text>
+	</HBox>
+	<HBox>
+		<Label text="Last Changed By" />
+	</HBox>
+	<HBox>
+		<Text text="{LastChanged}"></Text>
+	</HBox>
+</core:FragmentDefinition>

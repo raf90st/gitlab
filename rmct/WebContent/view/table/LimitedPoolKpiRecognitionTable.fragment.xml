@@ -1,0 +1,83 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table rows="{PoolLimitedKPIRecognition}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.NewPoolLimitedKPIRecognitionDialog%_newLimitedPoolKpiRecognition')" 
+				icon="sap-icon://add" /> 
+				<m:Button text="Remove" press="onDeletePoolLtdKPI" icon="sap-icon://delete" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="type" sorted="true">
+				<m:Label text="Type" />
+				<template>
+				<m:ComboBox
+				items="{
+						path: 'types>/ltdKpiRec',
+						sorter: { path: 'ltdKpiRecType' }
+				}"
+				selectedKey="{type}"
+				change="onLtdPoolKPIChange">
+				<core:ListItem key="{types>ltdKpiRecType}"
+					text="{types>ltdKpiRecType}" />
+			</m:ComboBox>
+					<!--  <m:Input value="{type}"
+					 editable="false" />-->
+				</template>
+			</Column>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="RM" />
+				<template>
+					<m:Text text="{unumber}" />
+				</template>
+			</Column>
+			<Column sortProperty="percentage" sorted="true">
+				<m:Label text="Percentage" />
+				<template>
+					<m:Input value="{percentage}"
+					change="onLtdPoolKPIChange"  />
+				</template>
+			</Column>
+			<Column sortProperty="instance" sorted="true">
+				<m:Label text="ZR" />
+				<template>
+					<m:Input value="{instance}"
+					 editable="false" />
+				</template>
+			</Column>
+			<Column sortProperty="pciflag" sorted="false">
+				<m:Label text="PC I Flag" />
+				<template>
+					<m:CheckBox select="onLtdPoolKPIChange" selected="{pciflag}" />
+				</template>
+			</Column>
+			<Column sortProperty="cocflag" sorted="false">
+				<m:Label text="CoC FLag" />
+				<template>
+					<m:CheckBox select="onLtdPoolKPIChange" selected="{cocflag}" />
+				</template>
+			</Column>
+			<Column sortProperty="psflag" sorted="false">
+				<m:Label text="P&amp;S Flag" />
+				<template>
+					<m:CheckBox select="onLtdPoolKPIChange" selected="{psflag}" />
+				</template>
+			</Column>
+			<Column sortProperty="aumflag" sorted="false">
+				<m:Label text="AuM Flag" />
+				<template>
+					<m:CheckBox select="onLtdPoolKPIChange" selected="{aumflag}" />
+				</template>
+			</Column>
+			<Column sortProperty="nnmflag" sorted="false">
+				<m:Label text="NNM Flag" />
+				<template>
+					<m:CheckBox select="onLtdPoolKPIChange" selected="{nnmflag}" />
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

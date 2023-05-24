@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newTransferredAccountId" title="Add ITA" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel" press="onGenericFragmentclose($event, '_newTransferredAccountsDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewTransferredAccount"></Button>
+		</endButton>
+		<HBox>
+			<Label text="ZR"></Label>
+		</HBox>
+		<HBox width="100%">
+			<Input type="Text" value="{newITA>/zr}"
+				placeholder="..." showValueHelp="true"
+				class="sapUiSmallMarginBottom" width="100%" 
+				valueHelpRequest="onZrValueHelpRequest($event, 'newITA')"/>
+				<!--  <Input value="{newITA>/zr}"></Input>-->
+		</HBox>
+
+		<HBox>
+			<Label text="New RM"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newITA>/newrm}" editable="false" />
+			<Text text="{newITA>/newname}"></Text>
+		</HBox>
+		<HBox>
+			<Label text="Original RM"></Label>
+		</HBox>
+		<HBox>
+			<Input id="orgRM" type="Text" value="{newITA>/orgrm}"
+				placeholder="..." showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest="onUserValueNewDataHelpRequest($event, 'newITA')"
+				class="sapUiSmallMarginBottom" width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="Transfer Period"></Label>
+		</HBox>
+		<HBox>
+			<Input id="tp" type="Text"
+				value="{newITA>/periodExt}"
+				showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'newITA')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+				<!--  <Input value="{newITA>/period}"></Input>-->
+		</HBox>
+		<HBox>
+			<Label text="BOF Exception"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox selected="{newITA>/bofflag}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox>
+		<Label text="Rating:"></Label>
+	</HBox>
+	<HBox>
+		<Input type="Text" 
+			value="{global>/nonFinGoal}"
+			width="100%"
+			valueState="{global>/rmFieldStates/nonFinancialGoalState}" 
+			liveChange="nonFinancialGoalValidation" 
+			valueStateText="Please Enter a value between 1.00 and 4.00">
+		</Input>
+	</HBox>
+</core:FragmentDefinition>

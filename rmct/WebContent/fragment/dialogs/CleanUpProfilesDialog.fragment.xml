@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="CleanupProfilesDialogId" title="Cleanup Profiles" contentWidth="30%" afterClose="onCleanupClose">
+		<beginButton>
+			<Button text="Close" press="onGenericFragmentclose($event, '_cleanUpDialog')"></Button>
+		</beginButton>
+	<core:Fragment
+		fragmentName="juliusbaer.rmct.fragment.inputs.CleanupProfilesInput" type="XML" />
+	</Dialog>
+</core:FragmentDefinition>

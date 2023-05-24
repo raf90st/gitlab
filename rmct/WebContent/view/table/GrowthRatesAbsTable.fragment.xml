@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="growthRateAbsTable" rows="{global>/custGrowthRateAbs}"
+		enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewGrowthRateAbs"
+					icon="sap-icon://add" />
+				<m:Button text="Copy" press="onCopyNewGrowthRateAbs"
+					icon="sap-icon://copy" />
+				<m:Button text="Remove" press="onDeleteNewGrowthRateAbs"
+					icon="sap-icon://delete" />
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'growthRateAbs')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Country" sorted="true">
+				<m:Label text="Country" />
+				<template>
+					<m:Text text="{global>Country}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="CountryTxt" sorted="true">
+				<m:Label text="Country Text" />
+				<template>
+					<m:Text text="{global>CountryTxt}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="Year" sorted="true">
+				<m:Label text="Year" />
+				<template>
+					<m:Text text="{global>Year}" />
+				</template>
+			</Column>
+			<Column sortProperty="AmountFrom" sorted="true">
+				<m:Label text="Amount From" />
+				<template>
+					<m:Input type="Text" value="{global>AmountFrom}"
+						change="onGrowthRateAbsCustomizeChange"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="AmountTo" sorted="true">
+				<m:Label text="Amount To" />
+				<template>
+					<m:Input type="Text" value="{global>AmountTo}"
+						change="onGrowthRateAbsCustomizeChange"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="Currency" sorted="true">
+				<m:Label text="Currency" />
+				<template>
+					<m:Text text="{global>Currency}" />
+				</template>
+			</Column>
+			<Column sortProperty="Parameter" sorted="true">
+				<m:Label text="Parameter" />
+				<template>
+					<m:Input type="Text" value="{global>Parameter}"
+						change="onGrowthRateAbsCustomizeChange"></m:Input>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

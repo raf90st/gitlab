@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Growth Rate" afterClose=""
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newGrowthRateDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewGrowthRate"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Country"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/CountryPayoutCurveSet',
+							sorter: { path: 'Text' }
+					}"
+				selectedKey="{newGrowthRate>/Country}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Year:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+							path: '/YearsSet',
+							sorter: { path: 'year' }
+					}"
+				selectedKey="{newGrowthRate>/Year}">
+				<core:ListItem key="{year}" text="{year}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Quantity From:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newGrowthRate>/QuantityFrom}" />	
+		</HBox>
+		<HBox>
+			<Label text="Quantity To:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newGrowthRate>/QuantityTo}" />	
+		</HBox>
+		<HBox>
+			<Label text="Parameter:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newGrowthRate>/Parameter}" />	
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

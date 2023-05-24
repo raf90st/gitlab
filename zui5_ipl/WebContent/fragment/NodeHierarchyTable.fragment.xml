@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:tb="sap.ui.table" xmlns:core="sap.ui.core">
+	<tb:TreeTable id="TreeTableBasic"
+		rows="{path:'nodeHierarchy>/nodeRoot/roots', parameters: {arrayNames:['children']}}"
+		selectionMode="Single" enableSelectAll="false"
+		ariaLabelledBy="title" busy="{global>/treeTableBusy}"
+		visibleRowCountMode="Auto">
+		<tb:extension>
+			<OverflowToolbar>
+				<Button type="Accept" class="hierConfirmButton"
+					text="{global>/confirmButtonTxt}"
+					tooltip="{global>/confirmButtonTxt}"
+					visible="{global>/confirmButtonEnabled}"
+					press="onHierachyOrgConfirmed">
+				</Button>
+				<Button text="Unconfirm" class="hierConfirmButton"
+					visible="{= ${global>/confirmButtonEnabled} === false }"
+					type="Reject" press="onHierachyOrgReleased" />
+				<ToolbarSeparator />
+				<Label class="boldLabel" text="Confirmed By: " />
+				<Text class="underlined" text="{global>/confirmedBy}" />
+				<ToolbarSeparator />
+				<Label class="boldLabel" text="Confirmed for: " />
+				<Text class="underlined" text="{global>/releasePeriodTxt}" />
+				<ToolbarSpacer />
+				<SearchField placeholder="Search"
+					search="filterNodes" width="15rem" />
+				<Checkbox selected="{global>/onlyUnmapped}"
+					select="toggleShowUnmapped" />
+				<Label text="{global>/buttonShowUnmapped}" />
+			</OverflowToolbar>
+		</tb:extension>
+		<tb:rowSettingsTemplate>
+			<tb:RowSettings
+				highlight="{= ${nodeHierarchy>isPartiallyMapped} ? 'Warning' : ${nodeHierarchy>isMapped} ? 'Success' : 'Error' }"
+				highlightText="{= ${nodeHierarchy>isMapped} ? 'Node mapped' : 'Node not mapped' }" />
+		</tb:rowSettingsTemplate>
+		<tb:columns>
+			<tb:Column>
+				<Label text="Node Name" />
+				<tb:template>
+					<Text text="{= ${nodeHierarchy>nodeTxt} !== '' ? ${nodeHierarchy>nodeTxt} : ${nodeHierarchy>nodeName} }" wrapping="false"
+						tooltip="{nodeHierarchy>nodeName}" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="Top level Org Unit" />
+				<tb:template>
+					<CheckBox selected="{nodeHierarchy>isTopLevel}"
+						select="updateOrgLevel($event, 'topLevel')"
+						enabled="{= !${nodeHierarchy>topDisabled}}" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="Bottom level Org Unit" />
+				<tb:template>
+					<CheckBox selected="{nodeHierarchy>isBottomLevel}"
+						select="updateOrgLevel($event, 'bottomLevel')"
+						enabled="{= !${nodeHierarchy>bottomDisabled}}" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="Status" />
+				<tb:template>
+					<ObjectStatus
+						icon="{nodeHierarchy>icon}"
+						text="{nodeHierarchy>status}"
+						state="{nodeHierarchy>state}" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="Ignored" />
+				<tb:template>
+					<HBox>
+						<Switch state="{nodeHierarchy>isIgnored}" customTextOn="on"
+							customTextOff="off" change="ignoreNode"
+							enabled="{= !${nodeHierarchy>ignoreDisabled}}">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+					</HBox>
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="Has Figures" />
+				<tb:template>
+					<HBox>
+						<CheckBox enabled="false" selected="{nodeHierarchy>hasFigures}" />
+					</HBox>
+				</tb:template>
+			</tb:Column>
+		</tb:columns>
+	</tb:TreeTable>
+</core:FragmentDefinition>

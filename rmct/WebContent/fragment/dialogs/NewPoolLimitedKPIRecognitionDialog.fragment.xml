@@ -1,0 +1,89 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newPoolLtdKpiRec" title="Add Limited KPI Recognition" contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newLimitedPoolKpiRecognition')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewLtdPoolKpiRec"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Type"></Label>
+		</HBox>
+		<HBox width="100%">
+				<ComboBox
+				items="{
+						path: 'types>/ltdKpiRec',
+						sorter: { path: 'ltdKpiRecType' }
+				}"
+				selectedKey="{newPoolKPIRec>/type}">
+				<core:ListItem key="{types>ltdKpiRecType}"
+					text="{types>ltdKpiRecType}" />
+			</ComboBox>
+			<!--  <Input value="{newPoolKPIRec>/type}" />-->
+		</HBox>
+			
+		<HBox>
+			<Label text="RM:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+						path: 'Members',
+						sorter: { path: 'unumber' }
+				}"
+				selectedKey="{newPoolKPIRec>/unumber}">
+				<core:ListItem key="{unumber}" text="{unumber}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Percentage:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newPoolKPIRec>/percentage}" />
+		</HBox>
+		<HBox>
+			<Label text="ZR"></Label>
+		</HBox>
+		<HBox>
+			<Input id="tpLtd" type="Text"
+				value="{newPoolKPIRec>/instance}" placeholder="..."
+				showValueHelp="true"
+				valueHelpRequest="onZrValueHelpRequest($event, 'newPoolLtdKpi')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+				<!--  <Input value="{newPoolKPIRec>/instance}"  />-->
+		</HBox>
+		<HBox>
+			<Label text="AUM Flag:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox select="" selected="{newPoolKPIRec>/aumflag}" />
+		</HBox>
+				<HBox>
+			<Label text="COC Flag:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox select="" selected="{newPoolKPIRec>/cocflag}" />
+		</HBox>
+				<HBox>
+			<Label text="NNM Flag:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox select="" selected="{newPoolKPIRec>/nnmflag}" />
+		</HBox>
+						<HBox>
+			<Label text="PCI Flag:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox select="" selected="{newPoolKPIRec>/pciflag}" />
+		</HBox>
+								<HBox>
+			<Label text="P&amp;S Flag:"></Label>
+		</HBox>
+		<HBox>
+			<CheckBox select="" selected="{newPoolKPIRec>/psflag}" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

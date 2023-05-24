@@ -1,0 +1,50 @@
+[
+	{
+		"name": "NNM Contribution",
+		"year": "2021",
+		"poolNumber": "P0002",
+		"exception": true,
+		"actual": "0.2000",
+		"standard": "0.1000"
+	},
+	{
+		"name": "New Joiner Only",
+		"year": "2021",
+		"poolNumber": "P0002",
+		"exception": false,
+		"actual": "75",
+		"standard": "75"
+	},
+	{
+		"name": "CoC Threshold",
+		"year": "2021",
+		"poolNumber": "P0002",
+		"exception": false,
+		"actual": "20000",
+		"standard": "20000"
+	},
+		{
+		"name": "NNM Contribution",
+		"year": "2021",
+		"poolNumber": "P0003",
+		"exception": false,
+		"actual": "0.2000",
+		"standard": "0.2000"
+	},
+	{
+		"name": "New Joiner Only",
+		"year": "2021",
+		"poolNumber": "P0003",
+		"exception": true,
+		"actual": "95",
+		"standard": "75"
+	},
+	{
+		"name": "CoC Threshold",
+		"year": "2021",
+		"poolNumber": "P0003",
+		"exception": false,
+		"actual": "40000",
+		"standard": "40000"
+	}
+]

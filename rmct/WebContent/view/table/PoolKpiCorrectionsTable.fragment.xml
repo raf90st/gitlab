@@ -1,0 +1,182 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="kpiCorrectionsPoolTable" rows="{PoolKPIExceptions}" enableSelectAll="false"
+		selectionMode="Single" rowSelectionChange="onPoolKPIRowSelected">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add"
+					press="onGenericFragmentLoad($event, 'juliusbaer.rmct.fragment.dialogs.NewPoolKPICorrectionDialog%_newPoolKpiCorrectionDialog')"
+					icon="sap-icon://add" />
+				<m:Button text="Remove" visible="{global>/poolKPIRowSelected}" press="onKPICorrectionDelete($event, 'POOLKPI')"
+					icon="sap-icon://delete" />
+				<m:Button text="Edit" visible="{global>/poolKPIRowSelected}" press="onKPIEdit($event, 'POOLKPI')"
+					icon="sap-icon://edit" />
+				<m:Button text="Export" press="onCsvExport" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="unumber" sorted="true">
+				<m:Label text="RM" />
+				<template>
+					<m:Text text="{unumber}" />
+				</template>
+			</Column>
+			<Column sortProperty="name" sorted="true">
+				<m:Label text="Name" />
+				<template>
+					<m:Text text="{name}" />
+				</template>
+			</Column>
+			<Column sortProperty="period" sorted="true">
+				<m:Label text="Period" />
+				<template>
+					<m:Text text="{periodExt}"/>
+				</template>
+			</Column>
+			<Column sortProperty="type" sorted="true">
+				<m:Label text="Type" />
+				<template>
+					<m:Text text="{type}"/>	
+				</template>
+			</Column>
+			<Column sortProperty="zr" sorted="true">
+				<m:Label text="ZR" />
+				<template>
+					<m:Text text="{zr}" />
+				</template>
+			</Column>
+			<Column sortProperty="currency" sorted="true">
+				<m:Label text="Currency" />
+				<template>
+					<m:Text text="{currency}"/>
+				</template>
+			</Column>
+			<Column sortProperty="pci1ytd" sorted="true">
+				<m:Label text="PC I" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'pc1ytd'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="cocytd" sorted="true">
+				<m:Label text="COC" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'cocytd'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="pscharges" sorted="true">
+				<m:Label text="P&amp;S" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'pandscharges'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="genexpenses" sorted="true">
+				<m:Label text="GE" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'genexpenses'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="persexpenses" sorted="true">
+				<m:Label text="PE" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'persexpenses'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="provlossytd" sorted="true">
+				<m:Label text="Losses" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'provlosses'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="aum" sorted="true">
+				<m:Label text="AuM" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'aum'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="nnmmtd" sorted="true">
+				<m:Label text="NNM" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'nnmmtd'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+			<Column sortProperty="teamhcann" sorted="true">
+				<m:Label text="Pool HC" />
+				<template>
+					<m:Text
+						text="{
+							parts: [
+								{path: 'teamhcann'},
+								{path: 'currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+					}"></m:Text>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

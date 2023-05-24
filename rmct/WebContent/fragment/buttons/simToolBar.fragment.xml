@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="InputActionButtonsWrapper">
+		<HBox class="topLinks">
+			<Button text="1. {global>/calcSimButtonStatus/BtnCalcText}"
+				enabled="{global>/calcSimButtonStatus/BtnCalcEnabled}"
+				icon="{global>/calcSimButtonStatus/BtnCalcIcon}"
+				press="onPressSimToolCalculate">		
+				<customData>
+					<core:CustomData key="calcGenerateButton" value="yellow"
+						writeToDom="{= ${global>/calcSimButtonStatus/BtnCalcEnabled} === false}" />
+				</customData>
+			</Button>
+			<Button text='Refresh' press="onRMSimRefresh"
+				icon="sap-icon://refresh" />
+		</HBox>
+	</HBox>
+	<!--<HBox>
+		<Button icon="sap-icon://undo"
+			visible="{= ${global>/calcSimButtonStatus/BtnCalcEnabled} ? false : true }"
+			tooltip="Reset Process" text="Reset" press="onSimToolResetProcess" />
+	</HBox>-->
+</core:FragmentDefinition>

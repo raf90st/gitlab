@@ -1,0 +1,56 @@
+<mvc:View controllerName="juliusbaer.ipl.controller.Overview"
+	displayBlock="true" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:card="sap.f.cards" xmlns:grid="sap.ui.layout.cssgrid">
+	<Page id="page" showHeader="false">
+		<Panel class="overviewTilePanel" width="100%"
+			headerText="{global>/releasePeriodTxt}"
+			backgroundDesign="Transparent">
+			<content>
+				<f:GridList id="gridList"
+					items="{
+						path: 'tiles>/',
+						sorter: {
+							path: 'group',
+							descending: true,
+							group: true
+						}
+					}"
+					growing="true" growingThreshold="9">
+
+					<f:customLayout>
+						<grid:GridBoxLayout boxWidth="300px"/>
+					</f:customLayout>
+
+					<f:GridListItem type="Active" press="onTileSelected">
+						<VBox height="240px">
+							<VBox class="sapUiSmallMargin">
+								<layoutData>
+									<FlexItemData growFactor="1" shrinkFactor="0" />
+								</layoutData>
+								<VBox class="sapUiSmallMargin">
+									<HBox justifyContent="SpaceBetween">
+										<core:Icon src="{tiles>icon}" size="2.625rem"
+											color="Default" class="sapUiTinyMarginBottom" />
+										<ObjectStatus
+											text="{= ${tiles>confirmed} === 'Success' ? 'Confirmed' : 'Not confirmed'}"
+											visible="{= ${tiles>ignoreState} === false}"
+											state="{tiles>confirmed}" />
+									</HBox>
+									<Title text="{tiles>title}" wrapping="true" />
+									<Label text="{tiles>header}" class="headerMargin"/>
+									<Text text="Last confirmed by: {tiles>confirmedBy}"
+											visible="{= ${tiles>confirmedBy} !== ''}"
+											class="textSpace" />
+									<ObjectNumber class="objectNumber"
+										number="{tiles>number}" state="{tiles>infoState}"
+										visible="{= ${tiles>ignoreNumber} === false}" />
+								</VBox>
+							</VBox>
+						</VBox>
+					</f:GridListItem>
+				</f:GridList>
+			</content>
+		</Panel>
+	</Page>
+</mvc:View>

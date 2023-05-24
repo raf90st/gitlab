@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<HBox class="InputActionButtonsWrapper">
+		<HBox class="topLinks">
+			<Button text="1. {global>/calcButtonStatus/BtnCalcText}"
+				enabled="{global>/calcButtonStatus/BtnCalcEnabled}"
+				icon="{global>/calcButtonStatus/BtnCalcIcon}"
+				press="onPressScorecardAction($event, 'calculate')">		
+				<customData>
+					<core:CustomData key="calcGenerateButton" value="yellow"
+						writeToDom="{= ${global>/calcButtonStatus/BtnCalcEnabled} === false}" />
+				</customData>
+			</Button>
+			<Button text='2. Distribute'
+				press="onPressScorecardAction($event, 'distribute')"
+				icon="sap-icon://letter" />
+			<Button text='3. Close'
+				press="onPressScorecardAction($event, 'close')"
+				icon="sap-icon://complete" />
+			<Button text='Refresh' press="onScoreCardsRefresh"
+				icon="sap-icon://refresh" />
+		</HBox>
+	</HBox>
+	<HBox>
+		<Button icon="sap-icon://undo"
+			visible="{= ${global>/calcButtonStatus/BtnCalcEnabled} ? false : true }"
+			tooltip="Reset Process" text="Reset" press="onResetProcess" />
+	</HBox>
+</core:FragmentDefinition>

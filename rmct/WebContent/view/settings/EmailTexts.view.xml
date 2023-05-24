@@ -1,0 +1,57 @@
+<mvc:View
+	controllerName="juliusbaer.rmct.controller.settings.Admin"
+	xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout">
+	<m:Page showHeader="{device>/system/phone}"
+		showNavButton="{device>/system/phone}"
+		navButtonPress=".onNavButtonPress">
+		<ObjectPageLayout id="objectPageLayout"
+			showTitleInHeaderContent="true" upperCaseAnchorBar="true" showAnchorBar="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle class="dynamicHeader">
+					<content>
+					</content>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<sections>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection
+							title="Approval Message">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="ScorecardLazyLoader">
+									<f:SimpleForm title="" columnsL="1" columnsM="1"
+										editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.ApprovalMessage"
+												type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+						<ObjectPageSubSection
+							title="Rejection Message">
+							<blocks>
+								<ObjectPageLazyLoader
+									id="ScorecardLazyLoader">
+									<f:SimpleForm title="" columnsL="1" columnsM="1"
+										editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<core:Fragment
+												fragmentName="juliusbaer.rmct.fragment.RejectionMessage"
+												type="XML" />
+										</f:content>
+									</f:SimpleForm>
+								</ObjectPageLazyLoader>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+	</m:Page>
+</mvc:View>

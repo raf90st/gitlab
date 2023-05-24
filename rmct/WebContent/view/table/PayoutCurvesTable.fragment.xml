@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns="sap.ui.table">
+	<Table id="PayoutCurvesTable" rows="{global>/custPayoutCurves}"
+	enableSelectAll="false" selectionMode="Single">
+		<extension>
+			<m:OverflowToolbar>
+				<m:Button text="Add" press="onAddNewPayoutCurve" icon="sap-icon://add" />
+				<m:Button text="Copy" press="onCopyNewPayoutCurve" icon="sap-icon://copy"/>
+				<m:Button text="Remove" press="onDeleteNewPayoutCurve" icon="sap-icon://delete"/>
+				<m:Button text="Export" press="onCsvExport" />
+				<m:SearchField placeholder="Filter"
+					liveChange="filterAdvanced($event, 'payoutCurves')" width="15rem" />
+			</m:OverflowToolbar>
+		</extension>
+		<columns>
+			<Column sortProperty="Model" sorted="true">
+				<m:Label text="Model" />
+				<template>
+					<m:Text text="{global>Model}" />
+				</template>
+			</Column>
+			<Column sortProperty="ModelTxt" sorted="true">
+				<m:Label text="Model Text" />
+				<template>
+					<m:Text text="{global>ModelTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="Country" sorted="true">
+				<m:Label text="Country" />
+				<template>
+					<m:Text text="{global>Country}" />
+				</template>
+			</Column>
+			<Column sortProperty="CountryTxt" sorted="true">
+				<m:Label text="Country Text" />
+				<template>
+					<m:Text text="{global>CountryTxt}" />
+				</template>
+			</Column>
+			<Column sortProperty="Year" sorted="true">
+				<m:Label text="Year" />
+				<template>
+					<m:Text text="{global>Year}" />
+				</template>
+			</Column>
+			<Column sortProperty="AmountFrom" sorted="true">
+				<m:Label text="Amount From" />
+				<template>
+					<m:Input
+					type="Text"
+					value="{global>AmountFrom}" 
+					change="onPayoutCurvesCustomizeChange"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="AmountTo" sorted="true">
+				<m:Label text="Amount To" />
+				<template>
+					<m:Input
+					type="Text"
+					value="{global>AmountTo}" 
+					change="onPayoutCurvesCustomizeChange"></m:Input>
+				</template>
+			</Column>
+			<Column sortProperty="Currency" sorted="true">
+				<m:Label text="Currency" />
+				<template>
+					<m:Text text="{global>Currency}" />	
+				</template>
+			</Column>
+			<Column sortProperty="Parameter" sorted="true">
+				<m:Label text="Parameter" />
+				<template>
+					<m:Input
+					type="Text"
+					value="{global>Parameter}" 
+					change="onPayoutCurvesCustomizeChange"></m:Input>
+				</template>
+			</Column>
+		</columns>
+	</Table>
+</core:FragmentDefinition>

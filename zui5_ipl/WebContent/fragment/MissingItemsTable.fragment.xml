@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:tb="sap.ui.table"
+	xmlns:u="sap.ui.unified">
+	<tb:Table id="missingItemsTable"
+		rows="{path: '/MissingItemsSet', parameters:{operationMode:'Client'} }"
+		visibleRowCount="27" visibleRowCountMode="Auto" selectionMode="Single"
+		enableCustomFilter="true" customFilter="onCustomFilterClicked">
+		<tb:columns>
+			<tb:Column sortProperty="CS_ITEM" sorted="true">
+				<Label text="Item" />
+				<tb:template>
+					<Text text="{CS_ITEM}" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column sortProperty="TXTLG" sorted="true">
+				<Label text="Text" />
+				<tb:template>
+					<Text text="{TXTLG}" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column filterProperty="B3IS_PLAN">
+				<Label text="Planning Hierarchy PCV" />
+				<tb:template>
+					<ObjectStatus
+						icon="{= ${B3IS_PLAN} ? 'sap-icon://accept' : 'sap-icon://alert' }"
+						text="{= ${B3IS_PLAN} ? 'mapped' : ${itemMissingPlan} ? 'missing' : 'not mapped' }"
+						state="{= ${B3IS_PLAN} ? 'Success' : ${itemMissingPlan} ? 'Error' : 'Warning' }" />
+				</tb:template>
+				<tb:menu>
+					<u:Menu ariaLabelledBy="Filter Columns">
+						<u:items>
+							<u:MenuItem text="Show All"
+								select="onCustomFilterClicked" />
+							<u:MenuItem text="Mapped Items"
+								select="onCustomFilterClicked" icon="sap-icon://filter" />
+							<u:MenuItem text="Unmapped Items"
+								select="onCustomFilterClicked" icon="sap-icon://filter" />
+							<u:MenuItem text="Missing Items"
+								select="onCustomFilterClicked" icon="sap-icon://filter" />
+						</u:items>
+					</u:Menu>
+				</tb:menu>
+			</tb:Column>
+			<tb:Column filterProperty="ECCS_INC_PLAN">
+				<Label text="Planning Hierarchy ECCS" />
+				<tb:template>
+					<ObjectStatus
+						icon="{= ${ECCS_INC_PLAN} ? 'sap-icon://accept' : 'sap-icon://alert' }"
+						text="{= ${ECCS_INC_PLAN} ? 'mapped' : ${itemMissingECCS} ? 'missing' : 'not mapped' }"
+						state="{= ${ECCS_INC_PLAN} ? 'Success' : ${itemMissingECCS} ? 'Error' : 'Warning' }" />
+				</tb:template>
+				<tb:menu>
+					<u:Menu ariaLabelledBy="Filter Columns">
+						<u:items>
+							<u:MenuItem text="Show All"
+								select="onCustomFilterClicked" />
+							<u:MenuItem text="Mapped Items"
+								select="onCustomFilterClicked" icon="sap-icon://filter" />
+							<u:MenuItem text="Unmapped Items"
+								select="onCustomFilterClicked" icon="sap-icon://filter" />
+							<u:MenuItem text="Missing Items"
+								select="onCustomFilterClicked" icon="sap-icon://filter" />
+						</u:items>
+					</u:Menu>
+				</tb:menu>
+			</tb:Column>
+			<tb:Column>
+				<Label text="BULI Hierarchy" />
+				<tb:template>
+					<CheckBox selected="{B3IS_BULI}" select="" enabled="false" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="Income Split Hierarchy" />
+				<tb:template>
+					<CheckBox selected="{ISMIS}" select="" enabled="false" />
+				</tb:template>
+			</tb:Column>
+			<tb:Column>
+				<Label text="PLM Structure MIS" />
+				<tb:template>
+					<CheckBox selected="{PLMIS}" select="" enabled="false" />
+				</tb:template>
+			</tb:Column>
+		</tb:columns>
+	</tb:Table>
+</core:FragmentDefinition>
+						

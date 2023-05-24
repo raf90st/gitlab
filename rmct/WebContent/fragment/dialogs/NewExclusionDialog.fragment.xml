@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="newExclsionDialog" title="Add Exclusion"
+		afterClose="" contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newExclusionDialog')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewExclusion"></Button>
+		</endButton>		
+		<HBox>
+			<Label text="ZR:"></Label>
+		</HBox>
+		<HBox>
+			<Input id="newExclusionZr" type="Text" value="{newExclusion>/rmid}"
+				showValueHelp="true"
+				class="sapUiSmallMarginBottom" width="100%" 
+				valueHelpRequest="onZrValueHelpRequest($event, 'newExclusion')"/>
+		</HBox>
+		<HBox>
+			<Label text="RM:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newExclusion>/unumber}" editable="false" />
+		</HBox>
+		<HBox>
+			<Label text="From:"></Label>
+		</HBox>
+		<HBox>
+			<Input id="tpExc" type="Text"
+				value="{newExclusion>/fromExt}"
+				showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'newExclusionFrom')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+		</HBox>
+		<HBox>
+			<Label text="To:"></Label>
+		</HBox>
+		<HBox>
+			<Input id="tpExcTo" type="Text"
+				value="{newExclusion>/toExt}"
+				showValueHelp="true"
+				valueHelpRequest="onTransferPeriodHelpRequest($event, 'newExclusionTo')" 
+				class="sapUiSmallMarginBottom"
+				width="100%" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

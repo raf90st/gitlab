@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Add Compensation Element"
+		contentWidth="30%">
+		<beginButton>
+			<Button text="Cancel"
+				press="onGenericFragmentclose($event, '_newProspCompElement')"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveNewProspectCompElement"></Button>
+		</endButton>
+		<HBox>
+			<Label text="Element:"></Label>
+		</HBox>
+		<HBox width="100%">
+			<ComboBox
+				items="{
+						path: '/CompElementsTypeSet',
+						sorter: { path: 'Text' }
+				}"
+				selectedKey="{newProspElement>/element}">
+				<core:ListItem key="{Id}" text="{Text}" />
+			</ComboBox>
+		</HBox>
+		<HBox>
+			<Label text="Amount:"></Label>
+		</HBox>
+		<HBox>
+			<Input value="{newProspElement>/amount}" />
+		</HBox>
+		<HBox>
+			<Label text="Currency:"></Label>
+		</HBox>
+		<HBox>
+			<ComboBox
+				items="{
+				path: '/CurrencySet',
+				sorter: { path: 'currency' }
+			}"
+				selectedKey="{newProspElement>/currency}"
+				editable="false">
+				<core:ListItem key="{currency}" text="{currency}" />
+			</ComboBox>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

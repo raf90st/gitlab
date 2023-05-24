@@ -1,0 +1,157 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "juliusbaer.ipl",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/SAP/ZGMIS_IPL_UI_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "juliusbaer.ipl.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {
+					
+				},
+				"sap.m": {
+					
+				},
+				"sap.ui.layout": {
+					
+				},
+				"sap.tnt": {
+					
+				},
+				"sap.f": {
+				
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "None"
+				}
+			},
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "juliusbaer.ipl.i18n.i18n"
+				}
+			},
+			"side": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/local/sideMenu.json"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "juliusbaer.ipl.view",
+				"controlId": "mainContents",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "overview",
+					"target": "overview"
+				},
+				{
+					"pattern": "IntegratedPlanning",
+					"name": "ipl",
+					"target": "ipl"
+				},
+				{
+					"pattern": "MissingItems",
+					"name": "missItems",
+					"target": "missItems"
+				},
+				{
+					"pattern": "ProfitCenter",
+					"name": "profitcenter",
+					"target": "profitcenter"
+				},
+				{
+					"pattern": "ItemCategorization",
+					"name": "itemCat",
+					"target": "itemCat"
+				}
+			],
+			"targets": {
+				"ipl": {
+					"viewId": "iplView",
+					"viewName": "sections.IntegratedPlanning"
+				},
+				"missItems": {
+					"viewId": "missItemsView",
+					"viewName": "sections.MissingItems"
+				},
+				"profitcenter": {
+					"viewId": "ProfitCenterView",
+					"viewName": "sections.ProfitCenterMappings"
+				},
+				"overview": {
+					"viewId": "OverviewView",
+					"viewName": "sections.OverviewPage"
+				},
+				"itemCat": {
+					"viewId": "ItemCatView",
+					"viewName": "sections.ItemCategorization"
+				}
+			}
+		}
+	}
+}

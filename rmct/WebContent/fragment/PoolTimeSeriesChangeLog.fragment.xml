@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+		<Label text="Last changed by:"></Label>
+		<Input value="{modby}" editable="false" width="10em"></Input>
+		<Label text="on:"></Label>
+		<DatePicker value="{modon}"
+		displayFormat="dd.MM.yyyy" valueFormat="yyyy-MM-dd" 
+		editable="false" width="10em"/>
+</core:FragmentDefinition>
