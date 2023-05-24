@@ -1,0 +1,12 @@
+
+#<MITTWALD HTACCESS_USER>
+# PLEASE DO NEVER CHANGE THE CODE INSIDE THE <MITTWALD> MARKERS.
+# VERAENDERN SIE BITTE NIEMALS DEN INHALT ZWISCHEN DEN <MITTWALD> MARKERN.
+
+AuthType Basic
+AuthName "VZschutz"
+AuthUserFile /home/www/p553249/html/.htpasswd.mittwald
+order deny,allow
+allow from all
+require valid-user
+#</MITTWALD HTACCESS_USER>
